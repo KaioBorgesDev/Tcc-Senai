@@ -17,9 +17,9 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Explore',
+          title: 'Explore',//*nome em baixo*\\
           tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'walk' : 'walk-outline'} color={color} />
+            <TabBarIcon name={focused ? 'walk' : 'walk-outline'} color={color} />//primeiro icone (imagem),segundo icone(quando mudar de pagina ira mudar a imagem)\\
           ),
         }}
       />
