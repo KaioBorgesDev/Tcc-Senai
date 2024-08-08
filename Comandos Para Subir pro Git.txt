@@ -1,0 +1,6 @@
+git add .
+
+git commit -m "*Funcionalidades adicionadas: " 
+
+git push -u origin main 
+

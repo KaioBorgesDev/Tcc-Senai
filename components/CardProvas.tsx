@@ -1,11 +1,16 @@
 import {View,StyleSheet,Text,Image} from 'react-native'
 
-const CardProvas = () => {
+interface CardProvasProps{
+    titulo: string,
+    descricao: string,
+}
+const CardProvas: React.FC<CardProvasProps> = ({titulo, descricao}) => {
+    
   return (
     <View style={styles.Card}>
          <Image source={require('@/assets/icones/estrela.png')} style={styles.icone} />
-        <Text style={styles.Title}>Prova Ensino Superior</Text>
-        <Text style={styles.SubTitle}>Técnologo de 2024, 1° Semestre</Text>
+        <Text style={styles.Title}>{titulo}</Text>
+        <Text style={styles.SubTitle}>{descricao}</Text>
     </View>
   )
 }

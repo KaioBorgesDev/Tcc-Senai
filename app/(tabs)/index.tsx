@@ -1,9 +1,10 @@
-import { Image, StyleSheet, Platform, View, Text, ScrollView, TextInput} from 'react-native';
+import { Image, StyleSheet, Platform, View, Text, ScrollView, TextInput,Pressable} from 'react-native';
 
 import { HelloWave } from '@/components/HelloWave';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import CardProvas from '@/components/CardProvas';
+import { router } from 'expo-router';
 
 
 
@@ -20,15 +21,14 @@ export default function HomeScreen() {
         </View>
         <View style={styles.ContainerProcessos}>
           <ScrollView style={styles.ListProcessos}>
-            <CardProvas ></CardProvas>
-            <CardProvas ></CardProvas>
-            <CardProvas ></CardProvas>
-            <CardProvas ></CardProvas>
-            <CardProvas ></CardProvas>
-            <CardProvas ></CardProvas>
-            <CardProvas ></CardProvas>
-            <CardProvas ></CardProvas>
-            <CardProvas ></CardProvas>
+            <Pressable onPress={()=> router.push('/Selecao')}>
+            <CardProvas titulo='Prova de Tecnologia' descricao='Técnologo de 2024, 1° Semestre' ></CardProvas>
+            <CardProvas titulo='Prova de Tecnologia' descricao='Técnologo de 2024, 1° Semestre' ></CardProvas>
+            <CardProvas titulo='Prova de Tecnologia' descricao='Técnologo de 2024, 1° Semestre' ></CardProvas>
+            <CardProvas titulo='Prova de Tecnologia' descricao='Técnologo de 2024, 1° Semestre' ></CardProvas>
+            <CardProvas titulo='Prova de Tecnologia' descricao='Técnologo de 2024, 1° Semestre' ></CardProvas>
+            <CardProvas titulo='Prova de Tecnologia' descricao='Técnologo de 2024, 1° Semestre' ></CardProvas>
+            </Pressable>
           </ScrollView>
         </View>
       </View> 
@@ -46,7 +46,6 @@ const styles = StyleSheet.create({
     top:5,
     width: 350,
     height:400,
-    maxWidth:600,
     borderTopColor: 'gray',
     borderBottomColor:'gray',
     borderColor:'transparent',
