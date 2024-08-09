@@ -27,7 +27,6 @@ const styles = StyleSheet.create({
         fontFamily:'Sans-Serif',
         fontSize: 14,
         borderRadius:8,
-
       },
       cardTitulo:{
         
