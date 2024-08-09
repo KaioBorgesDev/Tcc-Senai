@@ -1,3 +1,9 @@
+Entrar na pasta raiz (TCC-SENAI)
+
+Clickar com o botão direito, e abrir um terminal do git (GIT BASH)
+
+executar os comandos abaixo:
+
 git add .
 
 git commit -m "*Funcionalidades adicionadas: " 

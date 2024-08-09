@@ -17,8 +17,7 @@ const processo = () => {
 }
 const styles = StyleSheet.create({
       button:{
-        width:100,
-        height:28,
+        padding: 15,
         backgroundColor:'green',
         textAlign:'center',
         justifyContent:'center',

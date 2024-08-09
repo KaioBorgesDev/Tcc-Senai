@@ -8,90 +8,73 @@ import { router } from 'expo-router';
 
 
 
+
 export default function HomeScreen() {
   return (
     <View style={styles.container}>
-      <TextInput placeholder='Prova Ensino Superior' style={[styles.TextInput, {textAlign:'center'}]}></TextInput>
-      <View style={[{height:1},{backgroundColor:'gray'}, {width:1000},{top:5}]}></View>
-      <View style={styles.subContainer}>
-      
+      <View style={styles.nav}>
+        <TextInput placeholder='Pesquise aqui: Prova Ensino Superior' style={[styles.TextInput, {textAlign:'center'}]}></TextInput>
+      </View>
+      <View style={[{height:1},{backgroundColor:'gray'}, {margin: 10}]}></View>
+      <View style={styles.titleContainer}>
+          <Text style={{textAlign: 'center', fontWeight: 'bold'}}>Processos Seletivos</Text>
+      </View>
+      <ScrollView style={styles.ListProcessos}>
+        <Pressable onPress={()=> router.navigate('/Selecao')}>
+        <CardProvas titulo='Prova de Tecnologia' descricao='Técnologo de 2024, 1° Semestre' ></CardProvas>
+        </Pressable>
+        <Pressable onPress={()=> router.push('/Selecao')}>
+        <CardProvas titulo='Prova de Tecnologia' descricao='Técnologo de 2024, 1° Semestre' ></CardProvas>
+        </Pressable>
+        <Pressable onPress={()=> router.push('/Selecao')}>
+        <CardProvas titulo='Prova de Tecnologia' descricao='Técnologo de 2024, 1° Semestre' ></CardProvas>
+        </Pressable>
+        <Pressable onPress={()=> router.push('/Selecao')}>
+        <CardProvas titulo='Prova de Tecnologia' descricao='Técnologo de 2024, 1° Semestre' ></CardProvas>
+        </Pressable>
+        <Pressable onPress={()=> router.push('/Selecao')}>
+        <CardProvas titulo='Prova de Tecnologia' descricao='Técnologo de 2024, 1° Semestre' ></CardProvas>
+        </Pressable>
+        <Pressable onPress={()=> router.push('/Selecao')}>
+        <CardProvas titulo='Prova de Tecnologia' descricao='Técnologo de 2024, 1° Semestre' ></CardProvas>
+        </Pressable>
         
-        <View style={styles.titleContainer}>
-          <Text>Processos Seletivos</Text>
-        </View>
-        <View style={styles.ContainerProcessos}>
-          <ScrollView style={styles.ListProcessos}>
-            <Pressable onPress={()=> router.push('/Selecao')}>
-            <CardProvas titulo='Prova de Tecnologia' descricao='Técnologo de 2024, 1° Semestre' ></CardProvas>
-            <CardProvas titulo='Prova de Tecnologia' descricao='Técnologo de 2024, 1° Semestre' ></CardProvas>
-            <CardProvas titulo='Prova de Tecnologia' descricao='Técnologo de 2024, 1° Semestre' ></CardProvas>
-            <CardProvas titulo='Prova de Tecnologia' descricao='Técnologo de 2024, 1° Semestre' ></CardProvas>
-            <CardProvas titulo='Prova de Tecnologia' descricao='Técnologo de 2024, 1° Semestre' ></CardProvas>
-            <CardProvas titulo='Prova de Tecnologia' descricao='Técnologo de 2024, 1° Semestre' ></CardProvas>
-            </Pressable>
-          </ScrollView>
-        </View>
-      </View> 
-   </View>
+      </ScrollView>
+
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container:{
     flex:1,
-    alignItems:'center',
-    top:20,
   },
-  ContainerProcessos:{
-    top:5,
+  TextInput:{
+    borderRadius:20,
     width: 350,
-    height:400,
+    height:40,
+    backgroundColor:'white',
+  },
+  nav:{
+    padding: 10,
+    alignItems: 'center'
+  },
+  titleContainer: {
+    width: 300,
+    height: 50,
+    justifyContent: 'center',
+    alignSelf: 'center',
+    borderWidth: 1,
+    borderRadius: 10,
+    margin: 50,
+    backgroundColor: 'white'
+  },
+  ListProcessos:{
     borderTopColor: 'gray',
     borderBottomColor:'gray',
     borderColor:'transparent',
     borderStyle: 'solid',
-    borderWidth:0.5,
-    
-  },
-  ListProcessos:{
-
-  },
-  TextInput:{
-    
-    borderRadius:20,
-    width: 400,
-    height:60,
-    backgroundColor:'white',
-    
-
-  },
-  subContainer:{
-    flex:1,
-    justifyContent:'center',
-    alignItems:'center',
-  },
-
-  titleContainer: {
-    width:170,
-    height: 40,
-    textAlign: 'center',
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderColor: 'black',
-    borderStyle: 'solid',
     borderWidth: 1,
-    borderRadius: 10,
-    bottom: 20
-  },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
-  },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
-  },
+    maxHeight: 400
+  }
 });
