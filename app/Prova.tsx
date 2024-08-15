@@ -1,12 +1,27 @@
 import Button from '@/components/Button';
 import React, { useState } from 'react';
+import { router, useLocalSearchParams } from 'expo-router';
 import { StyleSheet, View, Text, TouchableOpacity, ScrollView } from 'react-native';
+
+interface SelecaoProps {
+  numero: number,
+  ordem: string,
+  texto: string,
+  pergunta: string,
+  comando: string, 
+  respostas: string,
+}
 
 const Selecao = () => {
   // Estado para gerenciar a cor do botão
-  const [buttonColor, setButtonColor] = useState('white');
+  const [nextQuestion, setNextQuestion] = useState(false);
+  const { param1, param2 } = useLocalSearchParams();
+  const [number, setNumber] = useState(); // Corrigido o nome da função para setNumber
 
-  
+  const handlePress = () => {
+    setNextQuestion(true);
+    setNumber(number); // Corrigido o nome da função para setNumber
+  }
 
   const data = [
     {id: 1, resposta: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.', correta: false},
@@ -19,21 +34,38 @@ const Selecao = () => {
   return (
     <ScrollView style={styles.container}>
       <View style={styles.cardProva}>
-        <Text style={styles.titulo}>1. Leia a seguinte oração</Text>
+        <Text style={styles.titulo}>{param1}. Leia a seguinte oração</Text>
         <ScrollView style={styles.Pergunta}>
-          “A vida é um soco no estômago.” Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe magnam quibusdam accusantium! Omnis incidunt provident, asperiores sit quos at similique exercitationem impedit facilis minima veritatis ab dolor eligendi nihil ipsam? Lorem ipsum, dolor sit amet consectetur adipisicing elit. A odio aperiam eius impedit et, qui dolorum amet doloribus ipsam asperiores quaerat tempora ab tenetur? Enim sit vitae officia dolore cumque.
+          <Text>{param1} “A vida é um soco no estômago.” Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe magnam quibusdam accusantium! Omnis incidunt provident, asperiores sit quos at similique exercitationem impedit facilis minima veritatis ab dolor eligendi nihil ipsam? Lorem ipsum, dolor sit amet consectetur adipisicing elit. A odio aperiam eius impedit et, qui dolorum amet doloribus ipsam asperiores quaerat tempora ab tenetur? Enim sit vitae officia dolore cumque.</Text>
         </ScrollView>
         <View style={styles.ListOpcao}>
           {
             data.map(item => (
               <Button
-              key={item.id}
-              resposta={item.resposta}
-              correta= {item.correta}
-            />
+                key={item.id}
+                resposta={item.resposta}
+                correta={item.correta}
+                onPress={handlePress}
+              />
             ))
           }
         </View>
+        {
+          nextQuestion && 
+          (
+            <TouchableOpacity
+              onPress={() => 
+                router.push({
+                  pathname: '/Prova',
+                  params: { param1: number, param2: '1231' } // Passando o valor numérico correto
+                })
+              }
+              style={styles.button}
+            >
+              <Text style={styles.buttonText}>Próxima Pergunta!</Text>
+            </TouchableOpacity>
+          )
+        }
       </View>
     </ScrollView>
   );
@@ -47,12 +79,14 @@ const styles = StyleSheet.create({
     padding: 15,
     alignSelf: 'center',
     borderRadius: 8,
+    backgroundColor: 'green',
+    justifyContent: 'center',
+    top: 30,
   },
   buttonText: {
-    color: 'black',
+    color: 'white',
     textAlign: 'center',
     fontSize: 14,
-    fontFamily: 'Sans-Serif',
   },
   ListOpcao: {
     top: 10,
@@ -61,6 +95,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 75,
     paddingVertical: 10,
     backgroundColor: 'white',
+    maxWidth: 1000,
     borderRadius: 5,
   },
   container: {

@@ -4,13 +4,15 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 
 interface ButtonProps{
     resposta: string,
-    correta: boolean
+    correta: boolean,
+    onPress: () => void
 }
-const Button : React.FC<ButtonProps> = ({resposta, correta}) => {
+const Button : React.FC<ButtonProps> = ({resposta, correta, onPress}) => {
     const [buttonColor, setButtonColor] = useState('white');
   // Função para alterar a cor do botão
     const handlePress = () => {
     setButtonColor(correta  ? 'green' : 'red');
+    onPress();
   };
 
   return (
@@ -25,6 +27,8 @@ const styles = StyleSheet.create({
     padding: 15,
     alignSelf: 'center',
     borderRadius: 8,
+    borderWidth: 1,
+
   },
   buttonText: {
     color: 'black',

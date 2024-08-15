@@ -9,7 +9,9 @@ const processo = () => {
        <View style = {styles.cardTitulo}>
           <Text style ={styles.titulo}>Processo Seletivo - Aprendizagem Industrial </Text>
           <Text style={styles.subtitulo}>20 questões de Língua Portuguesa, 19 questões de Matemática e 20 questões de Ciências</Text>
-          <TouchableOpacity onPress={()=>{router.push('/Prova')}} style={styles.button}>Iniciar Prova</TouchableOpacity >   
+          <TouchableOpacity onPress={()=>{router.push({pathname: '/Prova',
+                params: {param1: '1', param2: '1231'}
+                })}} style={styles.button}>Iniciar Prova</TouchableOpacity >   
         </View>
       </View>
     </View>
