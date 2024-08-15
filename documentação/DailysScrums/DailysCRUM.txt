@@ -1,0 +1,5 @@
+Rafael - Assistiu a aula de teste de software, e produziu um excel para realizacao de análise de teste.
+
+Luis- Reajustes no banco, e começou as tabelas de riscos.
+
+Mariel e Kaio- Refatorou os ultimos ajustes no profile, favorites, e button de proxima question
