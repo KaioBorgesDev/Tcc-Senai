@@ -5,13 +5,15 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 interface ButtonProps{
     resposta: string,
     correta: boolean,
+    firstTry: boolean,
     onPress: () => void
 }
-const Button : React.FC<ButtonProps> = ({resposta, correta, onPress}) => {
+const Button : React.FC<ButtonProps> = ({resposta, correta, onPress, firstTry}) => {
     const [buttonColor, setButtonColor] = useState('white');
   // Função para alterar a cor do botão
     const handlePress = () => {
-    setButtonColor(correta  ? 'green' : 'red');
+      //Esta com um bug, se a pessoa aperta duas vezes, volta pro branco, arrumar isto
+    setButtonColor(firstTry ? correta ? 'green' : 'red' : 'gray');
     onPress();
   };
 

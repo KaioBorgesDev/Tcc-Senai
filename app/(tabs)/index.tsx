@@ -1,50 +1,35 @@
 import { Image, StyleSheet, Platform, View, Text, ScrollView, TextInput,Pressable} from 'react-native';
 
-import { HelloWave } from '@/components/HelloWave';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
 import CardProvas from '@/components/CardProvas';
 import { router } from 'expo-router';
 
 
-
-
+//O programa começa a partir daqui
 export default function HomeScreen() {
   return (
     <View style={styles.container}>
-      <View style={styles.nav}>
+
+      <View style={styles.nav}>{/*  Este é a barra de pesquisa.*/}
         <TextInput placeholder='Pesquise aqui: Prova Ensino Superior' style={[styles.TextInput, {textAlign:'center'}]}></TextInput>
       </View>
+      {/*  Esta é a linha em baixo da barra pesquisa.*/}
       <View style={[{height:1},{backgroundColor:'gray'}, {margin: 10}]}></View>
+
+      {/*  Titulo da seção.*/}
       <View style={styles.titleContainer}>
           <Text style={{textAlign: 'center', fontWeight: 'bold'}}>Processos Seletivos</Text>
       </View>
+      {/* Uma view com scroll das listas de processos.*/}
       <ScrollView style={styles.ListProcessos}>
+        {/*  Button para ir para a seleção da prova.*/}
         <Pressable onPress={()=> router.navigate('/Selecao')}>
-        <CardProvas titulo='Prova de Tecnologia' descricao='Técnologo de 2024, 1° Semestre' ></CardProvas>
+        <CardProvas titulo='Prova de Tecnologia' descricao='Técnologo de 2024, 1° Semestre'></CardProvas>
         </Pressable>
-        <Pressable onPress={()=> router.push('/Selecao')}>
-        <CardProvas titulo='Prova de Tecnologia' descricao='Técnologo de 2024, 1° Semestre' ></CardProvas>
-        </Pressable>
-        <Pressable onPress={()=> router.push('/Selecao')}>
-        <CardProvas titulo='Prova de Tecnologia' descricao='Técnologo de 2024, 1° Semestre' ></CardProvas>
-        </Pressable>
-        <Pressable onPress={()=> router.push('/Selecao')}>
-        <CardProvas titulo='Prova de Tecnologia' descricao='Técnologo de 2024, 1° Semestre' ></CardProvas>
-        </Pressable>
-        <Pressable onPress={()=> router.push('/Selecao')}>
-        <CardProvas titulo='Prova de Tecnologia' descricao='Técnologo de 2024, 1° Semestre' ></CardProvas>
-        </Pressable>
-        <Pressable onPress={()=> router.push('/Selecao')}>
-        <CardProvas titulo='Prova de Tecnologia' descricao='Técnologo de 2024, 1° Semestre' ></CardProvas>
-        </Pressable>
-        
       </ScrollView>
-
     </View>
   );
 }
-
+{/*  Estilos para a tela.*/}
 const styles = StyleSheet.create({
   container:{
     flex:1,

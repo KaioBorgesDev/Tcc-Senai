@@ -1,26 +1,25 @@
 import Button from '@/components/Button';
-import React, { useState } from 'react';
-import { router, useLocalSearchParams } from 'expo-router';
+import { useState } from 'react';
+import  { router, useLocalSearchParams } from 'expo-router';
 import { StyleSheet, View, Text, TouchableOpacity, ScrollView } from 'react-native';
 
-interface SelecaoProps {
-  numero: number,
-  ordem: string,
-  texto: string,
-  pergunta: string,
-  comando: string, 
-  respostas: string,
-}
 
 const Selecao = () => {
   // Estado para gerenciar a cor do botão
   const [nextQuestion, setNextQuestion] = useState(false);
-  const { param1, param2 } = useLocalSearchParams();
-  const [number, setNumber] = useState(); // Corrigido o nome da função para setNumber
+  //parametro, que é a questão que sera realizada
+  const {param1} = useLocalSearchParams();
+  //numero da questao para ser adicionado
+  const [number, setNumber] = useState<number>(Number(param1));
+  
+  const [firstTry, setFirstTry] = useState(true);
 
+  
   const handlePress = () => {
+    //aparece o button da proxima questao
     setNextQuestion(true);
-    setNumber(number); // Corrigido o nome da função para setNumber
+    setFirstTry(false)
+    setNumber(prev => prev + 1); //adiciona mais um, para a proxima questão ser a seguinte.
   }
 
   const data = [
@@ -45,7 +44,12 @@ const Selecao = () => {
                 key={item.id}
                 resposta={item.resposta}
                 correta={item.correta}
-                onPress={handlePress}
+                firstTry={firstTry}
+                onPress={()=>{
+                  if(firstTry){
+                  handlePress();
+                }
+              } }
               />
             ))
           }

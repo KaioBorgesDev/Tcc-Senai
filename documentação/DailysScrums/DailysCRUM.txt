@@ -1,5 +1,15 @@
+15/08
+
 Rafael - Assistiu a aula de teste de software, e produziu um excel para realizacao de análise de teste.
 
 Luis- Reajustes no banco, e começou as tabelas de riscos.
 
 Mariel e Kaio- Refatorou os ultimos ajustes no profile, favorites, e button de proxima question
+
+16/08
+
+Luiz: Quase terminando o tabela de risco, faltando bem pouco.
+
+Rafael: Continuação da documentação, objetivos especificos, analise de requisitos, restrições. 
+
+Mariel e Kaio: Refatoramos os codigos das provas, seleção, e outros.

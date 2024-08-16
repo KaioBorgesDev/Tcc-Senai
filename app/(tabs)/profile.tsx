@@ -1,11 +1,5 @@
-import Ionicons from '@expo/vector-icons/Ionicons';
-import { StyleSheet, Image, Platform } from 'react-native';
 
-import { Collapsible } from '@/components/Collapsible';
-import { ExternalLink } from '@/components/ExternalLink';
-
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
+import { StyleSheet, Image} from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { View, Text} from 'react-native';
 
@@ -13,24 +7,28 @@ const profile = () => {
   return (
     <ScrollView>
       <View style={styles.Container}>
-        <Image source={require('../../assets/icones/avatar.png')}style={styles.avatar} resizeMode="contain"></Image>
+        <Image source={require('../../assets/icones/avatar.png')} resizeMode="contain"></Image>
         <Text style={styles.info}> Samuel Gomes Private</Text>
         <Text style={styles.info}> example@outlook.com</Text>
         <View style={styles.CardInsights}>
-        <View >
-            <Text>Provas Completas</Text>
-            <Text style={styles.TaxaAE} >Acertos / Erros</Text>
-        </View>  
-        <View style={{height: 40, width: 1, backgroundColor: 'black'}}>
+            <View >
+              <Text>Provas Completas</Text>
+              <Text>50</Text>
+              
+              <Text style={styles.TaxaAE}>Acertos / Erros</Text>
+              <Text style={styles.text}>
+                1.53
+              </Text>
+            </View>  
+          <View style={{height: 40, width: 1, backgroundColor: 'black'}}>
+          </View>
+          <View>
+            <Text>Explicações Favoritadas</Text>
+            <Text>61</Text>
+            <Text style={styles.RespostasCertas}>Respostas Certas</Text>
+            <Text>29</Text>
+          </View>
         </View>
-        
-        <View>
-          <Text>Explicações Favoritadas</Text>
-          <Text style={styles.RespostasCertas}>Respostas Certas</Text>
-        </View> 
-        
-      </View>
-      <View style={{height: 40, width: 1, backgroundColor: 'black', bottom: 30, right: 17}}></View>   
       </View>
     </ScrollView>
   )
@@ -46,9 +44,8 @@ const styles = StyleSheet.create({
     marginTop: 55,
     borderColor:'black',
     flexDirection: 'row',
-    gap: 60,
-  
-
+    gap: 50,
+    margin: 2,
   },
   info:{
     margin:15,
@@ -56,9 +53,9 @@ const styles = StyleSheet.create({
     fontSize: 20,
     opacity: 0.6
   },
-    avatar: {
-      
-    },
+  text:{
+    color: 'red',
+  },
     Container:{
       alignItems: 'center',
       top:65,
