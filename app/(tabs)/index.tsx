@@ -2,10 +2,38 @@ import { Image, StyleSheet, Platform, View, Text, ScrollView, TextInput,Pressabl
 
 import CardProvas from '@/components/CardProvas';
 import { router } from 'expo-router';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+  
 
+interface ProcessoSeletivo {
+  id : number, 
+  titulo :string,
+  subTitulo:string,
+  categoria:string,
+  semestre:string,
+  ano:string,
+
+}
 
 //O programa começa a partir daqui
 export default function HomeScreen() {
+  const [processosSeletivos, setProcessosSeletivos] = useState<ProcessoSeletivo[]>([]);
+
+  useEffect(()=>{
+    const buscarProcesso = async () => {
+      try {
+        const data = await axios.get('http://192.168.56.1:8080/api/provas/all');
+        const processos : ProcessoSeletivo[] = data.data
+        setProcessosSeletivos(processos);
+
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    
+    buscarProcesso();
+   }, [])
   return (
     <View style={styles.container}>
 
