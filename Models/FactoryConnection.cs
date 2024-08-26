@@ -6,7 +6,6 @@ namespace senai_game.Models
     {
         
 
-
         public static MySqlConnection getConnection(string connectionString) {
             
             MySqlConnection connection = new MySqlConnection(Configuration().GetConnectionString(connectionString));

@@ -31,7 +31,7 @@ namespace senai_game.Models
             var allProcessos = new List<Processo>();
             try
             {
-                conexao = FactoryConnection.getConnection("fatec");
+                conexao = FactoryConnection.getConnection("senai");
                 conexao.Open();
                 MySqlCommand command = new MySqlCommand("Select * from processos",conexao);
 
@@ -45,6 +45,7 @@ namespace senai_game.Models
                             reader["description"].ToString(),
                             reader["semestre"].ToString()
                         );
+                      
                         allProcessos.Add(processo);
                     }
                     return allProcessos;
@@ -59,6 +60,27 @@ namespace senai_game.Models
                 throw ex;
             }
 
+        }
+        public static String inserirProcessos(Processo processo)
+        {
+            MySqlConnection conexao = null;
+            try
+            {
+                conexao = FactoryConnection.getConnection("senai");
+                conexao.Open();
+
+                MySqlCommand command = new MySqlCommand("insert into processos (name, description, semestre) values (@name, @description, @semestre)", conexao);
+                command.Parameters.AddWithValue("@name", processo.Name);
+                command.Parameters.AddWithValue("@description", processo.Description);
+                command.Parameters.AddWithValue("@semestre", processo.Semestre);
+
+                command.ExecuteNonQuery();
+                return "Processo inserido com sucesso";
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }
