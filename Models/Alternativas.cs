@@ -6,10 +6,10 @@ namespace senai_game.Models
     {
         private int id;
         private string descricao;
-        private bool correta;
+        private int correta;
         private int id_pergunta;
 
-        public Alternativas(int id, string descricao, bool correta, int id_pergunta)
+        public Alternativas(int id, string descricao, int correta, int id_pergunta)
         {
             this.id = id;
             this.descricao = descricao ?? throw new ArgumentNullException(nameof(descricao));
@@ -18,7 +18,7 @@ namespace senai_game.Models
         }
 
         public int Id_pergunta { get => id_pergunta; set => id_pergunta = value; }
-        public bool Correta { get => correta; set => correta = value; }
+        public int Correta { get => correta; set => correta = value; }
         public string Descricao { get => descricao; set => descricao = value; }
         public int Id { get => id; set => id = value; }
 
@@ -39,7 +39,7 @@ namespace senai_game.Models
                 {
                     while (reader.Read())
                     {
-                        Alternativas alternativa = new Alternativas((int)reader["id"], reader["descricao"].ToString(), (bool)reader["correta"], (int)reader["id_pergunta"]);
+                        Alternativas alternativa = new Alternativas((int)reader["id"], reader["descricao"].ToString(), (int) reader["correta"], (int)reader["id_pergunta"]);
                         allAlternativas.Add(alternativa);
                     }
                     return allAlternativas;
@@ -54,7 +54,7 @@ namespace senai_game.Models
                 throw ex;
             }
         }
-        public static String insert(Alternativas alternativa)
+        public static String insertAlternativas(Alternativas alternativa)
         {
             MySqlConnection conexao = null;
             try
@@ -67,6 +67,37 @@ namespace senai_game.Models
                 command.Parameters.AddWithValue("@id_pergunta", alternativa.Id_pergunta);
                 command.ExecuteNonQuery();
                 return "Alternativa inserida com sucesso";
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        internal static List<Alternativas> getAllById(int id_pergunta)
+        {
+            MySqlConnection conexao = null;
+
+            var allAlternativas = new List<Alternativas>();
+            try
+            {
+                conexao = FactoryConnection.getConnection("senai");
+                conexao.Open();
+                MySqlCommand command = new MySqlCommand("Select * from alternativas where id_pergunta = @id_pergunta", conexao);
+                command.Parameters.AddWithValue("@id_pergunta", id_pergunta);
+
+                MySqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        Alternativas alternativa = new Alternativas((int)reader["id"], reader["descricao"].ToString(), (int) reader["correta"], (int)reader["id_pergunta"]);
+                        allAlternativas.Add(alternativa);
+                    }
+                    return allAlternativas;
+                }
+                return allAlternativas;
             }
             catch (Exception ex)
             {

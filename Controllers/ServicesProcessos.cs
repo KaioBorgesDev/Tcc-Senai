@@ -10,9 +10,24 @@ namespace senai_game.Controllers
     {
 
         [HttpGet("/all")]
-        public List<Processo> getAll()
+        public IActionResult getAllProcessos()
         {
-            return Processo.getAll();
+            return Ok(Processo.getAll());
+          
+        }
+
+        [HttpGet("/{id}")]
+        public IActionResult getProcessoById(int id)
+        {
+            var processo = Processo.getById(id);
+
+            if (processo == null)
+            {
+                return NotFound("Processo não encontrado");
+            }
+            return Ok(processo);
+ 
+           
         }
     }
 }
