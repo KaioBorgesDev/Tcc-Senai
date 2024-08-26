@@ -1,0 +1,100 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\kaio.oliveira8\\source\\repos\\Senai-Game-Api\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{C6F61893-5487-4F0F-A042-A8DA4FF7385B}|senai-game.csproj|c:\\users\\kaio.oliveira8\\source\\repos\\senai-game-api\\models\\processo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C6F61893-5487-4F0F-A042-A8DA4FF7385B}|senai-game.csproj|solutionrelative:models\\processo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C6F61893-5487-4F0F-A042-A8DA4FF7385B}|senai-game.csproj|c:\\users\\kaio.oliveira8\\source\\repos\\senai-game-api\\controllers\\servicesprocessos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C6F61893-5487-4F0F-A042-A8DA4FF7385B}|senai-game.csproj|solutionrelative:controllers\\servicesprocessos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C6F61893-5487-4F0F-A042-A8DA4FF7385B}|senai-game.csproj|c:\\users\\kaio.oliveira8\\source\\repos\\senai-game-api\\models\\factoryconnection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C6F61893-5487-4F0F-A042-A8DA4FF7385B}|senai-game.csproj|solutionrelative:models\\factoryconnection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C6F61893-5487-4F0F-A042-A8DA4FF7385B}|senai-game.csproj|c:\\users\\kaio.oliveira8\\source\\repos\\senai-game-api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{C6F61893-5487-4F0F-A042-A8DA4FF7385B}|senai-game.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 212,
+          "SelectedChildIndex": 5,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "FactoryConnection.cs",
+              "DocumentMoniker": "C:\\Users\\kaio.oliveira8\\source\\repos\\Senai-Game-Api\\Models\\FactoryConnection.cs",
+              "RelativeDocumentMoniker": "Models\\FactoryConnection.cs",
+              "ToolTip": "C:\\Users\\kaio.oliveira8\\source\\repos\\Senai-Game-Api\\Models\\FactoryConnection.cs",
+              "RelativeToolTip": "Models\\FactoryConnection.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAqwA4AAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-26T13:28:25.395Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\kaio.oliveira8\\source\\repos\\Senai-Game-Api\\appsettings.json",
+              "RelativeDocumentMoniker": "appsettings.json",
+              "ToolTip": "C:\\Users\\kaio.oliveira8\\source\\repos\\Senai-Game-Api\\appsettings.json",
+              "RelativeToolTip": "appsettings.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAnAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-08-26T13:21:28.959Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Processo.cs",
+              "DocumentMoniker": "C:\\Users\\kaio.oliveira8\\source\\repos\\Senai-Game-Api\\Models\\Processo.cs",
+              "RelativeDocumentMoniker": "Models\\Processo.cs",
+              "ToolTip": "C:\\Users\\kaio.oliveira8\\source\\repos\\Senai-Game-Api\\Models\\Processo.cs",
+              "RelativeToolTip": "Models\\Processo.cs",
+              "ViewState": "AQIAADEAAAAAAAAAAAAmwDwAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-26T13:19:47.268Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ServicesProcessos.cs",
+              "DocumentMoniker": "C:\\Users\\kaio.oliveira8\\Source\\Repos\\Senai-Game-Api\\Controllers\\ServicesProcessos.cs",
+              "RelativeDocumentMoniker": "Controllers\\ServicesProcessos.cs",
+              "ToolTip": "C:\\Users\\kaio.oliveira8\\Source\\Repos\\Senai-Game-Api\\Controllers\\ServicesProcessos.cs",
+              "RelativeToolTip": "Controllers\\ServicesProcessos.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-26T13:19:22.731Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

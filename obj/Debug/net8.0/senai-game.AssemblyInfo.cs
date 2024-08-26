@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("senai-game")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1115f156459af436d72b543d6a619fe2521b0478")]
 [assembly: System.Reflection.AssemblyProductAttribute("senai-game")]
 [assembly: System.Reflection.AssemblyTitleAttribute("senai-game")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
