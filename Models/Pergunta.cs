@@ -22,14 +22,20 @@ namespace senai_game.Models
         public int Id { get => id; set => id = value; }
         public List<Alternativas> Alternativas_list { get => alternativas_list; set => alternativas_list = value; }
 
-        public static List<Pergunta> getAllById(int id)
+        public static List<Pergunta> getById(int id)
         {
-            MySqlConnection conexao = null;
+            MySqlConnection conexao;
+            string conexao_atual = Environment.GetEnvironmentVariable("CONEXAO", EnvironmentVariableTarget.User);
+
+            if (conexao_atual == null)
+            {
+                conexao_atual = "senai";
+            }
 
             var allPerguntas = new List<Pergunta>();
             try
             {
-                conexao = FactoryConnection.getConnection("senai");
+                conexao = FactoryConnection.getConnection(conexao_atual);
                 conexao.Open();
                 MySqlCommand command = new MySqlCommand("Select * from perguntas where id_processo = @id", conexao);
                 command.Parameters.AddWithValue("@id", id);
@@ -41,7 +47,7 @@ namespace senai_game.Models
                     while (reader.Read())
                     {
                         Pergunta pergunta = new Pergunta((int)reader["id"], reader["descricao"].ToString(), (int)reader["id_processo"], 
-                            alternativas_list: Alternativas.getAllById((int) reader["id"]));
+                            alternativas_list: Alternativas.getById((int) reader["id"]));
 
                         allPerguntas.Add(pergunta);
                     }
@@ -58,10 +64,16 @@ namespace senai_game.Models
         //Corrigir o método abaixo
         public static String insertPerguntas()
         {
-            MySqlConnection conexao = null;
+            MySqlConnection conexao;
+            string conexao_atual = Environment.GetEnvironmentVariable("CONEXAO", EnvironmentVariableTarget.User);
+
+            if (conexao_atual == null)
+            {
+                conexao_atual = "senai";
+            }
             try
             {
-                conexao = FactoryConnection.getConnection("senai");
+                conexao = FactoryConnection.getConnection(conexao_atual);
                 conexao.Open();
                 MySqlCommand command = new MySqlCommand("Insert into perguntas (descricao, id_processo) values (@descricao, @id_processo)", conexao);
                 command.Parameters.AddWithValue("@descricao", "Pergunta teste");

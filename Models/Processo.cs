@@ -36,12 +36,18 @@ namespace senai_game.Models
 
         public static List<Processo> getAll()
         {
-            MySqlConnection conexao = null;
+            MySqlConnection conexao;
+            string conexao_atual = Environment.GetEnvironmentVariable("CONEXAO", EnvironmentVariableTarget.User);
+
+            if (conexao_atual == null)
+            {
+                conexao_atual = "senai";
+            }
 
             var allProcessos = new List<Processo>();
             try
             {
-                conexao = FactoryConnection.getConnection("senai");
+                conexao = FactoryConnection.getConnection(conexao_atual);
                 conexao.Open();
                 MySqlCommand command = new MySqlCommand("Select * from processos",conexao);
 
@@ -54,7 +60,7 @@ namespace senai_game.Models
                             reader["name"].ToString(),
                             reader["description"].ToString(),
                             reader["semestre"].ToString(),
-                            perguntas: Pergunta.getAllById((int)reader["id"])
+                            perguntas: Pergunta.getById((int)reader["id"])
                         );
                         allProcessos.Add(processo);
                     }
@@ -68,10 +74,16 @@ namespace senai_game.Models
         }
         public static String inserirProcessos(Processo processo)
         {
-            MySqlConnection conexao = null;
+            MySqlConnection conexao;
+            string conexao_atual = Environment.GetEnvironmentVariable("CONEXAO", EnvironmentVariableTarget.User);
+
+            if (conexao_atual == null)
+            {
+                conexao_atual = "senai";
+            }
             try
             {
-                conexao = FactoryConnection.getConnection("senai");
+                conexao = FactoryConnection.getConnection(conexao_atual);
                 conexao.Open();
 
                 MySqlCommand command = new MySqlCommand("insert into processos (name, description, semestre) values (@name, @description, @semestre)", conexao);
@@ -89,10 +101,17 @@ namespace senai_game.Models
         }
         public static Processo getById(int id)
         {
-            MySqlConnection conexao = null;
+            MySqlConnection conexao;
+            string conexao_atual = Environment.GetEnvironmentVariable("CONEXAO", EnvironmentVariableTarget.User);
+
+            if (conexao_atual == null)
+            {
+                conexao_atual = "senai";
+            }
+
             try
             {
-                conexao = FactoryConnection.getConnection("senai");
+                conexao = FactoryConnection.getConnection(conexao_atual);
                 conexao.Open();
                 MySqlCommand command = new MySqlCommand("Select * from processos where id = @id", conexao);
                 command.Parameters.AddWithValue("@id", id);
@@ -102,7 +121,7 @@ namespace senai_game.Models
                 if (reader.HasRows)
                 {
                     reader.Read();
-                    return new Processo((int)reader["id"], reader["name"].ToString(), reader["description"].ToString(), reader["semestre"].ToString());
+                    return new Processo((int)reader["id"], reader["name"].ToString(), reader["description"].ToString(), reader["semestre"].ToString(), perguntas: Pergunta.getById((int) reader["id"]));
                 }
                 return null;
             }

@@ -24,12 +24,18 @@ namespace senai_game.Models
 
         public static List<Alternativas> getAll()
         {
-            MySqlConnection conexao = null;
+            MySqlConnection conexao;
+            string conexao_atual = Environment.GetEnvironmentVariable("CONEXAO", EnvironmentVariableTarget.User);
+
+            if (conexao_atual == null)
+            {
+                conexao_atual = "senai";
+            }
 
             var allAlternativas = new List<Alternativas>();
             try
             {
-                conexao = FactoryConnection.getConnection("senai");
+                conexao = FactoryConnection.getConnection(conexao_atual);
                 conexao.Open();
                 MySqlCommand command = new MySqlCommand("Select * from alternativas", conexao);
 
@@ -56,10 +62,16 @@ namespace senai_game.Models
         }
         public static String insertAlternativas(Alternativas alternativa)
         {
-            MySqlConnection conexao = null;
+            MySqlConnection conexao;
+            string conexao_atual = Environment.GetEnvironmentVariable("CONEXAO", EnvironmentVariableTarget.User);
+
+            if (conexao_atual == null)
+            {
+                conexao_atual = "senai";
+            }
             try
             {
-                conexao = FactoryConnection.getConnection("senai");
+                conexao = FactoryConnection.getConnection(conexao_atual);
                 conexao.Open();
                 MySqlCommand command = new MySqlCommand("Insert into alternativas (descricao, correta, id_pergunta) values (@descricao, @correta, @id_pergunta)", conexao);
                 command.Parameters.AddWithValue("@descricao", alternativa.Descricao);
@@ -74,14 +86,20 @@ namespace senai_game.Models
             }
         }
 
-        internal static List<Alternativas> getAllById(int id_pergunta)
+        internal static List<Alternativas> getById(int id_pergunta)
         {
-            MySqlConnection conexao = null;
+            MySqlConnection conexao;
+            string conexao_atual = Environment.GetEnvironmentVariable("CONEXAO", EnvironmentVariableTarget.User);
+
+            if (conexao_atual == null)
+            {
+                conexao_atual = "senai";
+            }
 
             var allAlternativas = new List<Alternativas>();
             try
             {
-                conexao = FactoryConnection.getConnection("senai");
+                conexao = FactoryConnection.getConnection(conexao_atual);
                 conexao.Open();
                 MySqlCommand command = new MySqlCommand("Select * from alternativas where id_pergunta = @id_pergunta", conexao);
                 command.Parameters.AddWithValue("@id_pergunta", id_pergunta);
