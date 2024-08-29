@@ -35,9 +35,15 @@ export default function HomeScreen() {
   useEffect(()=>{
     const buscarProcesso = async () => {
       try {
-        const data = await axios.get('http://localhost:5000/all');
+        const data = await axios.get('http://localhost:5000/all', {
+          params: {
+            Headers: "Acess-Control-Allow-Origin"
+          }
+        });
         const processos : ProcessoSeletivo[] = data.data
         setProcessosSeletivos(processos);
+        console.log(processos)
+        console.log("Oi")
 
       } catch (error) {
         console.log(error)
