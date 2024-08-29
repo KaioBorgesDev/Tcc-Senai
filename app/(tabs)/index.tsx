@@ -8,13 +8,25 @@ import axios from 'axios';
 
 interface ProcessoSeletivo {
   id : number, 
-  titulo :string,
-  subTitulo:string,
-  categoria:string,
   semestre:string,
-  ano:string,
+  description:string,
+  name:string,
+  perguntas:Perguntas[],
+}
+interface Perguntas{
+  id_processo:number,
+  descricao:string,
+  id:number,
+  alternativas_list:Alternativas[],
 
 }
+interface Alternativas{
+  id_pergunta:number,
+  correta:number,
+  descricao:string,
+  id:number,
+}
+
 
 //O programa começa a partir daqui
 export default function HomeScreen() {
@@ -23,7 +35,7 @@ export default function HomeScreen() {
   useEffect(()=>{
     const buscarProcesso = async () => {
       try {
-        const data = await axios.get('http://192.168.56.1:8080/api/provas/all');
+        const data = await axios.get('http://localhost:5000/all');
         const processos : ProcessoSeletivo[] = data.data
         setProcessosSeletivos(processos);
 
