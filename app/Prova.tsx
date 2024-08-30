@@ -1,75 +1,120 @@
 import Button from '@/components/Button';
-import { useState } from 'react';
-import  { router, useLocalSearchParams } from 'expo-router';
+import { useState, useEffect } from 'react';
+import { router, useLocalSearchParams } from 'expo-router';
 import { StyleSheet, View, Text, TouchableOpacity, ScrollView } from 'react-native';
+import axios from 'axios';
 
+interface ProcessoSeletivo {
+  id: number;
+  semestre: string;
+  description: string;
+  name: string;
+  perguntas: Perguntas[];
+}
 
+interface Perguntas {
+  id_processo: number;
+  descricao: string;
+  id: number;
+  alternativas_list: Alternativas[];
+}
+
+interface Alternativas {
+  id_pergunta: number;
+  correta: number;
+  descricao: string;
+  id: number;
+}
+
+// Componente para selecionar questões
 const Selecao = () => {
-  // Estado para gerenciar a cor do botão
+  // Estado para gerenciar todos os processos
+  const [processosSeletivos, setProcessosSeletivos] = useState<ProcessoSeletivo>();
+  // Estado para gerenciar a exibição do botão de próxima pergunta
   const [nextQuestion, setNextQuestion] = useState(false);
-  //parametro, que é a questão que sera realizada
-  const {param1} = useLocalSearchParams();
-  //numero da questao para ser adicionado
-  const [number, setNumber] = useState<number>(Number(param1));
-  
+  // Parâmetro que é a questão atual a ser exibida
+  const { processo_nb, questao_nb } = useLocalSearchParams();
+  // Número da questão para navegar para a próxima
+  const [number, setNumber] = useState<number>(Number(questao_nb));
+  // Estado para controlar se é a primeira tentativa
   const [firstTry, setFirstTry] = useState(true);
 
-  
-  const handlePress = () => {
-    //aparece o button da proxima questao
-    setNextQuestion(true);
-    setFirstTry(false)
-    setNumber(prev => prev + 1); //adiciona mais um, para a proxima questão ser a seguinte.
-  }
+  useEffect(() => {
+    // Função assíncrona para buscar o processo seletivo
+    const buscarProcesso = async () => {
+      try {
+        const response = await axios.get(`http://localhost:5000/${processo_nb}`);
+        const processo: ProcessoSeletivo = response.data;
+        setProcessosSeletivos(processo);
+      } catch (error) {
+        console.log(error);
+      }
+    };
 
-  const data = [
-    {id: 1, resposta: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.', correta: false},
-    {id: 2, resposta: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.', correta: false},
-    {id: 3, resposta: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.', correta: false},
-    {id: 4, resposta: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.', correta: false},
-    {id: 5, resposta: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.', correta: true},  
-  ]
+    buscarProcesso();
+  }, [processo_nb]);
+
+  // Função para lidar com a mudança de questão
+  const handlePress = () => {
+    setNextQuestion(true);
+    setFirstTry(false);
+    setNumber(prev => prev + 1);
+  };
+
+  // Verifica se a pergunta existe
+  const currentQuestion = processosSeletivos?.perguntas[Number(questao_nb) - 1];
+
+  if (!currentQuestion) {
+    // Se a pergunta não existir, exibe uma mensagem de fim de perguntas
+    return (
+      <View style={styles.emptyContainer}>
+        <Text style={styles.emptyText}>Acabaram as perguntas!</Text>
+      </View>
+    );
+  }
 
   return (
     <ScrollView style={styles.container}>
       <View style={styles.cardProva}>
-        <Text style={styles.titulo}>{param1}. Leia a seguinte oração</Text>
+        {/* Título da questão */}
+        <Text style={styles.titulo}>{questao_nb}. Leia a seguinte oração</Text>
+
+        {/* Texto da pergunta */}
         <ScrollView style={styles.Pergunta}>
-          <Text>{param1} “A vida é um soco no estômago.” Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe magnam quibusdam accusantium! Omnis incidunt provident, asperiores sit quos at similique exercitationem impedit facilis minima veritatis ab dolor eligendi nihil ipsam? Lorem ipsum, dolor sit amet consectetur adipisicing elit. A odio aperiam eius impedit et, qui dolorum amet doloribus ipsam asperiores quaerat tempora ab tenetur? Enim sit vitae officia dolore cumque.</Text>
+          <Text>{currentQuestion.descricao}</Text>
         </ScrollView>
+
+        {/* Lista de opções de resposta */}
         <View style={styles.ListOpcao}>
-          {
-            data.map(item => (
-              <Button
-                key={item.id}
-                resposta={item.resposta}
-                correta={item.correta}
-                firstTry={firstTry}
-                onPress={()=>{
-                  if(firstTry){
+          {currentQuestion.alternativas_list.map(questao => (
+            <Button
+              key={questao.id}
+              resposta={questao.descricao}
+              correta={Boolean(questao.correta)}
+              firstTry={firstTry}
+              onPress={() => {
+                if (firstTry) {
                   handlePress();
                 }
-              } }
-              />
-            ))
-          }
+              }}
+            />
+          ))}
         </View>
-        {
-          nextQuestion && 
-          (
-            <TouchableOpacity
-              onPress={() => 
-                router.push({
-                  pathname: '/Prova',
-                  params: { param1: number, param2: '1231' } // Passando o valor numérico correto
-                })
-              }
-              style={styles.button}
-            >
-              <Text style={styles.buttonText}>Próxima Pergunta!</Text>
-            </TouchableOpacity>
-          )
-        }
+
+        {/* Botão para ir para a próxima pergunta */}
+        {nextQuestion && (
+          <TouchableOpacity
+            onPress={() =>
+              router.push({
+                pathname: '/Prova',
+                params: { processo_nb, questao_nb: number } // Passando o valor numérico correto
+              })
+            }
+            style={styles.button}
+          >
+            <Text style={styles.buttonText}>Próxima Pergunta!</Text>
+          </TouchableOpacity>
+        )}
       </View>
     </ScrollView>
   );
@@ -77,6 +122,7 @@ const Selecao = () => {
 
 export default Selecao;
 
+// Estilos para o componente
 const styles = StyleSheet.create({
   button: {
     margin: 10,
@@ -113,5 +159,16 @@ const styles = StyleSheet.create({
     top: 30,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  emptyContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 20,
+  },
+  emptyText: {
+    fontSize: 16,
+    color: 'gray',
+    textAlign: 'center',
   },
 });

@@ -1,94 +1,102 @@
-import { Image, StyleSheet, Platform, View, Text, ScrollView, TextInput,Pressable} from 'react-native';
-
+import { StyleSheet, View, Text, ScrollView, TextInput, Pressable } from 'react-native';
 import CardProvas from '@/components/CardProvas';
 import { router } from 'expo-router';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-  
 
+// Interfaces para definir a estrutura dos dados
 interface ProcessoSeletivo {
-  id : number, 
-  semestre:string,
-  description:string,
-  name:string,
-  perguntas:Perguntas[],
-}
-interface Perguntas{
-  id_processo:number,
-  descricao:string,
-  id:number,
-  alternativas_list:Alternativas[],
-
-}
-interface Alternativas{
-  id_pergunta:number,
-  correta:number,
-  descricao:string,
-  id:number,
+  id: number;
+  semestre: string;
+  description: string;
+  name: string;
+  perguntas: Perguntas[];
 }
 
+interface Perguntas {
+  id_processo: number;
+  descricao: string;
+  id: number;
+  alternativas_list: Alternativas[];
+}
 
-//O programa começa a partir daqui
+interface Alternativas {
+  id_pergunta: number;
+  correta: number;
+  descricao: string;
+  id: number;
+}
+
+// Componente principal da tela inicial
 export default function HomeScreen() {
+  // Estado para armazenar os processos seletivos
   const [processosSeletivos, setProcessosSeletivos] = useState<ProcessoSeletivo[]>([]);
 
-  useEffect(()=>{
+  useEffect(() => {
+    // Função assíncrona para buscar os processos seletivos
     const buscarProcesso = async () => {
       try {
-        const data = await axios.get('http://localhost:5000/all', {
-          params: {
-            Headers: "Acess-Control-Allow-Origin"
-          }
-        });
-        const processos : ProcessoSeletivo[] = data.data
+        const data = await axios.get('http://localhost:5000/all');
+        const processos: ProcessoSeletivo[] = data.data;
         setProcessosSeletivos(processos);
-        console.log(processos)
-        console.log("Oi")
-
       } catch (error) {
-        console.log(error)
+        console.log(error);
       }
-    }
-    
+    };
+
     buscarProcesso();
-   }, [])
+  }, []);
+
   return (
     <View style={styles.container}>
-
-      <View style={styles.nav}>{/*  Este é a barra de pesquisa.*/}
-        <TextInput placeholder='Pesquise aqui: Prova Ensino Superior' style={[styles.TextInput, {textAlign:'center'}]}></TextInput>
+      {/* Barra de pesquisa */}
+      <View style={styles.nav}>
+        <TextInput
+          placeholder='Pesquise aqui: Prova Ensino Superior'
+          style={[styles.TextInput, { textAlign: 'center' }]}
+        />
       </View>
-      {/*  Esta é a linha em baixo da barra pesquisa.*/}
-      <View style={[{height:1},{backgroundColor:'gray'}, {margin: 10}]}></View>
 
-      {/*  Titulo da seção.*/}
+      {/* Linha separadora abaixo da barra de pesquisa */}
+      <View style={[{ height: 1 }, { backgroundColor: 'gray' }, { margin: 10 }]} />
+
+      {/* Título da seção */}
       <View style={styles.titleContainer}>
-          <Text style={{textAlign: 'center', fontWeight: 'bold'}}>Processos Seletivos</Text>
+        <Text style={{ textAlign: 'center', fontWeight: 'bold' }}>Processos Seletivos</Text>
       </View>
-      {/* Uma view com scroll das listas de processos.*/}
+
+      {/* Lista de processos seletivos com scroll */}
       <ScrollView style={styles.ListProcessos}>
-        {/*  Button para ir para a seleção da prova.*/}
-        <Pressable onPress={()=> router.navigate('/Selecao')}>
-        <CardProvas titulo='Prova de Tecnologia' descricao='Técnologo de 2024, 1° Semestre'></CardProvas>
-        </Pressable>
+        {processosSeletivos.map((item) => (
+          <Pressable
+            key={item.id}
+            onPress={() => router.push({ pathname: '/Selecao', params: { processo_nb: item.id } })}
+          >
+            <CardProvas
+              titulo={item.name}
+              descricao={item.description}
+            />
+          </Pressable>
+        ))}
       </ScrollView>
     </View>
   );
 }
-{/*  Estilos para a tela.*/}
+
+// Estilos para a tela
 const styles = StyleSheet.create({
-  container:{
-    flex:1,
+  container: {
+    flex: 1,
   },
-  TextInput:{
-    borderRadius:20,
+  TextInput: {
+    borderRadius: 20,
     width: 350,
-    height:40,
-    backgroundColor:'white',
+    height: 40,
+    backgroundColor: 'white',
   },
-  nav:{
+  nav: {
     padding: 10,
-    alignItems: 'center'
+    alignItems: 'center',
   },
   titleContainer: {
     width: 300,
@@ -98,14 +106,14 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 10,
     margin: 50,
-    backgroundColor: 'white'
+    backgroundColor: 'white',
   },
-  ListProcessos:{
+  ListProcessos: {
     borderTopColor: 'gray',
-    borderBottomColor:'gray',
-    borderColor:'transparent',
+    borderBottomColor: 'gray',
+    borderColor: 'transparent',
     borderStyle: 'solid',
     borderWidth: 1,
-    maxHeight: 400
-  }
+    maxHeight: 400,
+  },
 });
