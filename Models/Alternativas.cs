@@ -48,11 +48,14 @@ namespace senai_game.Models
                         Alternativas alternativa = new Alternativas((int)reader["id"], reader["descricao"].ToString(), (int) reader["correta"], (int)reader["id_pergunta"]);
                         allAlternativas.Add(alternativa);
                     }
+                    conexao.Close();
                     return allAlternativas;
                 }
+
                 else
                 {
-                    throw new Exception("Esta consulta não retornou nenhuma linha");
+                    conexao.Close();
+                    return allAlternativas;
                 }
             }
             catch (Exception ex)
@@ -78,10 +81,12 @@ namespace senai_game.Models
                 command.Parameters.AddWithValue("@correta", alternativa.Correta);
                 command.Parameters.AddWithValue("@id_pergunta", alternativa.Id_pergunta);
                 command.ExecuteNonQuery();
+                conexao.Close();
                 return "Alternativa inserida com sucesso";
             }
             catch (Exception ex)
             {
+
                 throw ex;
             }
         }
@@ -113,12 +118,15 @@ namespace senai_game.Models
                         Alternativas alternativa = new Alternativas((int)reader["id"], reader["descricao"].ToString(), (int) reader["correta"], (int)reader["id_pergunta"]);
                         allAlternativas.Add(alternativa);
                     }
+                    conexao.Close();
                     return allAlternativas;
                 }
+                conexao.Close();
                 return allAlternativas;
             }
             catch (Exception ex)
             {
+                
                 throw ex;
             }
         }

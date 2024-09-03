@@ -51,8 +51,10 @@ namespace senai_game.Models
 
                         allPerguntas.Add(pergunta);
                     }
+                    conexao.Close();
                     return allPerguntas;
                 }
+                conexao.Close();
                 return allPerguntas;
             }
             catch (Exception ex)
@@ -80,6 +82,7 @@ namespace senai_game.Models
                 command.Parameters.AddWithValue("@id_processo", 1); 
 
                 command.ExecuteNonQuery();
+                conexao.Close();
                 return "Pergunta inserida com sucesso";
             }
             catch (Exception ex)
