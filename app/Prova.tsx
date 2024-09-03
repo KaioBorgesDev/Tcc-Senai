@@ -1,7 +1,7 @@
 import Button from '@/components/Button';
 import { useState, useEffect } from 'react';
 import { router, useLocalSearchParams } from 'expo-router';
-import { StyleSheet, View, Text, TouchableOpacity, ScrollView } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, ScrollView, Pressable } from 'react-native';
 import axios from 'axios';
 
 interface ProcessoSeletivo {
@@ -69,6 +69,11 @@ const Selecao = () => {
     return (
       <View style={styles.emptyContainer}>
         <Text style={styles.emptyText}>Acabaram as perguntas!</Text>
+
+        <TouchableOpacity  style={styles.button} onPress={()=> router.push("/")}>
+          <Text style={styles.buttonText}>Voltar para Explore!</Text>
+        </TouchableOpacity>
+        
       </View>
     );
   }

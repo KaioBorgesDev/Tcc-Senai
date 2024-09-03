@@ -62,7 +62,7 @@ const Processo = () => {
             onPress={() =>
               router.push({
                 pathname: '/Prova',
-                params: { processo_nb: 1, questao_nb: 1} // Passando parâmetros para a próxima tela
+                params: { processo_nb: processo_nb, questao_nb: 1} // Passando parâmetros para a próxima tela, e deixando como primeira questão a questao 1
               })
             }
             style={styles.button}
@@ -73,7 +73,7 @@ const Processo = () => {
       </View>
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   button: {

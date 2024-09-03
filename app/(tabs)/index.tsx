@@ -28,9 +28,10 @@ interface Alternativas {
 }
 
 // Componente principal da tela inicial
-export default function HomeScreen() {
+export default function Explore() {
   // Estado para armazenar os processos seletivos
   const [processosSeletivos, setProcessosSeletivos] = useState<ProcessoSeletivo[]>([]);
+  const [valueSearch, setValueSearch] = useState<string>("");
 
   useEffect(() => {
     // Função assíncrona para buscar os processos seletivos
@@ -47,11 +48,15 @@ export default function HomeScreen() {
     buscarProcesso();
   }, []);
 
+  //filtrando os processos com o valor da barra de pesquisa
+  const filteredProcessos = processosSeletivos.filter(processo => processo.name.toLowerCase().includes(valueSearch.toLowerCase()) || processo.description.toLowerCase().includes(valueSearch.toLowerCase()))
+
   return (
     <View style={styles.container}>
       {/* Barra de pesquisa */}
       <View style={styles.nav}>
         <TextInput
+          onChangeText={setValueSearch}
           placeholder='Pesquise aqui: Prova Ensino Superior'
           style={[styles.TextInput, { textAlign: 'center' }]}
         />
@@ -67,7 +72,9 @@ export default function HomeScreen() {
 
       {/* Lista de processos seletivos com scroll */}
       <ScrollView style={styles.ListProcessos}>
-        {processosSeletivos.map((item) => (
+        {
+       
+        filteredProcessos.map((item) => (
           <Pressable
             key={item.id}
             onPress={() => router.push({ pathname: '/Selecao', params: { processo_nb: item.id } })}
@@ -77,7 +84,9 @@ export default function HomeScreen() {
               descricao={item.description}
             />
           </Pressable>
-        ))}
+        ))
+        
+        }
       </ScrollView>
     </View>
   );
