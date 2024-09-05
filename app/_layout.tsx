@@ -18,7 +18,7 @@ export default function RootLayout() {
 
   useEffect(() => {
     if (loaded) {
-      router.push('/SignUp');
+      router.push('/SignIn');
       SplashScreen.hideAsync();
       
     }

@@ -8,40 +8,42 @@ import { Link, router } from "expo-router";
 interface Usuario{
     email: string;
     password: string;
-    username: string;
+    username: string,
 }
 
 const SignUp = () => {
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
-    const [username, setUsername] = useState<string>('');
+    
 
     const handleSignUp = async () => {
-        if(email === '' || password === '' || username === ''){
+        if(email === '' || password === ''){
             return alert('Preencha todos os campos!');
         }
         if(password.length < 6){
             return alert('A senha deve ter no mínimo 6 caracteres e no maximo 15');
         }
-        if(username.length < 6){
-            return alert('O nome de usuário deve ter no mínimo 6 caracteres, e no máximo 45');
-        }
         if(email.length < 5){
             return alert('O email no mínimo 5 caracteres');
         }
         try{
-            const resposta = await axios.post('http://localhost:5000/create', {
+            const resposta = await axios.post('http://localhost:5000/login', {
             email: email,
+            username: " ",
             password: password,
-            username: username,
+            
+        } )
+        console.log(resposta)
+        if(resposta.data === 'Usuario não encontrado!'){
+           return alert('Usuario não encontrado');
         }
-        )
-        router.push("/SignIn");
+        const usuario : Usuario = resposta.data;
+        router.push('/');
+
         }catch (ex){
             alert(ex);
         }
-        
-        
+   
     }
     return (
       <View>
@@ -55,15 +57,15 @@ const SignUp = () => {
                 <TextInput placeholder="example@.com" style={styles.inputText} onChangeText={setEmail}/>
                 <Text style={styles.TituloInput}> PASSWORD:</Text>
                         <TextInput placeholder="*****" style={styles.inputText} onChangeText={setPassword}/>
-                        <Text style={styles.TituloInput}> USERNAME</Text>
-                        <TextInput placeholder="luffy" style={styles.inputText} onChangeText={setUsername}></TextInput>
-                        <Link style={{top:15, textDecorationLine:"underline", color: '#65558F'}} href={'/SignIn'}><Text style={styles.TituloInput}>Já tenho uma conta?</Text></Link>
+                            <View style={{flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 10}}>
+                            <Link style={{top:15, textDecorationLine: "underline",color:'#65558F'}} href={'/SignUp'}><Text style={styles.TituloInput}>Crie uma conta</Text></Link>
+                            <Link style={{top:15, textDecorationLine: "underline",color:'#65558F'}} href={'/SignIn'}><Text style={styles.TituloInput}>Esqueceu sua senha?</Text></Link>
+                            </View>
                 </View>
                 
                  <TouchableOpacity style={styles.ButtonCad} onPress={() => handleSignUp()} >
-                    <Text style={{color: 'white', textAlign: 'center'}}>Enviar</Text>
+                    <Text style={{color: 'white', textAlign: 'center',}}>Enviar</Text>
                 </TouchableOpacity>
-                
 
         </View>
 
@@ -95,7 +97,7 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
     },
     ButtonCad: {
-        marginTop: 40,
+        marginTop: 85,
         alignSelf: 'center',
         width: 150,
         borderRadius: 10,
