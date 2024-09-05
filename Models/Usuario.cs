@@ -19,21 +19,39 @@ namespace senai_game.Models
         public string Password { get => password; set => password = value; }
         public string Username { get => username; set => username = value; }
 
-        public static Usuario getById(int id)
+        public static Usuario getUser(string email, string password)
         {
-            return new Usuario("email", "password", "username");
-        }
-        public static Usuario[] getAll()
-        {
-            return new Usuario[]
+            MySqlConnection mySqlConnection;
+
+            string conexao_atual = Environment.GetEnvironmentVariable("CONEXAO", EnvironmentVariableTarget.User);
+
+            if (conexao_atual == null)
+                conexao_atual = "fatec";
+
+            mySqlConnection = FactoryConnection.getConnection(conexao_atual);
+
+            try
             {
-                new Usuario("email1", "password1", "username1"),
-                new Usuario("email2", "password2", "username2"),
-                new Usuario("email3", "password3", "username3"),
-                new Usuario("email4", "password4", "username4"),
-                new Usuario("email5", "password5", "username5"),
-            };
+                mySqlConnection.Open();
+
+                MySqlCommand command = new MySqlCommand("Select * from usuarios where email = @email and password = @password", mySqlConnection);
+                command.Parameters.AddWithValue("@email", email);
+                command.Parameters.AddWithValue("@password", password);
+
+                MySqlDataReader reader = command.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    var user = new Usuario(reader["email"].ToString(), reader["password"].ToString(), reader["username"].ToString());
+                    return user;
+                }
+                return null;
+            } catch (Exception ex) {
+                Console.WriteLine(ex.ToString());
+                return null;
+            }
         }
+     
         public static String inserirUsuario(Usuario usuario)
         {
             MySqlConnection conexao;

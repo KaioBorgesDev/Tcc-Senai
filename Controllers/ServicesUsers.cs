@@ -24,6 +24,17 @@ namespace senai_game.Controllers
             return BadRequest(mg);
             
         }
+        [HttpPost("/login")]
+        public ActionResult Login([FromBody] Usuario u)
+        {
+            var user = Usuario.getUser(u.Email, u.Password);
 
+            if(user != null)
+                return Ok(user);
+
+            
+            return Ok("Usuario não encontrado!");
+
+        }
     }
 }
