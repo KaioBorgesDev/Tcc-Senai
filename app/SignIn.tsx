@@ -1,6 +1,6 @@
 
 import { View, Text, Image, StyleSheet, TouchableOpacity, Button} from "react-native"
-import { TextInput } from "react-native-gesture-handler";
+import { TextInput } from "react-native";
 import { useState, useEffect} from "react";
 import axios from "axios";
 import { Link, router } from "expo-router";

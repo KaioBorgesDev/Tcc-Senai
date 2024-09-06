@@ -1,6 +1,6 @@
 
 import { View, Text, Image, StyleSheet, TouchableOpacity, Button} from "react-native"
-import { TextInput } from "react-native-gesture-handler";
+import { TextInput } from "react-native";
 import { useState, useEffect} from "react";
 import axios from "axios";
 import { Link, router } from "expo-router";
@@ -46,7 +46,7 @@ const SignUp = () => {
     return (
       <View>
             <View style={styles.logo}>
-                <Image source={require('../assets/images/logo 1.svg')} style={styles.image}></Image>
+                <Image source={require('../assets/images/logo 1.svg')} style={styles.image} />
                 <Image source={require('../assets/images/Game 1.svg')} style={styles.image}></Image>
 
             </View>

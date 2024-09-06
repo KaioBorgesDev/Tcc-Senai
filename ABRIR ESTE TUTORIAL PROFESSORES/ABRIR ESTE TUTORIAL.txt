@@ -1,0 +1,13 @@
+Olá, Queridos Professores Paulo e Renato!
+
+O projeto foi desenvolvido em React Native com Expo, então, para rodar localmente, vocês vão precisar do npm para instalar as dependências. Basta rodar 'npm i' na pasta raiz e depois 'npx expo start' para iniciar o projeto.
+
+Se quiserem testar tudo funcionando com a API (se estiver no senai), é só abrir a pasta EXECUTÁVEL API, onde vocês encontram o executável da API (nao diga?), e aí dá pra rodar o app completo.
+
+Qualquer dúvida, estou à disposição!
+
+Abraço
+
+Kaio B.
+
+
