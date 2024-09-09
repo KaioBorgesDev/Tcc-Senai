@@ -4,6 +4,9 @@ import { TextInput } from "react-native";
 import { useState, useEffect} from "react";
 import axios from "axios";
 import { Link, router } from "expo-router";
+import { useContext } from "react";
+import { AuthContext } from "../context/AuthContext";	
+
 
 interface Usuario{
     email: string;
@@ -14,7 +17,7 @@ interface Usuario{
 const SignUp = () => {
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
-    
+    const {nome, func} = useContext(AuthContext);
 
     const handleSignUp = async () => {
         if(email === '' || password === ''){
@@ -53,6 +56,7 @@ const SignUp = () => {
 
             </View>
             <View style={styles.FormSingUp}>
+            <Text>Username: {nome}</Text>
             <Text style={styles.TituloInput}> EMAIL:</Text>
                 <TextInput placeholder="example@.com" style={styles.inputText} onChangeText={setEmail}/>
                 <Text style={styles.TituloInput}> PASSWORD:</Text>
@@ -63,7 +67,7 @@ const SignUp = () => {
                             </View>
                 </View>
                 
-                 <TouchableOpacity style={styles.ButtonCad} onPress={() => handleSignUp()} >
+                 <TouchableOpacity style={styles.ButtonCad} onPress={() => func()} >
                     <Text style={{color: 'white', textAlign: 'center',}}>Enviar</Text>
                 </TouchableOpacity>
 
@@ -71,6 +75,7 @@ const SignUp = () => {
 
     )
 }
+
 const styles = StyleSheet.create({
     image: {
         alignSelf: 'center',
