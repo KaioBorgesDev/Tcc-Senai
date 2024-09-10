@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { View, TextInput, StyleSheet, Text, Image} from 'react-native';
-import { useRouter, Link } from 'expo-router';
+import {Link } from 'expo-router';
 import { TouchableOpacity } from 'react-native';
 import { AuthContext } from '@/context/AuthContext';
 
@@ -27,7 +27,7 @@ const SignIn = () => {
                       <TextInput secureTextEntry={true} placeholder="*****" style={styles.inputText} onChangeText={setPassword}/>
                           <View style={{flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 10}}>
                           <Link style={{top:15, textDecorationLine: "underline",color:'#65558F'}} href={'/SignUp'}><Text style={styles.TituloInput}>Crie uma conta</Text></Link>
-                          <Link style={{top:15, textDecorationLine: "underline",color:'#65558F'}} href={'/SignIn'}><Text style={styles.TituloInput}>Esqueceu sua senha?</Text></Link>
+                          <Link style={{top:15, textDecorationLine: "underline",color:'#65558F'}} href={'/'}><Text style={styles.TituloInput}>Esqueceu sua senha?</Text></Link>
                           </View>
               </View>
               

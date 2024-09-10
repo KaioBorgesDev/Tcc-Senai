@@ -18,9 +18,7 @@ export default function RootLayout() {
 
   useEffect(() => {
     if (loaded) {
-      
       SplashScreen.hideAsync();
-      
     }
   }, [loaded]);
 
@@ -30,9 +28,8 @@ export default function RootLayout() {
   
   return (
     <AuthProvider>
-      <Stack>
-        <Stack.Screen name="SignUp" options={{headerShown: false}}/>
-        <Stack.Screen name="SignIn" options={{headerShown: false}}/>
+      <Stack >
+        <Stack.Screen name="index" options={{headerShown: false}}/>
         <Stack.Screen name="(tabs)" options={{headerShown: false}}/>
         <Stack.Screen name="+not-found" />
       </Stack>

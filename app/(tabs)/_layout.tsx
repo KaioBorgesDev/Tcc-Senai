@@ -15,7 +15,7 @@ export default function TabLayout() {
         headerShown: false,
       }}>
       <Tabs.Screen
-        name="index"
+        name="explore"
         options={{
           title: 'Explore',//*nome em baixo*\\
           tabBarIcon: ({ color, focused }) => (

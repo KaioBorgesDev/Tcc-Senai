@@ -47,7 +47,7 @@ export const AuthProvider = ({ children }: AuthContextType) => {
                     setUsername(response.data.username);
                     setEmail(email);
                     alert('Bem Vindo ' + response.data.username);
-                    router.push("/(tabs)");
+                    router.push("/explore");
                 } else {
                     alert('Usuário não encontrado!');
             }

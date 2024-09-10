@@ -34,9 +34,7 @@ const SignUp = () => {
         }
         )
         alert('Usuário cadastrado com sucesso!');
-        
-
-        router.push("/SignIn");
+        router.navigate('/');
         
         }catch (ex){
             alert(ex);
@@ -58,7 +56,7 @@ const SignUp = () => {
                         <TextInput placeholder="*****" style={styles.inputText} onChangeText={setPassword}/>
                         <Text style={styles.TituloInput}> USERNAME</Text>
                         <TextInput placeholder="luffy" style={styles.inputText} onChangeText={setUsername}></TextInput>
-                        <Link style={{top:15, textDecorationLine:"underline", color: '#65558F'}} href={'/SignIn'}><Text style={styles.TituloInput}>Já tenho uma conta?</Text></Link>
+                        <Link style={{top:15, textDecorationLine:"underline", color: '#65558F'}} href={'/'}><Text style={styles.TituloInput}>Já tenho uma conta?</Text></Link>
                 </View>
                 
                  <TouchableOpacity style={styles.ButtonCad} onPress={() => handleSignUp()} >

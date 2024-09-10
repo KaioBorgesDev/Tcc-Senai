@@ -62,7 +62,7 @@ export default function Explore() {
         <TextInput
           onChangeText={setValueSearch}
           placeholder='Pesquise aqui: Prova Ensino Superior'
-          style={[styles.TextInput, { textAlign: 'center' }]}
+          style={[styles.TextInput, { textAlign: 'center', borderWidth: 1}]}
         />
         
       </View>
