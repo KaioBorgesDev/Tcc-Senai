@@ -43,8 +43,7 @@ export const AuthProvider = ({ children }: AuthContextType) => {
                     password: password,
                     username: ' ',
                 });
-                if (response.status === 200) {
-                    console.log(response)
+                if (response.data !== 'Usuario não encontrado!') {
                     setUsername(response.data.username);
                     setEmail(email);
                     alert('Bem Vindo ' + response.data.username);
