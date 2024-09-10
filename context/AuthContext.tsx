@@ -1,31 +1,66 @@
-import { createContext } from "react";
+import axios from "axios";
+import { router } from "expo-router";
+import { createContext, useState } from "react";
 
-
+// Define the type for the context provider's props
 type AuthContextType = {
     children: React.ReactNode;
 };
 
+// Define the type for the context's value
 type AuthContextProps = {
-    nome: string;
-    func: () => void;
-    user: string;
+    email: string;
+    AuthUser: (email: string, password: string) => void;
+    username: string;
 };
+
+// Create the AuthContext with default values
 export const AuthContext = createContext<AuthContextProps>({
-    nome: "",
-    func: () => {},
-    user: "",
+    email: " ",
+    AuthUser: () => {},
+    username: "",
 });
 
-export const AuthProvider = ({ children }: AuthContextType) => {
-    const func = () => {
-        alert('oi');
-    };
+// Define the type for user information
+type User = {
+    email: string;
+    password: string;
+    username: string;
+}
 
+// Define the AuthProvider component
+export const AuthProvider = ({ children }: AuthContextType) => {
+    // Initialize state variables
+    const [email, setEmail] = useState<string>('');
+    const [username, setUsername] = useState<string>('');
+
+    // Function to authenticate the user
+    const AuthUser = async (email: string, password: string) => {
+        try {
+            if (email !== '' && password !== '') {
+                const response = await axios.post('http://localhost:5000/login', {
+                    email: email,
+                    password: password,
+                    username: ' ',
+                });
+                if (response.status === 200) {
+                    setUsername(response.data.username);
+                    setEmail(email);
+                    alert('Bem Vindo ' + response.data.username);
+                    router.push("/(tabs)");
+                } else {
+                    alert('Usuário não encontrado!');
+            }
+        } 
+    }catch (error) {
+        alert(error);
+    };
+}
+
+    // Return the context provider with the context value
     return (
-        <AuthContext.Provider value={{ nome: "kaio", func, user: "usuário" }}>
+        <AuthContext.Provider value={{ email: email, AuthUser, username }}>
             {children}
         </AuthContext.Provider>
     );
 };
-
-export default AuthProvider;

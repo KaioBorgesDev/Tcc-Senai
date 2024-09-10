@@ -1,8 +1,9 @@
 import { StyleSheet, View, Text, ScrollView, TextInput, Pressable } from 'react-native';
 import CardProvas from '@/components/CardProvas';
 import { router } from 'expo-router';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
+import { AuthContext } from '@/context/AuthContext';
 
 // Interfaces para definir a estrutura dos dados
 interface ProcessoSeletivo {
@@ -32,6 +33,7 @@ export default function Explore() {
   // Estado para armazenar os processos seletivos
   const [processosSeletivos, setProcessosSeletivos] = useState<ProcessoSeletivo[]>([]);
   const [valueSearch, setValueSearch] = useState<string>("");
+  const {username} = useContext(AuthContext);
 
   useEffect(() => {
     // Função assíncrona para buscar os processos seletivos
@@ -60,6 +62,7 @@ export default function Explore() {
           placeholder='Pesquise aqui: Prova Ensino Superior'
           style={[styles.TextInput, { textAlign: 'center' }]}
         />
+        <Text>Bem vindo {username}</Text>
       </View>
 
       {/* Linha separadora abaixo da barra de pesquisa */}

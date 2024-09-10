@@ -1,22 +1,18 @@
 
 import { View, Text, Image, StyleSheet, TouchableOpacity, Button} from "react-native"
 import { TextInput } from "react-native";
-import { useState, useEffect} from "react";
+import { useState, useEffect, useContext} from "react";
 import axios from "axios";
 import { Link, router } from "expo-router";
-import { Link } from "expo-router";
 
-interface Usuario{
-    email: string;
-    password: string;
-    username: string;
-}
+
 
 const SignUp = () => {
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
     const [username, setUsername] = useState<string>('');
 
+    
     const handleSignUp = async () => {
         if(email === '' || password === '' || username === ''){
             return alert('Preencha todos os campos!');
@@ -37,7 +33,11 @@ const SignUp = () => {
             username: username,
         }
         )
+        alert('Usuário cadastrado com sucesso!');
+        
+
         router.push("/SignIn");
+        
         }catch (ex){
             alert(ex);
         }
