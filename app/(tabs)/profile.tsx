@@ -2,14 +2,16 @@
 import { StyleSheet, Image} from 'react-native';
 import { ScrollView } from 'react-native';
 import { View, Text} from 'react-native';
-
+import { AuthContext }from '../../context/AuthContext'
+import { useContext } from 'react';
 const profile = () => {
+    const {email,username} = useContext( AuthContext)
   return (
     <ScrollView>
       <View style={styles.Container}>
         <Image source={require('../../assets/icones/avatar.png')} resizeMode="contain"></Image>
-        <Text style={styles.info}> Samuel Gomes Private</Text>
-        <Text style={styles.info}> example@outlook.com</Text>
+        <Text style={styles.info}> {username}</Text>
+        <Text style={styles.info}> {email}</Text>
         <View style={styles.CardInsights}>
             <View >
               <Text>Provas Completas</Text>

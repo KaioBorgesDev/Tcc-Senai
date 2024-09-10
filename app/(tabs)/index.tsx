@@ -55,14 +55,16 @@ export default function Explore() {
 
   return (
     <View style={styles.container}>
+     
       {/* Barra de pesquisa */}
       <View style={styles.nav}>
+      <Text style ={styles.textBemvindo}>Bem vindo {username}</Text>
         <TextInput
           onChangeText={setValueSearch}
           placeholder='Pesquise aqui: Prova Ensino Superior'
           style={[styles.TextInput, { textAlign: 'center' }]}
         />
-        <Text>Bem vindo {username}</Text>
+        
       </View>
 
       {/* Linha separadora abaixo da barra de pesquisa */}
@@ -128,5 +130,12 @@ const styles = StyleSheet.create({
     borderStyle: 'solid',
     borderWidth: 1,
     maxHeight: 400,
+  },
+  textBemvindo:{
+      bottom: 10,
+      margin: 10,
+      fontFamily: 'Roboto-Regular',
+      fontSize: 30,
+      
   },
 });
