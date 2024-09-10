@@ -3,6 +3,7 @@ import { View, Text, Image, StyleSheet, TouchableOpacity, Button} from "react-na
 import { TextInput } from "react-native-gesture-handler";
 import { useState, useEffect} from "react";
 import axios from "axios";
+import { Link } from "expo-router";
 
 interface Usuario{
     email: string;
@@ -49,7 +50,7 @@ const SignUp = () => {
                         <TextInput placeholder="*****" style={styles.inputText} onChangeText={setPassword}/>
                         <Text style={styles.TituloInput}> USEMAME</Text>
                         <TextInput placeholder="luffy" style={styles.inputText} onChangeText={setUsername}></TextInput>
-
+                        <Link href={'/(tabs)'}><Text>Ja possuo uma conta</Text></Link>
                 </View>
                 
                  <TouchableOpacity style={styles.ButtonCad} onPress={() => handleSignUp()} >

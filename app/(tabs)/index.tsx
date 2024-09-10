@@ -88,9 +88,7 @@ export default function Explore() {
         
         }
       </ScrollView>
-      <Pressable onPress={()=> router.push('/SignUp')}>
-        <Text>OI</Text>
-      </Pressable>
+      
     </View>
   );
 }
