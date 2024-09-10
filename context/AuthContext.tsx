@@ -44,6 +44,7 @@ export const AuthProvider = ({ children }: AuthContextType) => {
                     username: ' ',
                 });
                 if (response.status === 200) {
+                    console.log(response)
                     setUsername(response.data.username);
                     setEmail(email);
                     alert('Bem Vindo ' + response.data.username);
