@@ -1,8 +1,9 @@
 
 import { View, Text, Image, StyleSheet, TouchableOpacity, Button} from "react-native"
-import { TextInput } from "react-native-gesture-handler";
+import { TextInput } from "react-native";
 import { useState, useEffect} from "react";
 import axios from "axios";
+import { Link, router } from "expo-router";
 import { Link } from "expo-router";
 
 interface Usuario{
@@ -29,17 +30,24 @@ const SignUp = () => {
         if(email.length < 5){
             return alert('O email no mínimo 5 caracteres');
         }
-        const resposta = await axios.post('http://localhost:5000/create', {
+        try{
+            const resposta = await axios.post('http://localhost:5000/create', {
             email: email,
             password: password,
             username: username,
-        })
-        alert(resposta.data);
+        }
+        )
+        router.push("/SignIn");
+        }catch (ex){
+            alert(ex);
+        }
+        
+        
     }
     return (
       <View>
             <View style={styles.logo}>
-                <Image source={require('../assets/images/logo 1.svg')} style={styles.image}></Image>
+                <Image source={require('../assets/images/logo 1.svg')} style={styles.image} />
                 <Image source={require('../assets/images/Game 1.svg')} style={styles.image}></Image>
 
             </View>
@@ -48,14 +56,15 @@ const SignUp = () => {
                 <TextInput placeholder="example@.com" style={styles.inputText} onChangeText={setEmail}/>
                 <Text style={styles.TituloInput}> PASSWORD:</Text>
                         <TextInput placeholder="*****" style={styles.inputText} onChangeText={setPassword}/>
-                        <Text style={styles.TituloInput}> USEMAME</Text>
+                        <Text style={styles.TituloInput}> USERNAME</Text>
                         <TextInput placeholder="luffy" style={styles.inputText} onChangeText={setUsername}></TextInput>
-                        <Link href={'/(tabs)'}><Text>Ja possuo uma conta</Text></Link>
+                        <Link style={{top:15, textDecorationLine:"underline", color: '#65558F'}} href={'/SignIn'}><Text style={styles.TituloInput}>Já tenho uma conta?</Text></Link>
                 </View>
                 
                  <TouchableOpacity style={styles.ButtonCad} onPress={() => handleSignUp()} >
                     <Text style={{color: 'white', textAlign: 'center'}}>Enviar</Text>
                 </TouchableOpacity>
+                
 
         </View>
 
