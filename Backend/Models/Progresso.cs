@@ -3,7 +3,7 @@ using MySql.Data.MySqlClient;
 
 namespace senai_game.Models
 {
-    public class Progresso
+    public class Progresso 
     {
         private int id;
         private string emailUser;
