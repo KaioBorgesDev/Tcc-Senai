@@ -5,24 +5,26 @@ namespace senai_game.Models
 {
     public class Progresso 
     {
-        private int id;
+        private int id_progresso;
         private string emailUser;
-        private int idProcesso;
+        private int id_prova;
         private int ultima_Questao;
+        private DateOnly data_progresso;
 
         public Progresso(int id, string emailUser, int idProcesso, int ultima_Questao)
         {
-            this.id = id;
+            this.id_progresso = id;
             this.emailUser = emailUser;
-            this.idProcesso = idProcesso;
+            this.id_prova = idProcesso;
             this.ultima_Questao = ultima_Questao;
         }
 
-        public int Id { get => id; set => id = value; }
+        public int Id_Processo { get => id_progresso; set => id_progresso = value; }
         public string IdUser { get => emailUser; set => emailUser = value; }
-        public int IdProcesso { get => idProcesso; set => idProcesso = value; }
+        public int IdProcesso { get => id_prova; set => id_prova = value; }
+        public int Ultima_Questao { get => ultima_Questao; set => ultima_Questao = value; }
+        public DateOnly Data_progresso { get => data_progresso; set => data_progresso = value; }
 
-    
         public static Progresso getById(int id)
         {
             MySqlConnection conexao;
@@ -37,7 +39,7 @@ namespace senai_game.Models
             {
                 conexao = FactoryConnection.getConnection(conexao_atual);
                 conexao.Open();
-                MySqlCommand command = new MySqlCommand("Select * from processos where id = @id", conexao);
+                MySqlCommand command = new MySqlCommand("Select * from progresso where id_progresso = @id", conexao);
                 command.Parameters.AddWithValue("@id", id);
 
                 MySqlDataReader reader = command.ExecuteReader();
@@ -45,7 +47,7 @@ namespace senai_game.Models
                 if (reader.HasRows)
                 {
                     reader.Read();
-                    return new Progresso((int)reader["id"], (string) reader["idUser"], (int) reader["idProcesso"], (int) reader["ultima_Questao"]);
+                    return new Progresso((int)reader["id_progresso"], (string) reader["email_"], (int) reader["id_prova"], (int) reader["ultima_questao"]);
                 }
                 return null;
             }

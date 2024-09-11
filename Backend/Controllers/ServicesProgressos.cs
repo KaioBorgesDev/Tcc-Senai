@@ -15,9 +15,23 @@ namespace senai_game.Controllers
             var progresso = Progresso.getById(id);
 
             if (progresso != null) 
-                return Ok();
+                return Ok(progresso);
             return Ok("Progresso não encontrado");
         }
+
+        [HttpGet("/Progresso/all")]
+        public IActionResult GetAllScore()
+        {
+
+            var pontuacoes = Score.getAll();
+
+            if (pontuacoes != null)
+                return Ok(pontuacoes);
+            return Ok("Progresso não encontrado");
+        }
+
+      
+  
     }
 
  

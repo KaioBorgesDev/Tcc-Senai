@@ -48,7 +48,7 @@ namespace senai_game.Models
 
                 if (reader.Read())
                 {
-                    var user = new Usuario(reader["email"].ToString(), reader["password"].ToString(), reader["username"].ToString(), reader["status"].ToString(),reader["rules"].ToString();
+                    var user = new Usuario(reader["email"].ToString(), reader["password"].ToString(), reader["username"].ToString(), reader["status"].ToString(),reader["rules"].ToString());
                     return user;
                 }
                 return null;
