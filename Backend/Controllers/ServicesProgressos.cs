@@ -29,16 +29,9 @@ namespace senai_game.Controllers
             return Ok("Progresso não encontrado");
         }
 
-        [HttpGet("/Progresso/Score")]
-        public IActionResult GetAllScore()
-        {
-            var pontuacoes = Score.getAll();
+        
 
-            return Ok(pontuacoes);
-            
-        }
-      
-  
+
     }
 
  

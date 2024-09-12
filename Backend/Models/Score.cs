@@ -52,6 +52,37 @@ namespace senai_game.Models
                 throw ex;
             }
         }
+
+        internal static Score getScoreByEmail(string email)
+        {
+            MySqlConnection conexao;
+            string conexao_atual = Environment.GetEnvironmentVariable("CONEXAO", EnvironmentVariableTarget.User);
+
+            if (conexao_atual == null)
+            {
+                conexao_atual = "senai";
+            }
+
+            try
+            {
+                conexao = FactoryConnection.getConnection(conexao_atual);
+                conexao.Open();
+                MySqlCommand command = new MySqlCommand("Select * from scores where email_User = @email", conexao);
+                command.Parameters.AddWithValue("@email", email);
+                MySqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    reader.Read();
+                    return new Score((string)reader["email_User"], (int)reader["acertos"], (int)reader["erros"]);
+                }
+                return null;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }
 
