@@ -56,5 +56,37 @@ namespace senai_game.Models
                 throw ex;
             }
         }
+        public static List<Progresso> getAllProgresso()
+        {
+            MySqlConnection conexao;
+            List<Progresso> list = new List<Progresso>();
+            string conexao_atual = Environment.GetEnvironmentVariable("CONEXAO", EnvironmentVariableTarget.User);
+
+            if (conexao_atual == null)
+            {
+                conexao_atual = "senai";
+            }
+
+            try
+            {
+                conexao = FactoryConnection.getConnection(conexao_atual);
+                conexao.Open();
+                MySqlCommand command = new MySqlCommand("Select * from progresso", conexao);
+               
+
+                MySqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    reader.Read();
+                   list.Add(new Progresso((int)reader["id_progresso"], (string)reader["email_user"], (int)reader["id_prova"], (int)reader["ultima_questao"]));
+                }
+                return list;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }
