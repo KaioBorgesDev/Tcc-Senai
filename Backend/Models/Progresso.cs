@@ -47,7 +47,7 @@ namespace senai_game.Models
                 if (reader.HasRows)
                 {
                     reader.Read();
-                    return new Progresso((int)reader["id_progresso"], (string) reader["email_"], (int) reader["id_prova"], (int) reader["ultima_questao"]);
+                    return new Progresso((int)reader["id_progresso"], (string) reader["email_user"], (int) reader["id_prova"], (int) reader["ultima_questao"]);
                 }
                 return null;
             }
