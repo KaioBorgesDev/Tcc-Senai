@@ -1,12 +1,11 @@
 {
   "Version": 1,
-  "Hash": "XlC5mhhXq1PpN4oWV0Oq1nHSfi9h1VWQwAkWA9rPOJM=",
+  "Hash": "NuHZwA5rBpZuJIiDqLsKb/zQ7YX3eMF+8rjiUnmRZnE=",
   "Source": "senai-game",
   "BasePath": "_content/senai-game",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
   "DiscoveryPatterns": [],
-  "Assets": [],
-  "Endpoints": []
+  "Assets": []
 }
