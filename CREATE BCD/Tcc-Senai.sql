@@ -169,7 +169,7 @@ CREATE TABLE `scores` (
 --
 
 /*!40000 ALTER TABLE `scores` DISABLE KEYS */;
-INSERT INTO `scores` VALUES ('Kaio@gmail.com',10,1);
+INSERT INTO `scores` VALUES ('Kaio@gmail.com',10,1),('string',0,0),('teste1',0,0),('teste1234',0,0);
 /*!40000 ALTER TABLE `scores` ENABLE KEYS */;
 
 --
@@ -183,8 +183,8 @@ CREATE TABLE `usuarios` (
   `email` varchar(100) NOT NULL,
   `username` varchar(45) NOT NULL,
   `password` varchar(15) NOT NULL,
-  `status` varchar(15) DEFAULT NULL,
-  `rule` varchar(10) DEFAULT NULL,
+  `status` varchar(15) DEFAULT 'ativo',
+  `rule` varchar(10) DEFAULT 'user',
   PRIMARY KEY (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -194,7 +194,7 @@ CREATE TABLE `usuarios` (
 --
 
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` VALUES ('123456','123456','123456',NULL,NULL),('1234567','1234567','1234567',NULL,NULL),('caiovaiamerdakrllllllllllll','123456','123456',NULL,NULL),('Kaio','Kaio','1234',NULL,NULL),('Kaio@gmail.com','123123','123456',NULL,NULL),('kaiocalmapfv','147896','147896',NULL,NULL),('kaioooooo','123456','123456',NULL,NULL),('mariel@gmail.com','Mariel Guerra','123456',NULL,NULL),('marielguerra','123456','123456',NULL,NULL),('string','string','string',NULL,NULL);
+INSERT INTO `usuarios` VALUES ('123456','123456','123456',NULL,NULL),('1234567','1234567','1234567',NULL,NULL),('caiovaiamerdakrllllllllllll','123456','123456',NULL,NULL),('Kaio','Kaio','1234',NULL,NULL),('Kaio@gmail.com','123123','123456',NULL,NULL),('kaiocalmapfv','147896','147896',NULL,NULL),('kaioooooo','123456','123456',NULL,NULL),('mariel@gmail.com','Mariel Guerra','123456',NULL,NULL),('marielguerra','123456','123456',NULL,NULL),('string','string','string',NULL,NULL),('teste1','test','test','ativo','user'),('teste1234','teste','teste','ativo','user');
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -206,4 +206,4 @@ INSERT INTO `usuarios` VALUES ('123456','123456','123456',NULL,NULL),('1234567',
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-09-12 16:32:28
+-- Dump completed on 2024-09-12 17:18:40
