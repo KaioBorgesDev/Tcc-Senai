@@ -28,7 +28,7 @@ const SignIn = () => {
                           <View style={{flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 10}}>
                           <Link style={{top:15, textDecorationLine: "underline",color:'#65558F'}} href={'/SignUp'}><Text style={styles.TituloInput}>Crie uma conta</Text></Link>
                           <Link style={{top:15, textDecorationLine: "underline",color:'#65558F'}} href={'/'}><Text style={styles.TituloInput}>Esqueceu sua senha?</Text></Link>
-                          <Link style={{top:15, textDecorationLine: "underline",color:'#65558F'}} href={'/processo'}><Text style={styles.TituloInput}>ABNT</Text></Link>
+                          <Link style={{top:15, textDecorationLine: "underline",color:'#65558F'}} href={'/Processo'}><Text style={styles.TituloInput}>Adm</Text></Link>
                           </View>
               </View>
               
