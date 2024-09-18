@@ -1,5 +1,7 @@
+import ButtonGreen from '@/components/ButtonGreen'
 import CustomRadioButton from '@/components/CustomRadioButton'
 import Label from '@/components/Label'
+import { router } from 'expo-router'
 import React, { useState } from 'react'
 import { View ,Text,StyleSheet} from 'react-native'
 import { TextInput } from 'react-native'
@@ -21,6 +23,8 @@ const processos = () => {
       </View>
       <View>
       <CustomRadioButton/>
+
+      <ButtonGreen text='Enviar' onPress={()=> router.push('/Criar_Perguntas')}></ButtonGreen>
         
       </View>
     </View>
