@@ -5,18 +5,28 @@ import {
 } from 'react-native';
 import { RadioButton } from 'react-native-paper';
 
+interface CustomRadioButtonProps{
+    onValueChanged: (value: string) => void
+}
 
-const CustomRadioButton  = () => {
-    const [selectedValue, setSelectedValue] = useState('option1');
+
+
+const CustomRadioButton : React.FC<CustomRadioButtonProps>  = ({onValueChanged}) => {
+    const [selectedValue, setSelectedValue] = useState<string>('1');
+
+    const handleValueChanged = (value : string) => {
+        setSelectedValue(value);
+        onValueChanged(value)
+    }
     return(
         <View style={styles.container}>
             <View style={styles.radioGroup}>
                 <View style={styles.radioButton}>
                     <RadioButton.Android
-                        value="option1"
-                        status={selectedValue === 'option1' ? 
+                        value="1"
+                        status={selectedValue === '1' ? 
                                 'checked' : 'unchecked'}
-                        onPress={() => setSelectedValue('option1')}
+                        onPress={() => handleValueChanged('1')}
                         color="#007BFF"
                     />
                     <Text style={styles.radioLabel}>
@@ -27,10 +37,10 @@ const CustomRadioButton  = () => {
 
                 <View style={styles.radioButton}>
                     <RadioButton.Android
-                        value="option2"
-                        status={selectedValue === 'option2' ? 
+                        value="2"
+                        status={selectedValue === '2' ? 
                                  'checked' : 'unchecked'}
-                        onPress={() => setSelectedValue('option2')}
+                        onPress={() => handleValueChanged('2')}
                         color="#007BFF"
                     />
                     <Text style={styles.radioLabel}>
