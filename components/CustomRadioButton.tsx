@@ -21,7 +21,7 @@ const CustomRadioButton  = () => {
                     />
                     <Text style={styles.radioLabel}>
                        
-                     ReactJS
+                     1° Semestre
                     </Text>
                 </View>
 
@@ -34,7 +34,7 @@ const CustomRadioButton  = () => {
                         color="#007BFF"
                     />
                     <Text style={styles.radioLabel}>
-                    NextJs
+                    2° Semestre
                     </Text>
                 </View>
             </View>
@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
         shadowRadius: 3.84,
     },
     radioButton: {
-        flexDirection: 'row',
+        flexDirection: 'column',
         alignItems: 'center',
     },
     radioLabel: {

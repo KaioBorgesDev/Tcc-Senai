@@ -20,7 +20,7 @@ const processos = () => {
         <TextInput placeholder="Descricao do Projeto" style={styles.inputText}/>
       </View>
       <View>
-        <CustomRadioButton></CustomRadioButton>     
+      <CustomRadioButton/>
         
       </View>
     </View>
