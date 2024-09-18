@@ -72,7 +72,7 @@ const Processos =() =>{
         }
       </ScrollView>
       
-      <ButtonGreen text='Criar uma Prova' onPress={()=> router.push('/Criar_Processos')}></ButtonGreen>
+      <ButtonGreen text='Criar uma Prova' onPress={()=> router.push('/Criar_processos')}></ButtonGreen>
 
     </ScrollView>
     
