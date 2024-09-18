@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\aluno\\Documents\\Kaio\\Tcc-Senai\\Tcc-Senai\\Backend\\senai-game.csproj": {}
+    "C:\\Users\\aluno\\Downloads\\Tcc-Senai 1\\Tcc-Senai\\BACKEND\\senai-game.csproj": {}
   },
   "projects": {
-    "C:\\Users\\aluno\\Documents\\Kaio\\Tcc-Senai\\Tcc-Senai\\Backend\\senai-game.csproj": {
+    "C:\\Users\\aluno\\Downloads\\Tcc-Senai 1\\Tcc-Senai\\BACKEND\\senai-game.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\aluno\\Documents\\Kaio\\Tcc-Senai\\Tcc-Senai\\Backend\\senai-game.csproj",
+        "projectUniqueName": "C:\\Users\\aluno\\Downloads\\Tcc-Senai 1\\Tcc-Senai\\BACKEND\\senai-game.csproj",
         "projectName": "senai-game",
-        "projectPath": "C:\\Users\\aluno\\Documents\\Kaio\\Tcc-Senai\\Tcc-Senai\\Backend\\senai-game.csproj",
+        "projectPath": "C:\\Users\\aluno\\Downloads\\Tcc-Senai 1\\Tcc-Senai\\BACKEND\\senai-game.csproj",
         "packagesPath": "C:\\Users\\aluno\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\aluno\\Documents\\Kaio\\Tcc-Senai\\Tcc-Senai\\Backend\\obj\\",
+        "outputPath": "C:\\Users\\aluno\\Downloads\\Tcc-Senai 1\\Tcc-Senai\\BACKEND\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

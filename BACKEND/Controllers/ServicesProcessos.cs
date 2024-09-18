@@ -27,7 +27,17 @@ namespace senai_game.Controllers
             }
             return Ok(processo);
  
-           
+        }
+        [HttpPost("/insert")]
+        public IActionResult insertProcessos([FromBody] Processo processo)
+        {
+            var resposta = Processo.inserirProcessos(processo);
+
+            if (resposta == "Processo inserido com sucesso")
+            {
+                return Ok(resposta);
+            }
+            return BadRequest(resposta);
         }
     }
 }

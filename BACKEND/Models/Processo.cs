@@ -1,5 +1,6 @@
 ﻿
 using MySql.Data.MySqlClient;
+using System.Text.Json.Serialization;
 
 namespace senai_game.Models
 {
@@ -11,6 +12,8 @@ namespace senai_game.Models
         private string semestre;
         private List<Pergunta> perguntas;
 
+
+        [JsonConstructor]
         public Processo(int id, string name, string description, string semestre)
         {
             this.id = id;
