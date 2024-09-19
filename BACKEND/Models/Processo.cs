@@ -84,6 +84,11 @@ namespace senai_game.Models
             {
                 conexao_atual = "senai";
             }
+
+            if (processo.semestre.Length > 1)
+            {
+                return "Semestre deve ser apenas '1' ou '2'";
+            }
             try
             {
                 conexao = FactoryConnection.getConnection(conexao_atual);

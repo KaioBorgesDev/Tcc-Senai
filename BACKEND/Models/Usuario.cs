@@ -84,7 +84,8 @@ namespace senai_game.Models
             }
             catch (Exception ex)
             {
-                return "Erro ao inserir usuário";
+                if(ex.Message == "Duplicate entry 'string' for key 'usuarios.PRIMARY'")
+                    return "Já existe um usuario com este email.";
             }
             return "Usuário inserido com sucesso";
         }

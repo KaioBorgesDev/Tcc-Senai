@@ -30,8 +30,10 @@ const SignUp = () => {
             const resposta = await axios.post('http://localhost:5000/create',
         {
             email: email,
-            password: password,
-            username: username,
+                    username: " ",
+                    password: password,
+                    status: " ",
+                    rules: " "
         })
         
         alert('Usuário cadastrado com sucesso!');
