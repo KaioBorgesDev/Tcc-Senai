@@ -63,11 +63,12 @@ namespace senai_game.Models
             }
         }
 
-        //Corrigir o método abaixo
+        
         public static String insertPerguntas(Pergunta pergunta)
         {
             MySqlConnection conexao;
             string conexao_atual = Environment.GetEnvironmentVariable("CONEXAO", EnvironmentVariableTarget.User);
+            int id_pergunta = 0;
 
             if (conexao_atual == null)
             {
@@ -80,10 +81,29 @@ namespace senai_game.Models
                 MySqlCommand command = new MySqlCommand("Insert into perguntas (descricao, id_processo) values (@descricao, @id_processo)", conexao);
                 command.Parameters.AddWithValue("@descricao", pergunta.descricao);
                 command.Parameters.AddWithValue("@id_processo", pergunta.id_processo); 
-
                 command.ExecuteNonQuery();
+
+
+                MySqlCommand command1 = new MySqlCommand("select id from perguntas where descricao = @descricao AND id_processo = @id_processo values", conexao);
+                command1.Parameters.AddWithValue("@descricao", pergunta.descricao);
+                command1.Parameters.AddWithValue("@id_processo", pergunta.id_processo);
+                MySqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    id_pergunta = int.Parse(reader["id"].ToString());
+                   conexao.Close();
+                }
+
                 conexao.Close();
-                return "Pergunta inserida com sucesso";
+
+                foreach(Alternativas alternativa in pergunta.alternativas_list)
+                {
+                    alternativa.Id_pergunta = id_pergunta;
+                    Alternativas.insertAlternativas(alternativa);
+                }
+
+                return "Pergunta e Alternativas Inseridas com sucesso! ";
             }
             catch (Exception ex)
             {
