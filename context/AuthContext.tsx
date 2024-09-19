@@ -38,10 +38,13 @@ export const AuthProvider = ({ children }: AuthContextType) => {
     const AuthUser = async (email: string, password: string) => {
         try {
             if (email !== '' && password !== '') {
+                
                 const response = await axios.post('http://localhost:5000/login', {
-                    email: email,
-                    password: password,
-                    username: ' ',
+                    email: "string",
+                    username: "string",
+                    password: "string",
+                    status: "string",
+                    rules: "string"
                 });
                 if (response.data !== 'Usuario não encontrado!') {
                     setUsername(response.data.username);
