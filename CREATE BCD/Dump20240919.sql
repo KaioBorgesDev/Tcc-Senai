@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `senai_game_desenv` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `senai_game_desenv`;
 -- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
 --
 -- Host: 10.87.100.6    Database: senai_game_desenv
@@ -30,16 +32,8 @@ CREATE TABLE `alternativas` (
   PRIMARY KEY (`id`),
   KEY `id_pergunta_idx` (`id_pergunta`),
   CONSTRAINT `id_pergunta` FOREIGN KEY (`id_pergunta`) REFERENCES `perguntas` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `alternativas`
---
-
-/*!40000 ALTER TABLE `alternativas` DISABLE KEYS */;
-INSERT INTO `alternativas` VALUES (1,'2005',0,1),(2,'2006',0,1),(3,'1500',1,1),(4,'2000',0,1),(5,'2003',0,1),(6,'2003',0,2),(7,'2001',0,2),(8,'2004',0,2),(9,'1005',0,2),(10,'1498',1,2),(11,'1002',0,3),(12,'1497',1,3),(13,'1002',0,3),(14,'1920',0,3),(15,'1950',0,3),(16,'1498',1,4),(17,'1005',0,4),(18,'1060',0,4),(19,'1049',0,4),(20,'1400',0,4),(21,'1004',0,5),(22,'1520',1,5),(23,'1670',0,5),(24,'1900',0,5),(25,'1928',0,5),(26,'1502',0,6),(27,'1200',0,6),(28,'1005',0,6),(29,'1143',1,6),(30,'1059',0,6),(31,'descriçõa',0,3),(32,'descriçõa',0,3),(33,'descriçõa',0,3),(34,'descriçõa',0,3),(35,'descriçõa',0,3);
-/*!40000 ALTER TABLE `alternativas` ENABLE KEYS */;
 
 --
 -- Table structure for table `favoritadas`
@@ -62,13 +56,6 @@ CREATE TABLE `favoritadas` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `favoritadas`
---
-
-/*!40000 ALTER TABLE `favoritadas` DISABLE KEYS */;
-/*!40000 ALTER TABLE `favoritadas` ENABLE KEYS */;
-
---
 -- Table structure for table `perguntas`
 --
 
@@ -82,16 +69,8 @@ CREATE TABLE `perguntas` (
   PRIMARY KEY (`id`),
   KEY `id_processo_idx` (`id_processo`),
   CONSTRAINT `id_processo` FOREIGN KEY (`id_processo`) REFERENCES `processos` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `perguntas`
---
-
-/*!40000 ALTER TABLE `perguntas` DISABLE KEYS */;
-INSERT INTO `perguntas` VALUES (1,'Qual foi o ano que descobriram o Brasil?',1),(2,'Qual foi o ano que descobriram a India?',1),(3,'Qual foi o ano que descobriram o Canada?',1),(4,'Qual foi o ano que descobriram a Venezuela?',1),(5,'Qual foi o ano que descobriram o Chile?',1),(6,'Qual foi o ano que descobriram o Portugal?',1);
-/*!40000 ALTER TABLE `perguntas` ENABLE KEYS */;
 
 --
 -- Table structure for table `processos`
@@ -106,16 +85,8 @@ CREATE TABLE `processos` (
   `description` varchar(100) NOT NULL,
   `semestre` varchar(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `processos`
---
-
-/*!40000 ALTER TABLE `processos` DISABLE KEYS */;
-INSERT INTO `processos` VALUES (1,'Aprendizagem Industrial','Prova com 20 questões, 10 alternativa de matemática, e 10 de Portugues.','2'),(2,'Curso Comunidade Industrial','Prova com 30 questões, 10 alternativa de matemática, e 10 de Portugues.','1');
-/*!40000 ALTER TABLE `processos` ENABLE KEYS */;
 
 --
 -- Table structure for table `progresso`
@@ -141,14 +112,6 @@ CREATE TABLE `progresso` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `progresso`
---
-
-/*!40000 ALTER TABLE `progresso` DISABLE KEYS */;
-INSERT INTO `progresso` VALUES (1,'Kaio@gmail.com',1,1,'2024-09-10');
-/*!40000 ALTER TABLE `progresso` ENABLE KEYS */;
-
---
 -- Table structure for table `scores`
 --
 
@@ -163,14 +126,6 @@ CREATE TABLE `scores` (
   KEY `email_User_idx` (`email_User`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `scores`
---
-
-/*!40000 ALTER TABLE `scores` DISABLE KEYS */;
-INSERT INTO `scores` VALUES ('Kaio@gmail.com',10,1),('string',0,0),('teste1',0,0),('teste1234',0,0);
-/*!40000 ALTER TABLE `scores` ENABLE KEYS */;
 
 --
 -- Table structure for table `usuarios`
@@ -188,14 +143,6 @@ CREATE TABLE `usuarios` (
   PRIMARY KEY (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `usuarios`
---
-
-/*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` VALUES ('123456','123456','123456',NULL,NULL),('1234567','1234567','1234567',NULL,NULL),('caiovaiamerdakrllllllllllll','123456','123456',NULL,NULL),('Kaio','Kaio','1234',NULL,NULL),('Kaio@gmail.com','123123','123456',NULL,NULL),('kaiocalmapfv','147896','147896',NULL,NULL),('kaioooooo','123456','123456',NULL,NULL),('mariel@gmail.com','Mariel Guerra','123456',NULL,NULL),('marielguerra','123456','123456',NULL,NULL),('string','string','string',NULL,NULL),('teste1','test','test','ativo','user'),('teste1234','teste','teste','ativo','user');
-/*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -206,4 +153,4 @@ INSERT INTO `usuarios` VALUES ('123456','123456','123456',NULL,NULL),('1234567',
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-09-12 17:18:40
+-- Dump completed on 2024-09-19 16:39:27
