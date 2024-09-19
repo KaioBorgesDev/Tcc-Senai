@@ -64,7 +64,7 @@ namespace senai_game.Models
         }
 
         //Corrigir o método abaixo
-        public static String insertPerguntas()
+        public static String insertPerguntas(Pergunta pergunta)
         {
             MySqlConnection conexao;
             string conexao_atual = Environment.GetEnvironmentVariable("CONEXAO", EnvironmentVariableTarget.User);
@@ -78,8 +78,8 @@ namespace senai_game.Models
                 conexao = FactoryConnection.getConnection(conexao_atual);
                 conexao.Open();
                 MySqlCommand command = new MySqlCommand("Insert into perguntas (descricao, id_processo) values (@descricao, @id_processo)", conexao);
-                command.Parameters.AddWithValue("@descricao", "Pergunta teste");
-                command.Parameters.AddWithValue("@id_processo", 1); 
+                command.Parameters.AddWithValue("@descricao", pergunta.descricao);
+                command.Parameters.AddWithValue("@id_processo", pergunta.id_processo); 
 
                 command.ExecuteNonQuery();
                 conexao.Close();
