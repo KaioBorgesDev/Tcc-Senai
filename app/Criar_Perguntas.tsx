@@ -6,6 +6,7 @@ import { router } from 'expo-router'
 import CustomInputButton from '@/components/CustomInputButton'
 
 const Criar_Perguntas = () => {
+  
   return (
     <View>
       <Text style={styles.Titulo}>Hora de Você Fazer as Perguntas: </Text>

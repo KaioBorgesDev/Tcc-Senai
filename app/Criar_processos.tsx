@@ -20,12 +20,20 @@ const processos = () => {
       setSemestre(value);
   }
 
-  const buscarProcesso = async () =>{
+  const enviarProcesso = async () =>{
+      if(nome === '' || descricao === ''){
+          return alert('Preencha todos os campos!');
+      }
       try{
-          const response = await axios.post('http://localhost:5000/****', {
-            
-
+        console.log('entrou')
+          const response = await axios.post('http://localhost:5000/insert', {
+            semestre: semestre,
+            description: descricao,
+            name: nome,
+            perguntas: []
           })
+          alert('Processo criado com sucesso!');
+          router.push('/Criar_Perguntas');
       }catch(ex){
         console.log(ex)
       }
@@ -47,7 +55,7 @@ const processos = () => {
       <CustomRadioButton onValueChanged={handleValueChanged}/>
       
 
-      <ButtonGreen text='Enviar' onPress={()=> router.push('/Criar_Perguntas')}></ButtonGreen>
+      <ButtonGreen text='Enviar' onPress={()=> enviarProcesso()}></ButtonGreen>
         
       </View>
     </View>
