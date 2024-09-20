@@ -1,21 +1,49 @@
 import ButtonGreen from '@/components/ButtonGreen'
-import React from 'react'
+import React, { useState } from 'react'
 import { View ,StyleSheet,Text} from 'react-native'
 import { TextInput } from 'react-native'
-import { router } from 'expo-router'
+import { router, useLocalSearchParams } from 'expo-router'
 import CustomInputButton from '@/components/CustomInputButton'
+import axios from 'axios'
 
+
+
+type Alternativa = {
+  descricao: string,
+  correta: number,
+  id_pergunta: number,
+}
 const Criar_Perguntas = () => {
-  
+  const {id_processo} = useLocalSearchParams();
+  const [alternativas, setAlternativas] = useState<Alternativa[]>();
+  const [pergunta, setPergunta] = useState('');
+
+  const enviarProcesso = async () =>{
+    if(pergunta === '' || !(alternativas)){
+        return alert('Preencha todos os campos!');
+    }
+    try{
+      console.log('entrou')
+        const response = await axios.post('http://localhost:5000/insertPerguntas', {
+          descricao: pergunta,
+          id_processo: id_processo,
+          alternativas: alternativas
+        })
+        alert('Processo criado com sucesso!');
+        router.push('/Criar_Perguntas');
+    }catch(ex){
+      console.log(ex)
+    }
+}
   return (
     <View>
       <Text style={styles.Titulo}>Hora de Você Fazer as Perguntas: </Text>
       <View>
         <View style={styles.FormSingUp}></View>
-          <TextInput placeholder="Crie Sua Pergunta" style={styles.inputText}/>
-          <CustomInputButton></CustomInputButton> 
+          <TextInput placeholder="Crie Sua Pergunta" style={styles.inputText} onChangeText={setPergunta}/>
+          <CustomInputButton ></CustomInputButton> 
         </View> 
-        <ButtonGreen text='Enviar' onPress={()=> router.push('/Criar_Perguntas')}></ButtonGreen>
+        <ButtonGreen text='Enviar' onPress={()=> router.navigate('/Criar_Perguntas')}></ButtonGreen>
         
     </View>
   )
