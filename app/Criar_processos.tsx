@@ -1,6 +1,5 @@
 import ButtonGreen from '@/components/ButtonGreen'
 import CustomRadioButton from '@/components/CustomRadioButton'
-import Label from '@/components/Label'
 import axios from 'axios'
 import { router } from 'expo-router'
 import React, { useState } from 'react'
@@ -25,15 +24,30 @@ const processos = () => {
           return alert('Preencha todos os campos!');
       }
       try{
-        console.log('entrou')
           const response = await axios.post('http://localhost:5000/insert', {
             semestre: semestre,
             description: descricao,
             name: nome,
             perguntas: []
           })
-          alert('Processo criado com sucesso!');
-          router.push('/Criar_Perguntas');
+
+          if(response.status == 200){
+              alert('Processo criado com sucesso!');
+
+              const responseNumero = await axios.post('http://localhost:5000/getIdByProcesso', {
+                semestre: semestre,
+                description: descricao,
+                name: nome,
+                perguntas: []
+              });
+              const numeroInserido: number = responseNumero.data;
+              if(numeroInserido != -1){
+                return router.push({pathname: '/Criar_Perguntas', params:{id_processo: numeroInserido}} );
+              }
+              alert("Deu errado, sinto muito.");
+          }else{
+            alert('Não foi possivel inserir o processo ' .concat(response.data));
+        }
       }catch(ex){
         console.log(ex)
       }

@@ -27,7 +27,6 @@ const Criar_Perguntas = () => {
         const response = await axios.post('http://localhost:5000/insertPerguntas', {
           descricao: pergunta,
           id_processo: id_processo,
-          alternativas: alternativas
         })
         alert('Processo criado com sucesso!');
         router.push('/Criar_Perguntas');
@@ -39,12 +38,12 @@ const Criar_Perguntas = () => {
     <View>
       <Text style={styles.Titulo}>Hora de Você Fazer as Perguntas: </Text>
       <View>
-        <View style={styles.FormSingUp}></View>
+        <View style={styles.FormSingUp}>
           <TextInput placeholder="Crie Sua Pergunta" style={styles.inputText} onChangeText={setPergunta}/>
           <CustomInputButton ></CustomInputButton> 
         </View> 
         <ButtonGreen text='Enviar' onPress={()=> router.navigate('/Criar_Perguntas')}></ButtonGreen>
-        
+        </View>
     </View>
   )
 }
