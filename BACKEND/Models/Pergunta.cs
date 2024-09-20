@@ -84,25 +84,25 @@ namespace senai_game.Models
                 command.ExecuteNonQuery();
 
 
-                MySqlCommand command1 = new MySqlCommand("select id from perguntas where descricao = @descricao AND id_processo = @id_processo values", conexao);
+                MySqlCommand command1 = new MySqlCommand("select id from perguntas where descricao = @descricao AND id_processo = @id_processo", conexao);
                 command1.Parameters.AddWithValue("@descricao", pergunta.descricao);
                 command1.Parameters.AddWithValue("@id_processo", pergunta.id_processo);
-                MySqlDataReader reader = command.ExecuteReader();
+                MySqlDataReader reader = command1.ExecuteReader();
 
                 if (reader.HasRows)
                 {
+                    reader.Read();
                     id_pergunta = int.Parse(reader["id"].ToString());
-                   conexao.Close();
+                    foreach (Alternativas alternativa in pergunta.alternativas_list)
+                    {
+                        alternativa.Id_pergunta = id_pergunta;
+                        Alternativas.insertAlternativas(alternativa);
+                    }
                 }
-
-                conexao.Close();
-
-                foreach(Alternativas alternativa in pergunta.alternativas_list)
+                else
                 {
-                    alternativa.Id_pergunta = id_pergunta;
-                    Alternativas.insertAlternativas(alternativa);
+                    return "Não encontramos sua pergunta, ERRO CRITICO";
                 }
-
                 return "Pergunta e Alternativas Inseridas com sucesso! ";
             }
             catch (Exception ex)
