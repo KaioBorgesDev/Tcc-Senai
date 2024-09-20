@@ -138,5 +138,38 @@ namespace senai_game.Models
                 throw ex;
             }
         }
+
+        internal static int getIdByProcesso(Processo processo)
+        {
+            MySqlConnection conexao;
+            string conexao_atual = Environment.GetEnvironmentVariable("CONEXAO", EnvironmentVariableTarget.User);
+
+            if (conexao_atual == null)
+            {
+                conexao_atual = "senai";
+            }
+
+            try
+            {
+                conexao = FactoryConnection.getConnection(conexao_atual);
+                conexao.Open();
+                MySqlCommand command = new MySqlCommand("Select id from processos where name = @name and description = @description and semestre = @semestre", conexao);
+                command.Parameters.AddWithValue("@name", processo.name);
+                command.Parameters.AddWithValue("@description", processo.description);
+                command.Parameters.AddWithValue("@semestre", processo.semestre);
+
+                MySqlDataReader reader = command.ExecuteReader();
+                reader.Read();
+                if (reader["id"].ToString() != null)
+                {
+                    return (int) reader["id"];
+                }
+                return -1;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }   
+        }
     }
 }

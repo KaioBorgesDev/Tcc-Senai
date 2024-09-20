@@ -13,7 +13,6 @@ namespace senai_game.Controllers
         public IActionResult getAllProcessos()
         {
             return Ok(Processo.getAll());
-          
         }
 
         [HttpGet("/{id}")]
@@ -40,5 +39,18 @@ namespace senai_game.Controllers
             }
             return BadRequest(resposta);
         }
+
+        [HttpPost("/getIdByProcesso")]
+        public IActionResult getIdByProcesso([FromBody] Processo processo)
+        {
+            var resposta = Processo.getIdByProcesso(processo);
+
+            if (resposta == -1)
+            {
+                return BadRequest(resposta); 
+            }
+            return Ok(resposta);
+        }
+        
     }
 }
