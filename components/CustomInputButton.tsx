@@ -20,8 +20,7 @@ const CustomInputButton  = () => {
                         onPress={() => setSelectedValue('option1')}
                         color="#007BFF"
                     />
-                    <TextInput placeholder='Crie Sua Resposta Gatinho(A)'style={styles.textInput}>
-                    </TextInput>
+                    <TextInput placeholder= 'Crie Sua Resposta Gatinho(A)' style={styles.textInput}></TextInput>
                  
                 </View>
 

@@ -8,7 +8,7 @@ namespace senai_game.Controllers
     public class ServicesPerguntas : ControllerBase
     {
         [HttpPost("/insertPergunta")]
-        public IActionResult insertProcessos([FromBody] Pergunta pergunta)
+        public IActionResult insertPerguntas([FromBody] Pergunta pergunta)
         {
             var resposta = Pergunta.insertPerguntas(pergunta);
 
