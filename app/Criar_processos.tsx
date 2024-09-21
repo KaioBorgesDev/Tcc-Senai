@@ -42,7 +42,7 @@ const processos = () => {
               });
               const numeroInserido: number = responseNumero.data;
               if(numeroInserido != -1){
-                return router.push({pathname: '/Criar_Perguntas', params:{id_processo: numeroInserido}} );
+                return router.push({pathname: '/Criar_Perguntas', params:{id_processo: numeroInserido}});
               }
               alert("Deu errado, sinto muito.");
           }else{

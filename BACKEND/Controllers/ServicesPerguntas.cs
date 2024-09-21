@@ -12,7 +12,7 @@ namespace senai_game.Controllers
         {
             var resposta = Pergunta.insertPerguntas(pergunta);
 
-            if (resposta == "Processo inserido com sucesso")
+            if (resposta == "Pergunta e Alternativas Inseridas com sucesso!")
             {
                 return Ok(resposta);
             }

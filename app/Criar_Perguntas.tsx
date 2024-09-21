@@ -48,7 +48,7 @@ const Criar_Perguntas = () => {
       } else {
         console.log(response.data);
       }
-      router.push('/Criar_Perguntas');
+      router.push({pathname: '/Criar_Perguntas', params:{id_processo: id_processo}} );
     } catch (ex) {
       console.log(ex);
     }

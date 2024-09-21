@@ -103,7 +103,7 @@ namespace senai_game.Models
                 {
                     return "Não encontramos sua pergunta, ERRO CRITICO";
                 }
-                return "Pergunta e Alternativas Inseridas com sucesso! ";
+                return "Pergunta e Alternativas Inseridas com sucesso!";
             }
             catch (Exception ex)
             {
