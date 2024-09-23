@@ -58,7 +58,7 @@ export default function Explore() {
      
       {/* Barra de pesquisa */}
       <View style={styles.nav}>
-      <Text style ={styles.textBemvindo}>Bem vindo {username}</Text>
+      <Text style ={styles.textBemvindo}>Bem vindo {username} !</Text>
         <TextInput
           onChangeText={setValueSearch}
           placeholder='Pesquise aqui: Prova Ensino Superior'

@@ -22,14 +22,6 @@ const profile = () => {
                 1.53
               </Text>
             </View>  
-          <View style={{height: 40, width: 1, backgroundColor: 'black'}}>
-          </View>
-          <View>
-            <Text>Explicações Favoritadas</Text>
-            <Text>61</Text>
-            <Text style={styles.RespostasCertas}>Respostas Certas</Text>
-            <Text>29</Text>
-          </View>
         </View>
       </View>
     </ScrollView>
