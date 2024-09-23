@@ -32,7 +32,7 @@ namespace senai_game.Models
             string conexao_atual = Environment.GetEnvironmentVariable("CONEXAO", EnvironmentVariableTarget.User);
 
             if (conexao_atual == null)
-                conexao_atual = "fatec";
+                conexao_atual = "senai";
 
             mySqlConnection = FactoryConnection.getConnection(conexao_atual);
 
