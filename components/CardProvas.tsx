@@ -1,18 +1,34 @@
 import {View,StyleSheet,Text,Image} from 'react-native'
+import { Pressable } from 'react-native'
+import { useContext, useState } from 'react'
+import { Ionicons } from '@expo/vector-icons'
+import { AuthContext } from '@/context/AuthContext'
+import axios from 'axios'
 
 interface CardProvasProps{
     titulo: string,
     descricao: string,
+    
 }
 const CardProvas: React.FC<CardProvasProps> = ({titulo, descricao}) => {
-    
+    const [icon, setIcon] = useState<boolean>(false); 
+    const {email} = useContext(AuthContext)
+
+    const enviarFavoritos = async () =>{
+        const  response = await axios.post('http://192.168.1.10:3333/')
+        setIcon(true);
+    }
   return (
+   
     <View style={styles.Card}>
-         <Image source={require('@/assets/icones/estrela.png')} style={styles.icone} />
+       
+        <Pressable style={styles.icone} onPress={()=> enviarFavoritos()}>{icon ? <Ionicons name='star'/> : <Ionicons name='star-outline'/>}</Pressable>
         <Text style={styles.Title}>{titulo}</Text>
         <Text style={styles.SubTitle}>{descricao}</Text>
+       
     </View>
   )
+
 }
 
 const styles = StyleSheet.create({
@@ -38,6 +54,7 @@ const styles = StyleSheet.create({
         borderColor:'transparent',
         borderBottomColor:'gray'
     },
+   
 })
 
 export default CardProvas

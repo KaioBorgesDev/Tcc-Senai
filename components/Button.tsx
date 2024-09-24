@@ -19,6 +19,7 @@ const Button : React.FC<ButtonProps> = ({resposta, correta, onPress, firstTry}) 
 
   return (
     <TouchableOpacity onPress={handlePress} style={[styles.button, { backgroundColor: buttonColor }]}>
+        
         <Text style={styles.buttonText}>{resposta}</Text>
     </TouchableOpacity>
   )
