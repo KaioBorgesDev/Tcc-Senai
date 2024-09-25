@@ -87,7 +87,7 @@ export default function Explore() {
             <CardProvas
               titulo={item.name}
               descricao={item.description}
-            
+              processo_nb = {item.id}
             />
           </Pressable>
         ))

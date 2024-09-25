@@ -8,24 +8,42 @@ import axios from 'axios'
 interface CardProvasProps{
     titulo: string,
     descricao: string,
-    
+    processo_nb: number
 }
-const CardProvas: React.FC<CardProvasProps> = ({titulo, descricao}) => {
+const CardProvas: React.FC<CardProvasProps> = ({titulo, descricao, processo_nb}) => {
     const [icon, setIcon] = useState<boolean>(false); 
-    const {email} = useContext(AuthContext)
+    const {email} = useContext(AuthContext);
+
 
     const enviarFavoritos = async () =>{
-        const  response = await axios.post('http://192.168.1.10:3333/')
-        setIcon(true);
+        if(icon == true){
+            const response_unfavorite = await axios.post('http://localhost:5000/ServicesFavoritos/remove', {
+                email_user: email,
+                prova_fav: processo_nb
+            });
+            
+            if(response_unfavorite.status == 200){
+                setIcon(false);
+                return;
+            }
+             alert('Não foi removido.');
+        }else{
+            const response_favorite = await axios.post('http://localhost:5000/ServicesFavoritos/insert', {
+                email_user: email,
+                prova_fav: processo_nb
+            });
+            
+            if(response_favorite.status == 200){
+                return setIcon(true)
+            }
+            alert('Não foi adicionado.');
+        }
     }
   return (
-   
     <View style={styles.Card}>
-       
         <Pressable style={styles.icone} onPress={()=> enviarFavoritos()}>{icon ? <Ionicons name='star'/> : <Ionicons name='star-outline'/>}</Pressable>
         <Text style={styles.Title}>{titulo}</Text>
         <Text style={styles.SubTitle}>{descricao}</Text>
-       
     </View>
   )
 
