@@ -59,8 +59,13 @@ export const AuthProvider = ({ children }: AuthContextType) => {
                 } else {
                     alert('Usuário não encontrado!');
             }
-        } 
+        } else {
+            alert('Há campos vazios.');
+        }
     }catch (error) {
+        if(error == 'AxiosError: Network Error'){
+            return alert('Inicie o backend na pasta executavel, ou verifique a conexao com a internet.');
+        }
         alert(error);
     };
 }
