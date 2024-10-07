@@ -1,142 +1,136 @@
-import { StyleSheet, View, Text, ScrollView, TextInput, Pressable } from 'react-native';
-import CardProvas from '@/components/CardProvas';
-import { router } from 'expo-router';
+import { StyleSheet, View, Text, ScrollView, TextInput, Pressable, Button } from 'react-native';
 import { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import { AuthContext } from '@/context/AuthContext';
+import CardProvas from '@/components/CardProvas';
+import { router } from 'expo-router';
 
-// Interfaces para definir a estrutura dos dados
 interface ProcessoSeletivo {
   id: number;
-  semestre: string;
-  description: string;
   name: string;
-  perguntas: Perguntas[];
+  description: string;
+  perguntas: Pergunta[];
 }
 
-interface Perguntas {
-  id_processo: number;
-  descricao: string;
+interface Pergunta {
   id: number;
-  alternativas_list: Alternativas[];
-}
-
-interface Alternativas {
-  id_pergunta: number;
-  correta: number;
   descricao: string;
-  id: number;
 }
 
-// Componente principal da tela inicial
 export default function Explore() {
-  // Estado para armazenar os processos seletivos
   const [processosSeletivos, setProcessosSeletivos] = useState<ProcessoSeletivo[]>([]);
-  const [valueSearch, setValueSearch] = useState<string>("");
-  const {username} = useContext(AuthContext);
+  const [searchValue, setSearchValue] = useState<string>('');
+  const { username } = useContext(AuthContext);
 
   useEffect(() => {
-    // Função assíncrona para buscar os processos seletivos
-    const buscarProcesso = async () => {
+    const fetchProcessos = async () => {
       try {
-        const data = await axios.get('http://localhost:5000/all');
-        const processos: ProcessoSeletivo[] = data.data;
-        setProcessosSeletivos(processos);
+        const response = await axios.get<ProcessoSeletivo[]>('http://localhost:5000/all');
+        setProcessosSeletivos(response.data);
       } catch (error) {
-        console.log(error);
+        console.error("Erro ao buscar processos:", error);
       }
     };
 
-    buscarProcesso();
+    fetchProcessos();
   }, []);
 
-  //filtrando os processos com o valor da barra de pesquisa
-  const filteredProcessos = processosSeletivos.filter(processo => processo.name.toLowerCase().includes(valueSearch.toLowerCase()) || processo.description.toLowerCase().includes(valueSearch.toLowerCase()))
+  const filteredProcessos = processosSeletivos.filter(processo =>
+    processo.name.toLowerCase().includes(searchValue.toLowerCase()) ||
+    processo.description.toLowerCase().includes(searchValue.toLowerCase())
+  );
+
+  const [visibleQuestions, setVisibleQuestions] = useState<number | null>(null);
+
+  const toggleQuestions = (id: number) => {
+    setVisibleQuestions(visibleQuestions === id ? null : id);
+  };
 
   return (
     <View style={styles.container}>
-     
-      {/* Barra de pesquisa */}
-      <View style={styles.nav}>
-      <Text style ={styles.textBemvindo}>Bem vindo {username} !</Text>
-        <TextInput
-          onChangeText={setValueSearch}
-          placeholder='Pesquise aqui: Prova Ensino Superior'
-          style={[styles.TextInput, { textAlign: 'center', borderWidth: 1}]}
-        />
-        
-      </View>
-
-      {/* Linha separadora abaixo da barra de pesquisa */}
-      <View style={[{ height: 1 }, { backgroundColor: 'gray' }, { margin: 10 }]} />
-
-      {/* Título da seção */}
-      <View style={styles.titleContainer}>
-        <Text style={{ textAlign: 'center', fontWeight: 'bold' }}>Processos Seletivos</Text>
-      </View>
-
-      {/* Lista de processos seletivos com scroll */}
-      <ScrollView style={styles.ListProcessos}>
-        {
-       
-        filteredProcessos.map((item) => (
-          <Pressable
-            key={item.id}
-            onPress={() => router.push({ pathname: '/Selecao', params: { processo_nb: item.id } })}
-          >
-            <CardProvas
-              titulo={item.name}
-              descricao={item.description}
-              processo_nb = {item.id}
+      <Text style={styles.welcomeText}>Bem-vindo, {username}!</Text>
+      <TextInput
+        placeholder='Pesquise aqui...'
+        onChangeText={setSearchValue}
+        style={styles.searchInput}
+      />
+      <ScrollView style={styles.scrollContainer}>
+        {filteredProcessos.map(item => (
+          <View key={item.id} style={styles.card}>
+            <Pressable onPress={() => router.push({ pathname: '/Selecao', params: { processo_nb: item.id } })}>
+              <CardProvas
+                titulo={item.name}
+                descricao={item.description}
+                processo_nb={item.id}
+              />
+            </Pressable>
+            <Button 
+              title={visibleQuestions === item.id ? "Esconder Perguntas" : "Mostrar Perguntas"}
+              onPress={() => toggleQuestions(item.id)}
+              color="#3498db"
             />
-          </Pressable>
-        ))
-        
-        }
+            {visibleQuestions === item.id && (
+              <>
+                <Text style={styles.questionTitle}>Perguntas:</Text>
+                {item.perguntas.map(pergunta => (
+                  <Text key={pergunta.id} style={styles.questionText}>{pergunta.descricao}</Text>
+                ))}
+              </>
+            )}
+          </View>
+        ))}
       </ScrollView>
-      
     </View>
   );
 }
 
-// Estilos para a tela
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    padding: 20,
+    backgroundColor: '#f0f8ff',
   },
-  TextInput: {
-    borderRadius: 20,
-    width: 350,
-    height: 40,
-    backgroundColor: 'white',
+  welcomeText: {
+    fontSize: 24,
+    marginBottom: 15,
+    fontWeight: '600',
+    color: '#2c3e50',
   },
-  nav: {
-    padding: 10,
-    alignItems: 'center',
-  },
-  titleContainer: {
-    width: 300,
+  searchInput: {
     height: 50,
-    justifyContent: 'center',
-    alignSelf: 'center',
+    borderColor: '#3498db',
     borderWidth: 1,
+    borderRadius: 25,
+    paddingHorizontal: 15,
+    marginBottom: 20,
+    fontSize: 16,
+  },
+  scrollContainer: {
+    flex: 1,
+  },
+  card: {
+    backgroundColor: '#ffffff',
     borderRadius: 10,
-    margin: 50,
-    backgroundColor: 'white',
+    padding: 15,
+    marginBottom: 15,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 2,
+    elevation: 3,
   },
-  ListProcessos: {
-    borderTopColor: 'gray',
-    borderBottomColor: 'gray',
-    borderColor: 'transparent',
-    borderStyle: 'solid',
-    borderWidth: 1,
-    maxHeight: 400,
+  questionTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#2980b9',
+    marginTop: 10,
   },
-  textBemvindo:{
-      bottom: 10,
-      margin: 10,
-      fontFamily: 'Roboto-Regular',
-      fontSize: 30,
-      
+  questionText: {
+    fontSize: 16,
+    color: '#34495e',
+    marginVertical: 5,
   },
 });
