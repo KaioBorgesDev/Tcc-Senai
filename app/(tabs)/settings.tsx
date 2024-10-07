@@ -26,9 +26,7 @@ const Settings = () => {
         onPress={() => alert('Somos uma equipe de duas pessoas comprometidas em oferecer soluções criativas e personalizadas. Combinamos nossas habilidades para entregar resultados de qualidade, sempre com foco em detalhes e eficiência. Valorizamos a comunicação direta e a flexibilidade para atender às suas necessidades, garantindo uma experiência ágil e personalizada. Vamos transformar suas ideias em realidade!')} 
       />
       
-      <TabBarIcon name='exit' color='black' onPress={() => router.push('/')}>
-        <Text style={styles.logoutText}>Sair</Text>
-      </TabBarIcon>
+      <ButtonGreen text='Sair' onPress={()=>router.push('/')}></ButtonGreen>
     </View>
   );
 }
