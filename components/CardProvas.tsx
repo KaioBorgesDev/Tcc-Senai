@@ -20,7 +20,7 @@ const CardProvas: React.FC<CardProvasProps> = ({titulo, descricao, processo_nb})
             const response_unfavorite = await axios.post('http://localhost:5000/ServicesFavoritos/remove', {
                 email_user: email,
                 prova_fav: processo_nb,
-                titulo_prova: null,
+                titulo_prova: titulo,
             });
             
             if(response_unfavorite.status == 200){

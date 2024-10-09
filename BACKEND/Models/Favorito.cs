@@ -16,7 +16,7 @@ namespace senai_game.Models
             this.prova_fav = prova_fav;
             this.titulo_prova = titulo_prova;
         }
-        
+
 
 
 
@@ -40,14 +40,14 @@ namespace senai_game.Models
             {
                 conexao = FactoryConnection.getConnection(conexao_atual);
                 conexao.Open();
-                MySqlCommand command = new MySqlCommand("Select (prova_Fav, titulo_prova) from favoritadas where email_user=@email_user", conexao);
+                MySqlCommand command = new MySqlCommand("Select prova_Fav, titulo_prova from favoritadas where email_user = @email_user", conexao);
                 command.Parameters.AddWithValue("@email_user", email);
 
                 MySqlDataReader reader = command.ExecuteReader();
 
                 while (reader.Read())
                 {
-                    favoritos.Add(new Favorito(null,(int)reader["prova_fav"], (string)reader["titulo_prova"]));
+                    favoritos.Add(new Favorito(null, (int)reader["prova_fav"], (string)reader["titulo_prova"]));
                 }
                 return favoritos;
             }
@@ -59,31 +59,45 @@ namespace senai_game.Models
         public static string insertFavoritos(Favorito favorito)
         {
             MySqlConnection conexao;
-            string conexao_atual = Environment.GetEnvironmentVariable("CONEXAO", EnvironmentVariableTarget.User);
+            string conexao_atual = Environment.GetEnvironmentVariable("CONEXAO", EnvironmentVariableTarget.User) ?? "senai";
 
-            if (conexao_atual == null)
-            {
-                conexao_atual = "senai";
-            }
             try
             {
                 conexao = FactoryConnection.getConnection(conexao_atual);
                 conexao.Open();
-                MySqlCommand command = new MySqlCommand("insert into favoritadas (email_user, prova_fav, titulo_prova) values (@email_user, @prova_fav, @titulo_prova)", conexao);
-                command.Parameters.AddWithValue("@email_user", favorito.email_user);
-                command.Parameters.AddWithValue("@prova_fav", favorito.prova_fav);
-                command.Parameters.AddWithValue("@titulo_prova", favorito.titulo_prova);
 
-                MySqlDataReader reader = command.ExecuteReader();
+                // Verifica se já existe o registro
+                MySqlCommand checkCommand = new MySqlCommand("SELECT COUNT(*) FROM favoritadas WHERE email_user = @email_user AND prova_fav = @prova_fav", conexao);
+                checkCommand.Parameters.AddWithValue("@email_user", favorito.email_user);
+                checkCommand.Parameters.AddWithValue("@prova_fav", favorito.prova_fav);
 
+                int existe = Convert.ToInt32(checkCommand.ExecuteScalar());
+
+                if (existe > 0)
+                {
+                    return "Já existe um registro com essa prova favorita.";
+                }
+
+                // Se não existir, faz o INSERT
+                MySqlCommand insertCommand = new MySqlCommand("INSERT INTO favoritadas (email_user, prova_fav, titulo_prova) VALUES (@email_user, @prova_fav, @titulo_prova)", conexao);
+                insertCommand.Parameters.AddWithValue("@email_user", favorito.email_user);
+                insertCommand.Parameters.AddWithValue("@prova_fav", favorito.prova_fav);
+                insertCommand.Parameters.AddWithValue("@titulo_prova", favorito.titulo_prova);
+
+                insertCommand.ExecuteNonQuery(); // Use ExecuteNonQuery para comandos de insert
+                conexao.Close();
                 return "Inserido com sucesso";
-                               
             }
             catch (Exception ex)
             {
-                throw ex;
+
+
+                throw new Exception("Erro ao inserir favorito: " + ex.Message);
             }
+
+
         }
+
         public static string removeFavoritos(Favorito favorito)
         {
             MySqlConnection conexao;
@@ -102,7 +116,7 @@ namespace senai_game.Models
                 command.Parameters.AddWithValue("@prova_fav", favorito.prova_fav);
 
                 MySqlDataReader reader = command.ExecuteReader();
-                
+
                 return "Removido com sucesso";
             }
             catch (Exception ex)

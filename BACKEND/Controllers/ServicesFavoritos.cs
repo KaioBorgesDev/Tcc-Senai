@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Win32;
 using senai_game.Models;
 
 namespace senai_game.Controllers
@@ -12,7 +13,7 @@ namespace senai_game.Controllers
         {
             var resposta = Favorito.insertFavoritos(favorito);
 
-            if (resposta == "Inserido com sucesso")
+            if (resposta == "Inserido com sucesso" || resposta == "Já existe um registro com essa prova favorita.")
             {
                 return Ok(resposta);
             }
