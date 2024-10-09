@@ -4,24 +4,24 @@ import axios from 'axios';
 import { AuthContext } from '@/context/AuthContext';
 import CardProvas from '@/components/CardProvas';
 import { router } from 'expo-router';
-
+ 
 interface ProcessoSeletivo {
   id: number;
   name: string;
   description: string;
   perguntas: Pergunta[];
 }
-
+ 
 interface Pergunta {
   id: number;
   descricao: string;
 }
-
+ 
 export default function Explore() {
   const [processosSeletivos, setProcessosSeletivos] = useState<ProcessoSeletivo[]>([]);
   const [searchValue, setSearchValue] = useState<string>('');
   const { username } = useContext(AuthContext);
-
+ 
   useEffect(() => {
     const fetchProcessos = async () => {
       try {
@@ -31,21 +31,21 @@ export default function Explore() {
         console.error("Erro ao buscar processos:", error);
       }
     };
-
+ 
     fetchProcessos();
   }, []);
-
+ 
   const filteredProcessos = processosSeletivos.filter(processo =>
     processo.name.toLowerCase().includes(searchValue.toLowerCase()) ||
     processo.description.toLowerCase().includes(searchValue.toLowerCase())
   );
-
+ 
   const [visibleQuestions, setVisibleQuestions] = useState<number | null>(null);
-
+ 
   const toggleQuestions = (id: number) => {
     setVisibleQuestions(visibleQuestions === id ? null : id);
   };
-
+ 
   return (
     <View style={styles.container}>
       <Text style={styles.welcomeText}>Bem-vindo, {username}!</Text>
@@ -57,14 +57,14 @@ export default function Explore() {
       <ScrollView style={styles.scrollContainer}>
         {filteredProcessos.map(item => (
           <View key={item.id} style={styles.card}>
-            <Pressable onPress={() => router.push({ pathname: '/Selecao', params: { processo_nb: item.id } })}>
+            <Pressable accessibilityLabel='pressable' onPress={() => router.push({ pathname: '/Selecao', params: { processo_nb: item.id } })}>
               <CardProvas
                 titulo={item.name}
                 descricao={item.description}
                 processo_nb={item.id}
               />
             </Pressable>
-            <Button 
+            <Button
               title={visibleQuestions === item.id ? "Esconder Perguntas" : "Mostrar Perguntas"}
               onPress={() => toggleQuestions(item.id)}
               color="#3498db"
@@ -83,12 +83,13 @@ export default function Explore() {
     </View>
   );
 }
-
+ 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
     backgroundColor: '#f0f8ff',
+   
   },
   welcomeText: {
     fontSize: 24,
@@ -109,14 +110,21 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   card: {
+    width: "100%",
+    display: "flex",
     backgroundColor: '#ffffff',
-    borderRadius: 10,
-    padding: 15,
+    borderRadius: 20,
+    padding: 27,
+    paddingLeft:38,
+    paddingVertical:15,
     marginBottom: 15,
     shadowColor: '#000',
+    maxWidth:800,
+    alignSelf:'center',
     shadowOffset: {
       width: 0,
       height: 1,
+     
     },
     shadowOpacity: 0.2,
     shadowRadius: 2,
@@ -134,3 +142,4 @@ const styles = StyleSheet.create({
     marginVertical: 5,
   },
 });
+ 

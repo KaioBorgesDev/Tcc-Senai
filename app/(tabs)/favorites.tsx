@@ -57,7 +57,7 @@ const Favorites = () => {
       <TitleThemed background="transparent" titulo="Provas Favoritas" />
       <ScrollView style={styles.ListProcessos}>
         {favoritos.map((prova) => (
-          <Pressable onPress={() => router.push({ pathname: '/Selecao', params: { processo_nb: prova.prova_fav } })}>
+          <Pressable key={prova.prova_fav} onPress={() => router.push({ pathname: '/Selecao', params: { processo_nb: prova.prova_fav } })}>
             <CardProvas
               titulo={prova.titulo_prova}
               descricao={'Faça já!'}
