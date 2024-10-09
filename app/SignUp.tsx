@@ -27,13 +27,13 @@ const SignUp = () => {
             return alert('O email no mínimo 5 caracteres');
         }
         try{
-            const resposta = await axios.post('http://localhost:5000/create',
+            axios.post('http://localhost:5000/create',
         {
-            email: email,
-                    username: " ",
-                    password: password,
-                    status: " ",
-                    rules: " "
+            email,
+            username,
+            password,
+            status: " ",
+            rules: " "
         })
         
         alert('Usuário cadastrado com sucesso!');
@@ -42,8 +42,6 @@ const SignUp = () => {
         }catch (ex){
             alert(ex);
         }
-        
-        
     }
     return (
       <View>
