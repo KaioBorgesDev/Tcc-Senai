@@ -40,40 +40,40 @@ const CardProvas: React.FC<CardProvasProps> = ({titulo, descricao, processo_nb})
             alert(response_favorite.data);
         }
     }
-  return (
-    <View style={styles.Card}>
-        <Pressable style={styles.icone} onPress={()=> enviarFavoritos()}>{icon ? <Ionicons name='star'/> : <Ionicons name='star-outline'/>}</Pressable>
-        <Text style={styles.Title}>{titulo}</Text>
-        <Text style={styles.SubTitle}>{descricao}</Text>
-    </View>
-  )
+    return (
+        <View style={styles.Card}>
+            <View style={styles.ContainerEstrela}>
+                <Pressable onPress={()=> enviarFavoritos()}>{icon ? <Ionicons name='star'/> : <Ionicons name='star-outline'/>}</Pressable>
+                <Text style={styles.Title}>{titulo}</Text>
+            </View>
+            <Text style={styles.SubTitle}>{descricao}</Text>
+        </View>
+      )
 
 }
 
 const styles = StyleSheet.create({
     Title:{
-        left:45,
         fontSize:18,
         fontWeight:'bold',
     },
     SubTitle:{
-        left:45,
+        flex: 1,
+        flexWrap: 'wrap',
         fontSize:12,
         fontWeight:'100',
-    },
-    icone:{
-        top: 24,
-        left:10,
+        marginBottom: 10,
     },
     Card:{
-        top:5,
-        borderStyle:'solid',
-        borderWidth: 1,        
-        height:80,
-        borderColor:'transparent',
-        borderBottomColor:'gray'
+        display: "flex",
+        gap: 10,
     },
-   
+   ContainerEstrela:{
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 5,
+   }
 })
 
 export default CardProvas
