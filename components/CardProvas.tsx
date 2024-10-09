@@ -19,7 +19,8 @@ const CardProvas: React.FC<CardProvasProps> = ({titulo, descricao, processo_nb})
         if(icon == true){
             const response_unfavorite = await axios.post('http://localhost:5000/ServicesFavoritos/remove', {
                 email_user: email,
-                prova_fav: processo_nb
+                prova_fav: processo_nb,
+                titulo_prova: null,
             });
             
             if(response_unfavorite.status == 200){
@@ -30,13 +31,13 @@ const CardProvas: React.FC<CardProvasProps> = ({titulo, descricao, processo_nb})
         }else{
             const response_favorite = await axios.post('http://localhost:5000/ServicesFavoritos/insert', {
                 email_user: email,
-                prova_fav: processo_nb
+                prova_fav: processo_nb,
+                titulo_prova: titulo
             });
-            
             if(response_favorite.status == 200){
                 return setIcon(true)
             }
-            alert('Não foi adicionado.');
+            alert(response_favorite.data);
         }
     }
   return (

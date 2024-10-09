@@ -32,10 +32,10 @@ namespace senai_game.Controllers
             return BadRequest(resposta);
         }
 
-        [HttpGet("getAllByEmail")]
-        public ActionResult getAll()
+        [HttpGet("getAllByEmail/{email}")]
+        public ActionResult getAll(string email)
         {
-            var resposta = Favorito.GetAllFavoritosByEmail("teste1234");
+            var resposta = Favorito.GetAllFavoritosByEmail(email);
 
             return Ok(resposta);
         }

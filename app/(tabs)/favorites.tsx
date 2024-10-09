@@ -7,8 +7,9 @@ import { useContext, useEffect, useState } from 'react';
 import { View, Pressable, ScrollView, StyleSheet, ActivityIndicator, Text } from 'react-native';
 
 interface Favorito {
-  email_user: string;
-  prova_fav: number;
+  email_user: string,
+  prova_fav: number,
+  titulo_prova: string
 }
 
 const Favorites = () => {
@@ -20,8 +21,7 @@ const Favorites = () => {
   useEffect(() => {
     const buscarFavoritos = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/ServicesFavoritos/getAllByEmail'
-        );
+        const response = await axios.get(`http://localhost:5000/ServicesFavoritos/getAllByEmail/${email}`);
         const response_tratada : Favorito[] = response.data;
         setFavoritos(response_tratada);
       } catch (err) {
@@ -56,10 +56,14 @@ const Favorites = () => {
     <View>
       <TitleThemed background="transparent" titulo="Provas Favoritas" />
       <ScrollView style={styles.ListProcessos}>
-        {favoritos.map((item) => (
-          <Pressable onPress={() => router.navigate('/Selecao')} key={item.prova_fav}>
-            
-          </Pressable>
+        {favoritos.map((prova) => (
+          <Pressable onPress={() => router.push({ pathname: '/Selecao', params: { processo_nb: prova.prova_fav } })}>
+            <CardProvas
+              titulo={prova.titulo_prova}
+              descricao={'Faça já!'}
+              processo_nb={prova.prova_fav}
+            />
+        </Pressable>
         ))}
       </ScrollView>
     </View>

@@ -44,6 +44,7 @@ namespace senai_game.Models
 
             if (conexao_atual == null)
             {
+
                 conexao_atual = "senai";
             }
 
