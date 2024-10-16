@@ -8,7 +8,7 @@ namespace senai_game.Controllers
     public class ServicesScores : ControllerBase
     {
 
-        [HttpGet("/Score")]
+        [HttpGet("")]
         public IActionResult GetAllScore()
         {
             var pontuacoes = Score.getAll();
@@ -17,7 +17,7 @@ namespace senai_game.Controllers
 
         }
 
-        [HttpPost("/Score/Email")]
+        [HttpPost("GetByEmail")]
         public IActionResult GetScoreByEmail([FromBody] string email)
         {
             var pontuacoes = Score.getScoreByEmail(email);
@@ -28,5 +28,35 @@ namespace senai_game.Controllers
             return Ok("Não foi encontrado score com este email.");
 
         }
+        [HttpPost("InsertAcByEmail/{email}")]
+        public IActionResult InsertScoreAcByEmail(string email)
+        {
+            var pontuacoes = Score.insertScoreAcByEmail(email);
+            if (pontuacoes == "Usuario não encontrado.")
+            {
+                return BadRequest(pontuacoes);
+            }
+            else if(pontuacoes == "Inserido com sucesso")
+            {
+                return Ok(pontuacoes);
+            }
+            return BadRequest("Erro:" + pontuacoes);
+        }
+       [HttpPost("InsertErByEmail/{email}")]
+        public IActionResult InsertScoreErByEmail(string email)
+        {
+            var pontuacoes = Score.insertScoreErByEmail(email);
+            if (pontuacoes == "Usuario não encontrado.")
+            {
+                return BadRequest(pontuacoes);
+            }
+            else if (pontuacoes == "Inserido com sucesso")
+            {
+                return Ok(pontuacoes);
+            }
+            return BadRequest("Erro:" + pontuacoes);
+
+        }
+       
     }
 }

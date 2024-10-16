@@ -1,8 +1,9 @@
 import Button from '@/components/Button';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { router, useLocalSearchParams } from 'expo-router';
-import { StyleSheet, View, Text, TouchableOpacity, ScrollView, Pressable } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, ScrollView } from 'react-native';
 import axios from 'axios';
+import { AuthContext } from '@/context/AuthContext';
 
 interface ProcessoSeletivo {
   id: number;
@@ -39,6 +40,9 @@ const Selecao = () => {
   // Estado para controlar se é a primeira tentativa
   const [firstTry, setFirstTry] = useState(true);
 
+  //contexto do usuario
+  const { email } = useContext(AuthContext);
+
   useEffect(() => {
     // Função assíncrona para buscar o processo seletivo
     const buscarProcesso = async () => {
@@ -53,12 +57,38 @@ const Selecao = () => {
 
     buscarProcesso();
   }, [processo_nb]);
+  
+  const enviarAcerto = async () => {
+    try {
+      
+      await axios.post(await axios.post(`http://localhost:5000/ServicesScores/InsertAcByEmail/${email}`));
+      
+    } catch (err) {
+      console.error(err);
+    } 
+  };
 
-  // Função para lidar com a mudança de questão
-  const handlePress = () => {
+  const enviarErro = async () => {
+    try {
+      await axios.post(await axios.post(`http://localhost:5000/ServicesScores/InsertErByEmail/${email}`));
+      
+    } catch (err) {
+      console.error(err);
+    } 
+  };
+
+
+  // Função para lidar com a mudança de questão e adicionar resultado
+  const handlePress = (palpite : boolean) =>  { 
     setNextQuestion(true);
     setFirstTry(false);
     setNumber(prev => prev + 1);
+    console.log(email);
+    if(palpite){
+      enviarAcerto();
+    }else{
+      enviarErro();
+    }
   };
 
   // Verifica se a pergunta existe
@@ -73,7 +103,6 @@ const Selecao = () => {
         <TouchableOpacity  style={styles.button} onPress={()=> router.push("/explore")}>
           <Text style={styles.buttonText}>Voltar para Explore!</Text>
         </TouchableOpacity>
-        
       </View>
     );
   }
@@ -99,10 +128,10 @@ const Selecao = () => {
               firstTry={firstTry}
               onPress={() => {
                 if (firstTry) {
-                  handlePress();
+                  handlePress(Boolean(questao.correta));
                 }
               }}
-            />
+            />            
           ))}
         </View>
 
