@@ -17,15 +17,15 @@ namespace senai_game.Controllers
 
         }
 
-        [HttpPost("GetByEmail")]
-        public IActionResult GetScoreByEmail([FromBody] string email)
-        {
+        [HttpGet("GetByEmail/{email}")]
+        public IActionResult GetScoreByEmail(string email)
+       {
             var pontuacoes = Score.getScoreByEmail(email);
             if (pontuacoes != null)
             {
                 return Ok(pontuacoes);
             }
-            return Ok("Não foi encontrado score com este email.");
+            return BadRequest("Não foi encontrado score com este email.");
 
         }
         [HttpPost("InsertAcByEmail/{email}")]

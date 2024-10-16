@@ -1,29 +1,55 @@
 import { StyleSheet, Image, ScrollView, View, Text } from 'react-native';
 import { AuthContext } from '../../context/AuthContext';
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import axios from 'axios';
+
+interface Score {
+  email_User: string;
+  acertos: number;
+  erros: number;
+}
 
 const Profile = () => {
   const { email, username } = useContext(AuthContext);
+  const [score, setScore] = useState<Score | undefined>(undefined);
+
+  useEffect(() => {
+    // Função assíncrona para buscar o score
+    const getScore = async () => {
+      try {
+        const response = await axios.get(`http://localhost:5000/ServicesScores/GetByEmail/${email}`);
+        const response_tratada: Score = response.data;
+        setScore(response_tratada);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
+    if (email) {
+      getScore();
+    }
+  }, [email]);
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <Image 
-        source={require('../../assets/icones/avatar.png')} 
-        style={styles.avatar} 
-        resizeMode="contain" 
+      <Image
+        source={require('../../assets/icones/avatar.png')}
+        style={styles.avatar}
+        resizeMode="contain"
       />
-      <Text style={styles.username}>{username}</Text>
-      <Text style={styles.email}>{email}</Text>
-      
+      <Text style={styles.username}>Username: {username}</Text>
+      <Text style={styles.email}>Email: {email}</Text>
+
       <View style={styles.cardInsights}>
         <View style={styles.insightItem}>
-          <Text style={styles.insightLabel}>Provas Completas</Text>
-          <Text style={styles.insightValue}>50</Text>
+          <Text style={styles.insightLabel}>FeedBack:</Text>
+          
         </View>
-        
+
         <View style={styles.insightItem}>
           <Text style={styles.insightLabel}>Acertos / Erros</Text>
-          <Text style={styles.insightValue}>{`1.53`}</Text>
+          <Text style={styles.insightValue}>{score ? (score.acertos / (score.acertos + score.erros)).toFixed(2) : '0.00'}</Text>
+          <Text style={styles.insightLabel}>Continue melhorando!</Text>
         </View>
       </View>
     </ScrollView>
@@ -52,10 +78,10 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   email: {
-    fontSize: 16,
+    fontSize: 22,
     color: '#34495e',
     marginBottom: 30,
-    textDecorationLine: 'underline',
+    textDecorationLine: 'none',
   },
   cardInsights: {
     backgroundColor: '#ffffff',
@@ -63,7 +89,6 @@ const styles = StyleSheet.create({
     padding: 20,
     elevation: 3,
     width: '90%',
-    
   },
   insightItem: {
     marginBottom: 15,
