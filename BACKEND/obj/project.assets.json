@@ -2030,11 +2030,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\aluno\\Downloads\\Tcc-Senai 1\\Tcc-Senai\\BACKEND\\senai-game.csproj",
+      "projectUniqueName": "C:\\Users\\aluno\\Documents\\KaioBorgesDev\\Tcc-Senai\\BACKEND\\senai-game.csproj",
       "projectName": "senai-game",
-      "projectPath": "C:\\Users\\aluno\\Downloads\\Tcc-Senai 1\\Tcc-Senai\\BACKEND\\senai-game.csproj",
+      "projectPath": "C:\\Users\\aluno\\Documents\\KaioBorgesDev\\Tcc-Senai\\BACKEND\\senai-game.csproj",
       "packagesPath": "C:\\Users\\aluno\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\aluno\\Downloads\\Tcc-Senai 1\\Tcc-Senai\\BACKEND\\obj\\",
+      "outputPath": "C:\\Users\\aluno\\Documents\\KaioBorgesDev\\Tcc-Senai\\BACKEND\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

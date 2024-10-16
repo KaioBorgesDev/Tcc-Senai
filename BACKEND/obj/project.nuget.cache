@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "BTXUtyYBxq3+2SHosvnxklcpuOxnRrETwui/Kx8vyJbVHPDJVrAgcL4lGZBPxFN+N7stgA5lDCIk5a0fZ0jnDg==",
+  "dgSpecHash": "R92ToL15/sSvkalm5Fbcx9G5xZdWb8TiXnwvpHyPatKUuI2m68juHbg/5hGXGHQXrDN5cmPFpRMpKJP272Qwog==",
   "success": true,
-  "projectFilePath": "C:\\Users\\aluno\\Downloads\\Tcc-Senai 1\\Tcc-Senai\\BACKEND\\senai-game.csproj",
+  "projectFilePath": "C:\\Users\\aluno\\Documents\\KaioBorgesDev\\Tcc-Senai\\BACKEND\\senai-game.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\aluno\\.nuget\\packages\\bouncycastle.cryptography\\2.3.1\\bouncycastle.cryptography.2.3.1.nupkg.sha512",
     "C:\\Users\\aluno\\.nuget\\packages\\google.protobuf\\3.26.1\\google.protobuf.3.26.1.nupkg.sha512",
