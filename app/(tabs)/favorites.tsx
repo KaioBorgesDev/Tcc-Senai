@@ -1,3 +1,4 @@
+import { Button } from 'react-native';
 import CardProvas from '@/components/CardProvas';
 import { TitleThemed } from '@/components/TitleThemed';
 import { AuthContext } from '@/context/AuthContext';
@@ -7,9 +8,9 @@ import { useContext, useEffect, useState } from 'react';
 import { View, Pressable, ScrollView, StyleSheet, ActivityIndicator, Text } from 'react-native';
 
 interface Favorito {
-  email_user: string,
-  prova_fav: number,
-  titulo_prova: string
+  email_user: string;
+  prova_fav: number;
+  titulo_prova: string;
 }
 
 const Favorites = () => {
@@ -17,12 +18,13 @@ const Favorites = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const { email } = useContext(AuthContext);
+  const [visibleQuestions, setVisibleQuestions] = useState<number | null>(null);
 
   useEffect(() => {
     const buscarFavoritos = async () => {
       try {
         const response = await axios.get(`http://localhost:5000/ServicesFavoritos/getAllByEmail/${email}`);
-        const response_tratada : Favorito[] = response.data;
+        const response_tratada: Favorito[] = response.data;
         setFavoritos(response_tratada);
       } catch (err) {
         console.error(err);
@@ -52,18 +54,25 @@ const Favorites = () => {
     );
   }
 
+
   return (
-    <View>
+    <View style={styles.container}>
       <TitleThemed background="transparent" titulo="Provas Favoritas" />
-      <ScrollView style={styles.ListProcessos}>
+      <ScrollView style={styles.scrollContainer}>
         {favoritos.map((prova) => (
-          <Pressable key={prova.prova_fav} onPress={() => router.push({ pathname: '/Selecao', params: { processo_nb: prova.prova_fav } })}>
-            <CardProvas
-              titulo={prova.titulo_prova}
-              descricao={'Faça já!'}
-              processo_nb={prova.prova_fav}
-            />
-        </Pressable>
+          <View key={prova.prova_fav} style={styles.card}>
+            <Pressable
+              accessibilityLabel='pressable'
+              onPress={() => router.push({ pathname: '/Selecao', params: { processo_nb: prova.prova_fav } })}
+            >
+              <CardProvas
+                titulo={prova.titulo_prova}
+                descricao={'Clique aqui para fazer já!'}
+                processo_nb={prova.prova_fav}
+              />
+            </Pressable>
+          
+          </View>
         ))}
       </ScrollView>
     </View>
@@ -71,13 +80,32 @@ const Favorites = () => {
 };
 
 const styles = StyleSheet.create({
-  ListProcessos: {
-    borderTopColor: 'gray',
-    borderBottomColor: 'gray',
-    borderColor: 'transparent',
-    borderStyle: 'solid',
-    borderWidth: 1,
-    maxHeight: 400,
+  container: {
+    flex: 1,
+    padding: 20,
+    backgroundColor: '#f0f8ff',
+  },
+  scrollContainer: {
+    flex: 1,
+  },
+  card: {
+    width: "100%",
+    backgroundColor: '#ffffff',
+    borderRadius: 20,
+    padding: 27,
+    paddingLeft: 38,
+    paddingVertical: 15,
+    marginBottom: 15,
+    shadowColor: '#000',
+    maxWidth: 800,
+    alignSelf: 'center',
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 2,
+    elevation: 3,
   },
   loadingContainer: {
     flex: 1,
@@ -88,6 +116,11 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  questionText: {
+    fontSize: 16,
+    color: '#34495e',
+    marginVertical: 5,
   },
 });
 

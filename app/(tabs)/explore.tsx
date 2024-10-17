@@ -21,6 +21,7 @@ export default function Explore() {
   const [processosSeletivos, setProcessosSeletivos] = useState<ProcessoSeletivo[]>([]);
   const [searchValue, setSearchValue] = useState<string>('');
   const { username } = useContext(AuthContext);
+  const [visibleQuestions, setVisibleQuestions] = useState<number | null>(null);
  
   useEffect(() => {
     const fetchProcessos = async () => {
@@ -40,7 +41,7 @@ export default function Explore() {
     processo.description.toLowerCase().includes(searchValue.toLowerCase())
   );
  
-  const [visibleQuestions, setVisibleQuestions] = useState<number | null>(null);
+ 
  
   const toggleQuestions = (id: number) => {
     setVisibleQuestions(visibleQuestions === id ? null : id);
