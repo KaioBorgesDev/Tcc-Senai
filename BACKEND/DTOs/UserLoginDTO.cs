@@ -7,12 +7,10 @@ namespace senai_game.DTOs
 
         [Required]
         [EmailAddress]
-        public string email { get;}
+        public string email { get; set; }
 
         [Required]
         [MinLength(6)]
-        public string password { get; }
-
-
+        public string password { get; set; }
     }
 }
