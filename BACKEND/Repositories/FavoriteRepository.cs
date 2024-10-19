@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using senai_game.Factory;
 using senai_game.Models;
 
 namespace senai_game.Repositories
@@ -98,7 +99,7 @@ namespace senai_game.Repositories
             }
             catch (Exception ex)
             {
-                throw new Exception("Erro ao remover favorito: " + ex.Message);
+                throw new Exception("Erro ao remover favorito: " + ex.TargetSite);
             }
             finally
             {

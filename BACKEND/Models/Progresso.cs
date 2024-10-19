@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using MySql.Data.MySqlClient;
+using senai_game.Factory;
 
 namespace senai_game.Models
 {

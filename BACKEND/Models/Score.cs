@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using Mysqlx.Crud;
 using Mysqlx.Expr;
+using senai_game.Factory;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
