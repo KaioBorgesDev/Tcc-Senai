@@ -23,7 +23,6 @@ namespace senai_game.Repositories
 
         public User GetUser(string email, string password)
         {
-
             try
             {
                 _connection.Open();
@@ -50,8 +49,7 @@ namespace senai_game.Repositories
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Erro ao pegar o usuario! Consulte o erro:" + ex.ToString());
-                return null;
+                throw new Exception("Erro ao pegar usuario " + ex.Message);
             }
             finally
             {
