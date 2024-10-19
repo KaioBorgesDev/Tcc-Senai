@@ -1,18 +1,21 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using senai_game.Models;
+using senai_game.Services;
 
 namespace senai_game.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class ServicesProgressos : ControllerBase
+    public class ControllerProgress : ControllerBase
     {
+
+        private readonly ServiceProgress _serviceProgress = new ServiceProgress();
 
         [HttpGet("/Progresso/{id}")]
         public IActionResult GetById(int id)
         {
             
-            var progresso = Progresso.getById(id);
+            var progresso = _serviceProgress.GetById(id);
 
             if (progresso != null) 
                 return Ok(progresso);
@@ -22,7 +25,7 @@ namespace senai_game.Controllers
         [HttpGet("/Progresso")]
         public IActionResult GetAllProgresso()
         {
-            var progresso = Progresso.getAllProgresso();
+            var progresso = _serviceProgress.getAllProgress();
 
             if (progresso != null)
                 return Ok(progresso);
