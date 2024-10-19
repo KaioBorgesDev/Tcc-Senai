@@ -42,7 +42,6 @@ export const AuthProvider = ({ children }: AuthContextType) => {
     const AuthUser = async (email: string, password: string) => {
         try {
             if (email !== '' && password !== '') {
-                
                 const response = await axios.post('http://localhost:5000/login', {
                     email: email,
                     username: " ",
@@ -53,22 +52,36 @@ export const AuthProvider = ({ children }: AuthContextType) => {
                 if (response.data !== 'Usuario não encontrado!') {
                     setUsername(response.data.username);
                     setEmail(email);
-                    setRule(response.data.rules)
+                    setRule(response.data.rules);
                     alert('Bem Vindo ' + response.data.username);
                     router.push("/explore");
                 } else {
                     alert('Usuário não encontrado!');
+                }
+            } else {
+                alert('Há campos vazios.');
             }
-        } else {
-            alert('Há campos vazios.');
+        } catch (error) {
+            if (axios.isAxiosError(error)) {
+                // Check for network error
+                if (error.message === 'Network Error') {
+                    alert('Inicie o backend na pasta executável, ou verifique a conexão com a internet.');
+                } else if (error.response) {
+                    // Check for specific status codes
+                    if (error.response.status === 401) {
+                        alert('Conta não encontrada! Verifique suas credenciais.');
+                    } else {
+                        alert('Erro ao autenticar: ' + error.response.data[3]);
+                    }
+                } else {
+                    alert('Erro desconhecido: ' + error.message);
+                }
+            } else {
+                alert('Erro ao autenticar');
+            }
         }
-    }catch (error) {
-        if(error == 'AxiosError: Network Error'){
-            return alert('Inicie o backend na pasta executavel, ou verifique a conexao com a internet.');
-        }
-        alert(error);
     };
-}
+
 
     // Return the context provider with the context value
     return (
