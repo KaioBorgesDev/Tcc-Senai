@@ -1,0 +1,221 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="senai_game.Controllers.ControllerFavoritos">
+    <Position X="3.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAgAIAAAA=</HashCode>
+      <FileName>Controllers\ControllerFavoritos.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="senai_game.Controllers.ControllerProcess">
+    <Position X="5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQACBAAAAAAAAAAAAAgAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>Controllers\ControllerProcess.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="senai_game.Controllers.ControllerProgress">
+    <Position X="6.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAKA=</HashCode>
+      <FileName>Controllers\ControllerProgress.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="senai_game.Controllers.ControllerQuestion">
+    <Position X="8.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\ControllerQuestion.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="senai_game.Controllers.ControllerScore">
+    <Position X="10.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAgAAACAAAABAAAAAAAAAAAAAAAAAAIAAAAAAA=</HashCode>
+      <FileName>Controllers\ControllerScore.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="senai_game.Controllers.ControllerUser">
+    <Position X="12" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAQAAAAIAA=</HashCode>
+      <FileName>Controllers\ControllerUser.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="senai_game.DTOs.FavoriteDTO">
+    <Position X="3.25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAQAAAAACAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>DTOs\FavoriteDTO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="senai_game.DTOs.ProcessDTO">
+    <Position X="5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAIAAAAAAAAAAEhAAAAAAAAAAAAgA=</HashCode>
+      <FileName>DTOs\ProcessDTO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="senai_game.DTOs.QuestionDTO">
+    <Position X="6.75" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAQAAAAAAAAAAAIABAAAAAAAAAgA=</HashCode>
+      <FileName>DTOs\QuestionDTO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="senai_game.DTOs.UserDTO">
+    <Position X="8.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgAAAAAAEAAAAAAAAAAAAAAgAAAAA=</HashCode>
+      <FileName>DTOs\UserDTO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="senai_game.DTOs.UserLoginDTO">
+    <Position X="10.25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAgAAAAA=</HashCode>
+      <FileName>DTOs\UserLoginDTO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="senai_game.Factory.FactoryConnection">
+    <Position X="13" Y="0.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAA=</HashCode>
+      <FileName>Factory\FactoryConnection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="senai_game.Models.Alternativas">
+    <Position X="15.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ARACAAAAAAABAAAAAQAAAAAAAAAAAAAAAAAAgAMAAoA=</HashCode>
+      <FileName>Models\Alternativas.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="senai_game.Models.Favorite">
+    <Position X="17" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAEAQIAAAECAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Models\Favorite.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="senai_game.Models.Process">
+    <Position X="18.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAgAAAAIAAAAAQAAAAEhAAAAIQAAAAAAgA=</HashCode>
+      <FileName>Models\Process.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="senai_game.Models.Progress">
+    <Position X="20.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAQACAAAAAAAAAAAACAAAhACAIAAAAAAAAACAgA=</HashCode>
+      <FileName>Models\Progress.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="senai_game.Models.Question">
+    <Position X="22.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAABAAAAAQAAAAAAAAAAAIABAACAAAABAgA=</HashCode>
+      <FileName>Models\Question.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="senai_game.Models.Score">
+    <Position X="24" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAIAAAAAAAAAAAAgAAAAAAAAAAAAAAAgAAAAIAACA=</HashCode>
+      <FileName>Models\Score.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="senai_game.Models.User">
+    <Position X="25.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgQAAAIEACAAAAAgAQAAAAEAAAAAAAACAAAAAgAAAAA=</HashCode>
+      <FileName>Models\User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="senai_game.Repositories.FavoriteRepository">
+    <Position X="3.25" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAIgAAAAAAACAABAA=</HashCode>
+      <FileName>Repositories\FavoriteRepository.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="senai_game.Repositories.ProcessRepository">
+    <Position X="5" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAAgAAAAAAAAAAAAAAQAABAAAAAAAAAAAABAA=</HashCode>
+      <FileName>Repositories\ProcessRepository.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="senai_game.Repositories.ProgressRepository">
+    <Position X="6.75" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAABIA=</HashCode>
+      <FileName>Repositories\ProgressRepository.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="senai_game.Repositories.QuestionRepository">
+    <Position X="8.5" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAABAA=</HashCode>
+      <FileName>Repositories\QuestionRepository.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="senai_game.Repositories.ScoreRepository">
+    <Position X="10.25" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAACAAEIAAAAAAAAAAAAAAAAAAAAAAAAIAABAA=</HashCode>
+      <FileName>Repositories\ScoreRepository.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="senai_game.Repositories.UserRepository">
+    <Position X="12" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAAAAAAAAAAAAAAEAAAAAAAAAEAAAAAAABAA=</HashCode>
+      <FileName>Repositories\UserRepository.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="senai_game.Services.FavoriteService">
+    <Position X="15.25" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABBAgAAAAAAAAAAAAAAAAAAAAAAIAAAAAA=</HashCode>
+      <FileName>Services\FavoriteService.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="senai_game.Services.ServiceProcess">
+    <Position X="17" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAAABAAAAAAAAAAAAAQAABAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Services\ServiceProcess.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="senai_game.Services.ServiceProgress">
+    <Position X="18.75" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAIA=</HashCode>
+      <FileName>Services\ServiceProgresso.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="senai_game.Services.ServiceQuestion">
+    <Position X="20.5" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Services\ServiceQuestion.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="senai_game.Services.ServiceScore">
+    <Position X="22.25" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAAAAAgAEAAAAAAAAAAAAAAAAAAQAgAAAAAA=</HashCode>
+      <FileName>Services\ServiceScore.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="senai_game.Services.UsuarioService">
+    <Position X="24" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQBAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>Services\UsuarioService.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
