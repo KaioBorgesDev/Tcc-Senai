@@ -1,7 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Win32;
 using senai_game.DTOs;
-using senai_game.Models;
 using senai_game.Services;
 
 namespace senai_game.Controllers

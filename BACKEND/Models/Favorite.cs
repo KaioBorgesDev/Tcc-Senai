@@ -1,7 +1,4 @@
-﻿using MySql.Data.MySqlClient;
-using System.Text.Json.Serialization;
-
-namespace senai_game.Models
+﻿namespace senai_game.Models
 {
     public class Favorite
     {

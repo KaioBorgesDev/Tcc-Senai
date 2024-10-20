@@ -1,7 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿
 using Microsoft.AspNetCore.Mvc;
 using senai_game.DTOs;
-using senai_game.Models;
 using senai_game.Services;
 
 namespace senai_game.Controllers

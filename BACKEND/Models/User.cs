@@ -1,6 +1,4 @@
-﻿using MySql.Data.MySqlClient;
-using System.ComponentModel.DataAnnotations;
-
+﻿
 namespace senai_game.Models
 {
     public class User

@@ -4,8 +4,6 @@ namespace senai_game.Factory
 {
     public class FactoryConnection
     {
-
-
         public static MySqlConnection getConnection(string connectionString)
         {
 
@@ -19,7 +17,6 @@ namespace senai_game.Factory
             IConfigurationBuilder builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json", true, true);
 
             return builder.Build();
-
         }
     }
 }
