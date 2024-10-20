@@ -17,7 +17,43 @@ namespace senai_game.Repositories
 
             _connection = FactoryConnection.getConnection(connection_env);
         }
+        public List<Question> getById(int id)
+        {
+       
+            var allPerguntas = new List<Question>();
+            try
+            {
+                _connection.Open();
+                MySqlCommand command = new MySqlCommand("Select * from perguntas where id_processo = @id", _connection);
+                command.Parameters.AddWithValue("@id", id);
 
+                MySqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        Question pergunta = new Question((int)reader["id"], reader["descricao"].ToString(), (int)reader["id_processo"],
+                            alternativas_list: Alternativas.getById((int)reader["id"]));
+
+                        allPerguntas.Add(pergunta);
+                    }
+                    _connection.Close();
+                    return allPerguntas;
+                }
+                _connection.Close();
+                return allPerguntas;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Não foi possivel pegar pelo id " + ex.Message);
+            }
+    
+            finally
+            {
+                _connection.Close();
+            }
+        }
         internal string InsertQuestion(Question question)
         {
             int id_question = 0;
@@ -56,6 +92,10 @@ namespace senai_game.Repositories
             catch (Exception ex)
             {
                 throw new Exception("Não foi possivel inserir " + ex.Message);
+            }
+            finally
+            {
+                _connection.Close();
             }
         }
     }

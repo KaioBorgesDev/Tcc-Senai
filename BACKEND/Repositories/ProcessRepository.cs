@@ -30,13 +30,14 @@ namespace senai_game.Repositories
 
                 if (reader.HasRows)
                 {
+                    QuestionRepository questionRepository = new QuestionRepository();
                     while (reader.Read())
                     {
                         Process processo = new Process((int)reader["id"],
                             reader["name"].ToString(),
                             reader["description"].ToString(),
                             reader["semestre"].ToString(),
-                            perguntas: Question.getById((int)reader["id"])
+                            perguntas: questionRepository.getById((int)reader["id"])
                         );
                         allProcessos.Add(processo);
                     }
@@ -94,8 +95,9 @@ namespace senai_game.Repositories
 
                 if (reader.HasRows)
                 {
+                    QuestionRepository questionRepository = new QuestionRepository();
                     reader.Read();
-                    return new Process((int)reader["id"], reader["name"].ToString(), reader["description"].ToString(), reader["semestre"].ToString(), perguntas: Question.getById((int)reader["id"]));
+                    return new Process((int)reader["id"], reader["name"].ToString(), reader["description"].ToString(), reader["semestre"].ToString(), perguntas: questionRepository.getById((int)reader["id"]));
                 }
                 return null;
             }

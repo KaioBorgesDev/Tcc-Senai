@@ -1,7 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using senai_game.Factory;
 using senai_game.Models;
-using System.ComponentModel.DataAnnotations;
+
 
 namespace senai_game.Repositories
 {

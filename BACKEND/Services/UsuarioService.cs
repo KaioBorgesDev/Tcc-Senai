@@ -2,11 +2,12 @@
 using senai_game.Models;
 using senai_game.Repositories;
 
+
 namespace senai_game.Services
 {
     public class UsuarioService
     {
-
+        
         private readonly UserRepository _repository;
 
         public UsuarioService()
