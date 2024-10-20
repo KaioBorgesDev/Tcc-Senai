@@ -1,6 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 using senai_game.DTOs;
+using senai_game.Models;
 using senai_game.Services;
+using System.IdentityModel.Tokens.Jwt;
+using System.Text;
 
 namespace senai_game.Controllers
 {
@@ -9,6 +14,7 @@ namespace senai_game.Controllers
     public class ControllerFavoritos : ControllerBase
     {
         private readonly FavoriteService _favoriteService = new FavoriteService();
+
 
 
         [HttpPost("insert")] 
@@ -28,6 +34,8 @@ namespace senai_game.Controllers
         }
 
 
+
+
         [HttpPost("remove")]
         public ActionResult deleteFavoritos([FromBody] FavoriteDTO favoritoDTO)
         {
@@ -39,6 +47,7 @@ namespace senai_game.Controllers
             return BadRequest(response);
         }
 
+        
         [HttpGet("getAllByEmail/{email}")]
         public ActionResult getAll(string email)
         {

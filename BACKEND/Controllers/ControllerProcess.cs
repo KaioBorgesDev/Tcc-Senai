@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using senai_game.DTOs;
 using senai_game.Services;
 
@@ -11,6 +12,7 @@ namespace senai_game.Controllers
     {
         private readonly ServiceProcess _serviceProcess = new ServiceProcess();
 
+        [Authorize]
         [HttpGet("/all")]
         public IActionResult getAllProcess()
         {
