@@ -37,7 +37,7 @@ namespace senai_game.Controllers
             if (user != null)
             {
                 var token = _usuarioService.GenerateToken(user, _configuration);
-                return Ok(new { user, token = token });
+                return Ok(new { user, token });
             }
                 
             return Unauthorized("Usuario não encontrado!");

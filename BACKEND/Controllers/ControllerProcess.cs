@@ -12,11 +12,10 @@ namespace senai_game.Controllers
     {
         private readonly ServiceProcess _serviceProcess = new ServiceProcess();
 
-        [Authorize]
+        
         [HttpGet("/all")]
         public IActionResult getAllProcess()
         {
-            
             return Ok(_serviceProcess.GetAllProcess());
         }
 

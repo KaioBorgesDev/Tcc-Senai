@@ -1,11 +1,8 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
 using senai_game.DTOs;
-using senai_game.Models;
 using senai_game.Services;
-using System.IdentityModel.Tokens.Jwt;
-using System.Text;
+
 
 namespace senai_game.Controllers
 {
