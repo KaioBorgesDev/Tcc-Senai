@@ -18,12 +18,12 @@ const Favorites = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const { email } = useContext(AuthContext);
-  const [visibleQuestions, setVisibleQuestions] = useState<number | null>(null);
+
 
   useEffect(() => {
     const buscarFavoritos = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/ServicesFavoritos/getAllByEmail/${email}`);
+        const response = await axios.get(`http://localhost:5000/ControllerFavoritos/getAllByEmail/${email}`);
         const response_tratada: Favorito[] = response.data;
         setFavoritos(response_tratada);
       } catch (err) {
