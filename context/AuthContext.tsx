@@ -10,6 +10,7 @@ type AuthContextType = {
 // Define the type for the context's value
 type AuthContextProps = {
     email: string;
+    token: string,
     AuthUser: (email: string, password: string) => void;
     username: string;
     rule: string;
@@ -18,6 +19,7 @@ type AuthContextProps = {
 // Create the AuthContext with default values
 export const AuthContext = createContext<AuthContextProps>({
     email: " ",
+    token: " ",
     AuthUser: () => {},
     username: "",
     rule:" ",
@@ -34,6 +36,7 @@ type User = {
 // Define the AuthProvider component
 export const AuthProvider = ({ children }: AuthContextType) => {
     // Initialize state variables
+    const [token, setToken] = useState<string>('');
     const [email, setEmail] = useState<string>('');
     const [username, setUsername] = useState<string>('');
     const [rule, setRule] = useState<string>('');
@@ -50,10 +53,12 @@ export const AuthProvider = ({ children }: AuthContextType) => {
                     rules: " "
                 });
                 if (response.data !== 'Usuario não encontrado!') {
-                    setUsername(response.data.username);
+                    
+                    setUsername(response.data.user.username);
                     setEmail(email);
-                    setRule(response.data.rules);
-                    alert('Bem Vindo ' + response.data.username);
+                    setRule(response.data.user.rules);
+                    setToken(response.data.token);
+                    alert('Bem Vindo ' + response.data.user.username);
                     router.push("/explore");
                 } else {
                     alert('Usuário não encontrado!');
@@ -85,7 +90,7 @@ export const AuthProvider = ({ children }: AuthContextType) => {
 
     // Return the context provider with the context value
     return (
-        <AuthContext.Provider value={{ email: email, AuthUser,username, rule: rule}}>
+        <AuthContext.Provider value={{ email: email, token: token, AuthUser , username, rule: rule}}>
             {children}
         </AuthContext.Provider>
     );
