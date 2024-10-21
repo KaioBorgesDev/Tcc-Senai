@@ -12,7 +12,7 @@ namespace senai_game.DTOs
         [RegularExpression(@"^\d+$", ErrorMessage = "O valor do id da prova, deve ser um numero!")]
         public int prova_fav { get; set; }
         [Required]
-        [MaxLength(45)]
+        [MaxLength(200)]
         public string titulo_prova { get; set; }
     }
 }
