@@ -53,9 +53,9 @@ namespace senai_game.Repositories
                 checkCommand.Parameters.AddWithValue("@email_user", favorito.Email_user);
                 checkCommand.Parameters.AddWithValue("@prova_fav", favorito.Prova_fav);
 
-                int existe = Convert.ToInt32(checkCommand.ExecuteScalar());
+                int count_registro = Convert.ToInt32(checkCommand.ExecuteScalar());
 
-                if (existe > 0)
+                if (count_registro > 0)
                 {
                     return "Já existe um registro com essa prova favorita.";
                 }

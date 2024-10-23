@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using Microsoft.AspNetCore.Identity;
+using MySql.Data.MySqlClient;
 using senai_game.Factory;
 using senai_game.Models;
 
@@ -8,6 +9,7 @@ namespace senai_game.Repositories
     {
         //inicinado uma conexão
         private readonly MySqlConnection _connection;
+        private  MySqlConnection connection;
 
         //construtor
         public UserRepository()
@@ -15,30 +17,52 @@ namespace senai_game.Repositories
             _connection = FactoryConnection.getConnection(ConnectionEnvironment.getConnectionName());
         }
 
+
         public User GetUser(string email, string password)
         {
             try
             {
                 _connection.Open();
 
-                MySqlCommand command = new MySqlCommand("Select * from usuarios where email = @email and password = @password", _connection);
-                command.Parameters.AddWithValue("@email", email);
-                command.Parameters.AddWithValue("@password", password);
+                using (MySqlCommand command = new MySqlCommand("Select password from usuarios where email = @email", _connection)) {
+                    command.Parameters.AddWithValue("@email", email);
+                    MySqlDataReader reader = command.ExecuteReader();
 
-                MySqlDataReader reader = command.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        var password_hasher = new PasswordHasher<string>();
+                        string password_user = (string)reader["password"];
 
-                if (reader.Read())
-                {
-                    var user = new User(
-                        (string)reader["email"],
-                        (string)reader["password"],
-                        (string)reader["username"],
-                        (string)reader["status"],
-                        (string)reader["rule"]
-                        );
+                        var result = password_hasher.VerifyHashedPassword(null, password_user, password);
 
-                    return user;
+                        if (result == PasswordVerificationResult.Success)
+                        {
+
+                            _connection.Close();
+
+                            connection = FactoryConnection.getConnection(ConnectionEnvironment.getConnectionName());
+                            connection.Open();
+                            MySqlCommand getAllFromUser = new MySqlCommand("Select * from usuarios where email = @email", connection);
+
+                            getAllFromUser.Parameters.AddWithValue("@email", email);
+
+                            MySqlDataReader reader_USER = getAllFromUser.ExecuteReader();
+                            if (reader_USER.Read())
+                            {
+                                var user = new User(
+                               (string)reader_USER["email"],
+                               null,
+                               (string)reader_USER["username"],
+                               (string)reader_USER["status"],
+                               (string)reader_USER["rule"]
+                               );
+                                return user;
+                            }
+                        }
+                        return null;
+                    }
                 }
+               
                 return null;
             }
             catch (Exception ex)
@@ -47,7 +71,7 @@ namespace senai_game.Repositories
             }
             finally
             {
-                _connection.Close();
+                connection.Close();
             }
         }
         public string GetRules(string email)
@@ -83,8 +107,12 @@ namespace senai_game.Repositories
                 _connection.Open();
 
                 MySqlCommand command = new MySqlCommand("insert into usuarios (email, password, username, status) values (@email, @password, @username, @status)", _connection);
+                var passwordHasher = new PasswordHasher<string>();
+                string password_cript = passwordHasher.HashPassword(null, usuario.Password);
+
+
                 command.Parameters.AddWithValue("@email", usuario.Email);
-                command.Parameters.AddWithValue("@password", usuario.Password);
+                command.Parameters.AddWithValue("@password", password_cript);
                 command.Parameters.AddWithValue("@username", usuario.Username);
                 command.Parameters.AddWithValue("@status", usuario.Status);
 
