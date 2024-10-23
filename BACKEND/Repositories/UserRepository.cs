@@ -12,13 +12,7 @@ namespace senai_game.Repositories
         //construtor
         public UserRepository()
         {
-            //
-            string connection_env = Environment.GetEnvironmentVariable("CONEXAO", EnvironmentVariableTarget.User);
-
-            if (connection_env == null)
-                connection_env = "senai";
-
-            _connection = FactoryConnection.getConnection(connection_env);
+            _connection = FactoryConnection.getConnection(ConnectionEnvironment.getConnectionName());
         }
 
         public User GetUser(string email, string password)
@@ -84,10 +78,10 @@ namespace senai_game.Repositories
         }
         public string InsertUser(User usuario)
         {
-            _connection.Open();
-
             try
             {
+                _connection.Open();
+
                 MySqlCommand command = new MySqlCommand("insert into usuarios (email, password, username, status) values (@email, @password, @username, @status)", _connection);
                 command.Parameters.AddWithValue("@email", usuario.Email);
                 command.Parameters.AddWithValue("@password", usuario.Password);
@@ -95,6 +89,7 @@ namespace senai_game.Repositories
                 command.Parameters.AddWithValue("@status", usuario.Status);
 
                 command.ExecuteNonQuery();
+
                 return "Usuário inserido com sucesso";
              
             }

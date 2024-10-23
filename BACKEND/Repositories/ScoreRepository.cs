@@ -12,12 +12,7 @@ namespace senai_game.Repositories
 
         public ScoreRepository()
         {
-            connection_env = Environment.GetEnvironmentVariable("CONEXAO", EnvironmentVariableTarget.User);
-
-            if (connection_env == null)
-                connection_env = "senai";
-
-            _connection = FactoryConnection.getConnection(connection_env);
+            _connection = FactoryConnection.getConnection(ConnectionEnvironment.getConnectionName());
         }
 
         internal List<Score> GetAllScore()
