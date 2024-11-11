@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     paddingVertical: 50,
-    backgroundColor: '#f0f8ff',
+    backgroundColor: '#c3c3c3',
   },
   avatar: {
     width: 100,
