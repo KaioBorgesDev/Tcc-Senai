@@ -10,23 +10,25 @@ const Settings = () => {
 
   return (
     <View style={styles.container}>
-      {rule === 'adm' ? (
+      <View>
+        {rule === 'adm' ? (
+          <ButtonGreen 
+            text='Criar Processos' 
+            onPress={() => router.push('/Criar_processos')} 
+          />
+        ) : (
+          <Text style={styles.warningText}>
+            Você não pode inserir provas ainda.
+          </Text>
+        )}
+        
         <ButtonGreen 
-          text='Criar Processos' 
-          onPress={() => router.push('/Criar_processos')} 
+          text='Sobre Nós' 
+          onPress={() => alert('Somos uma equipe de duas pessoas comprometidas em oferecer soluções criativas e personalizadas. Combinamos nossas habilidades para entregar resultados de qualidade, sempre com foco em detalhes e eficiência. Valorizamos a comunicação direta e a flexibilidade para atender às suas necessidades, garantindo uma experiência ágil e personalizada. Vamos transformar suas ideias em realidade!')} 
         />
-      ) : (
-        <Text style={styles.warningText}>
-          Você não pode inserir provas ainda.
-        </Text>
-      )}
-      
-      <ButtonGreen 
-        text='Sobre Nós' 
-        onPress={() => alert('Somos uma equipe de duas pessoas comprometidas em oferecer soluções criativas e personalizadas. Combinamos nossas habilidades para entregar resultados de qualidade, sempre com foco em detalhes e eficiência. Valorizamos a comunicação direta e a flexibilidade para atender às suas necessidades, garantindo uma experiência ágil e personalizada. Vamos transformar suas ideias em realidade!')} 
-      />
-      
-      <ButtonGreen text='Sair' onPress={()=>router.push('/')}></ButtonGreen>
+        
+        <ButtonGreen text='Sair' onPress={()=>router.push('/Login')}></ButtonGreen>
+      </View>
     </View>
   );
 }
