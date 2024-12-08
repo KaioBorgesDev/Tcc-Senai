@@ -27,7 +27,7 @@ const SignUp = () => {
             return alert('O email no mínimo 5 caracteres');
         }
         try{
-            axios.post('http://localhost:5000/create',
+          const response =  await axios.post('http://localhost:5000/create',
         {
             email,
             username,
@@ -35,9 +35,10 @@ const SignUp = () => {
             status: " ",
             rules: " "
         })
-        
-        alert('Usuário cadastrado com sucesso!');
-        router.navigate('/');
+        if(response.data !== 'Usuário inserido com sucesso')
+            alert(response.data);
+        else    
+            router.navigate('/Login');
         
         }catch (ex){
             alert(ex);
@@ -76,7 +77,7 @@ const styles = StyleSheet.create({
     ,logo: {
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: 180,
+        marginTop: 100,
     }, 
     inputText: {
         width: 350,
