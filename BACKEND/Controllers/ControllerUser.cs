@@ -48,16 +48,11 @@ namespace senai_game.Controllers
         // POST: ServicesUsers/Create
         [HttpPost("/create")]
         public ActionResult Create([FromBody] UserDTO userDTO)
-        {
+            {
             var response = _usuarioService.CreateUser(userDTO);
 
-            if (response == "Usuário inserido com sucesso")
-            {
-                return Ok(response);
-            }
-
-            return BadRequest(response);
-
+             return Ok(response);
+            
         }
     }
 }
