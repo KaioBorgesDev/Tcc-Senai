@@ -36,7 +36,7 @@ const Processos =() =>{
     // Função assíncrona para buscar os processos seletivos
     const buscarProcesso = async () => {
       try {
-        const data = await axios.get('http://localhost:5000/all');
+        const data = await axios.get('http://192.168.1.206:5000/all');
         const processos: ProcessoSeletivo[] = data.data;
         setProcessosSeletivos(processos);
       } catch (error) {
@@ -64,6 +64,7 @@ const Processos =() =>{
             <CardProvas
               titulo={item.name}
               descricao={item.description}
+              processo_nb={item.id}
             />
             
           </Pressable>

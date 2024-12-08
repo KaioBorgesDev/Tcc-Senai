@@ -26,7 +26,7 @@ export default function Explore() {
   useEffect(() => {
     const fetchProcessos = async () => {
       try {
-        const response = await axios.get<ProcessoSeletivo[]>('http://localhost:5000/all');
+        const response = await axios.get<ProcessoSeletivo[]>('http://192.168.1.206:5000/all');
         setProcessosSeletivos(response.data);
       } catch (error) {
         console.error("Erro ao buscar processos:", error);
@@ -93,6 +93,7 @@ const styles = StyleSheet.create({
    
   },
   welcomeText: {
+    marginTop: 40,
     fontSize: 24,
     marginBottom: 15,
     fontWeight: '600',

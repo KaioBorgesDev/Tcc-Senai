@@ -37,9 +37,7 @@ const SignIn = () => {
                 <Link href={'/SignUp'} style={styles.link}>
                     Crie uma conta
                 </Link>
-                <Link href={'/Login'} style={styles.link}>
-                    Esqueceu sua senha?
-                </Link>
+                
             </View>
         </View>  
         <TouchableOpacity style={styles.ButtonCad} onPress={() => HandleSignIn()} >

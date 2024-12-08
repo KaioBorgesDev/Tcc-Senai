@@ -14,12 +14,14 @@ const Profile = () => {
   const [score, setScore] = useState<Score | undefined>(undefined);
 
   useEffect(() => {
+    
     // Função assíncrona para buscar o score
     const getScore = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/ServicesScores/GetByEmail/${email}`);
+        const response = await axios.get(`http://192.168.1.206:5000/ServicesScores/GetByEmail/${email}`);
         const response_tratada: Score = response.data;
         setScore(response_tratada);
+        console.log(score)
       } catch (err) {
         console.error(err);
       }
@@ -47,8 +49,9 @@ const Profile = () => {
         </View>
 
         <View style={styles.insightItem}>
-          <Text style={styles.insightLabel}>Acertos / Erros</Text>
-          <Text style={styles.insightValue}>{score ? (score.acertos / (score.acertos + score.erros)).toFixed(2) : '0.00'}</Text>
+          <Text style={styles.insightLabel}>Acertos</Text>
+          
+          <Text style={styles.insightValue}>{score?.acertos} aqui </Text>
           <Text style={styles.insightLabel}>Continue melhorando!</Text>
         </View>
       </View>

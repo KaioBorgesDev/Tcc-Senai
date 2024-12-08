@@ -47,7 +47,7 @@ const Selecao = () => {
     // Função assíncrona para buscar o processo seletivo
     const buscarProcesso = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/${processo_nb}`);
+        const response = await axios.get(`http://192.168.1.206:5000/${processo_nb}`);
         const processo: ProcessoSeletivo = response.data;
         setProcessosSeletivos(processo);
       } catch (error) {
@@ -61,7 +61,7 @@ const Selecao = () => {
   const enviarAcerto = async () => {
     try {
       
-      await axios.post(await axios.post(`http://localhost:5000/ServicesScores/InsertAcByEmail/${email}`));
+      await axios.post(`http://192.168.1.206:5000/ControllerScore/InsertAcByEmail/${email}`);
       
     } catch (err) {
       console.error(err);
@@ -70,7 +70,7 @@ const Selecao = () => {
 
   const enviarErro = async () => {
     try {
-      await axios.post(await axios.post(`http://localhost:5000/ServicesScores/InsertErByEmail/${email}`));
+      await axios.post(`http://192.168.1.206:5000/ControllerScore/InsertErByEmail/${email}`);
       
     } catch (err) {
       console.error(err);
@@ -109,18 +109,13 @@ const Selecao = () => {
 
   return (
     <ScrollView style={styles.container}>
-      <View style={styles.cardProva}>
-        {/* Título da questão */}
-        <Text style={styles.titulo}>{questao_nb}. Leia a seguinte oração</Text>
-
-        {/* Texto da pergunta */}
-        <ScrollView style={styles.Pergunta}>
+      {/* Título da questão */}
+      <Text style={styles.titulo}>{questao_nb}. Leia a seguinte oração</Text>
+      <ScrollView style={styles.Pergunta}>
           <Text>{currentQuestion.descricao}</Text>
-        </ScrollView>
-
-        {/* Lista de opções de resposta */}
-        <View style={styles.ListOpcao}>
-          {currentQuestion.alternativas_list.map(questao => (
+      </ScrollView>
+      <View style={styles.ListOpcao}>
+      {currentQuestion.alternativas_list.map(questao => (
             <Button
               key={questao.id}
               resposta={questao.descricao}
@@ -133,8 +128,6 @@ const Selecao = () => {
               }}
             />            
           ))}
-        </View>
-
         {/* Botão para ir para a próxima pergunta */}
         {nextQuestion && (
           <TouchableOpacity
