@@ -114,7 +114,7 @@ namespace senai_game.Repositories
                 command.Parameters.AddWithValue("@email", usuario.Email);
                 command.Parameters.AddWithValue("@password", password_cript);
                 command.Parameters.AddWithValue("@username", usuario.Username);
-                command.Parameters.AddWithValue("@status", usuario.Status);
+                command.Parameters.AddWithValue("@status", "ativo");
 
                 command.ExecuteNonQuery();
 
