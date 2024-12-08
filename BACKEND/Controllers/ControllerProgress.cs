@@ -31,9 +31,6 @@ namespace senai_game.Controllers
             return Ok("Progresso não encontrado");
         }
 
-        
-
-
     }
 
  

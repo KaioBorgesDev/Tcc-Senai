@@ -35,7 +35,7 @@ namespace senai_game.Repositories
             }
             catch (Exception ex)
             {
-                throw new Exception("Erro ao inserir favorito: " + ex.Message);
+                throw new Exception("Erro ao pegar favorito: " + ex.Message);
             }
             finally
             {

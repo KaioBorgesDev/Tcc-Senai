@@ -8,7 +8,7 @@ namespace senai_game.Repositories
     public class ScoreRepository
     {
         private readonly MySqlConnection _connection;
-        private readonly string connection_env;
+
 
         public ScoreRepository()
         {
@@ -64,7 +64,7 @@ namespace senai_game.Repositories
                     return "Usuario não encontrado.";
                 }
 
-                MySqlConnection conexao_update = FactoryConnection.getConnection(connection_env);
+                MySqlConnection conexao_update = FactoryConnection.getConnection(ConnectionEnvironment.getConnectionName());
                 conexao_update.Open();
                 MySqlCommand command_update = new MySqlCommand("update scores set erros = @erro where email_user = @email", conexao_update);
 
@@ -127,7 +127,7 @@ namespace senai_game.Repositories
                     return "Usuario não encontrado.";
                 }
 
-                MySqlConnection conexao_update = FactoryConnection.getConnection(connection_env);
+                MySqlConnection conexao_update = FactoryConnection.getConnection(ConnectionEnvironment.getConnectionName());
                 conexao_update.Open();
                 MySqlCommand command_update = new MySqlCommand("update scores set acertos = @acerto where email_user = @email", conexao_update);
 

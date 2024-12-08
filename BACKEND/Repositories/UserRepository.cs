@@ -47,7 +47,7 @@ namespace senai_game.Repositories
                             getAllFromUser.Parameters.AddWithValue("@email", email);
 
                             MySqlDataReader reader_USER = getAllFromUser.ExecuteReader();
-                            connection.Close();
+                            
                             if (reader_USER.Read())
                             {
                                 var user = new User(
@@ -57,6 +57,7 @@ namespace senai_game.Repositories
                                (string)reader_USER["status"],
                                (string)reader_USER["rule"]
                                );
+                                connection.Close();
                                 return user;
                             }
                         }
