@@ -137,7 +137,7 @@ DROP TABLE IF EXISTS `usuarios`;
 CREATE TABLE `usuarios` (
   `email` varchar(100) NOT NULL,
   `username` varchar(45) NOT NULL,
-  `password` varchar(15) NOT NULL,
+  `password` varchar(150) NOT NULL,
   `status` varchar(15) DEFAULT 'ativo',
   `rule` varchar(10) DEFAULT 'user',
   PRIMARY KEY (`email`)
