@@ -1,5 +1,5 @@
 import Onboarding from '@/components/Onboarding'
-import { Stack, router } from 'expo-router'
+import {router } from 'expo-router'
 import React from 'react'
 
 

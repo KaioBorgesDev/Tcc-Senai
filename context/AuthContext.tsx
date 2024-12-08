@@ -1,6 +1,6 @@
 import axios from "axios";
 import { router } from "expo-router";
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 // Define the type for the context provider's props
 type AuthContextType = {
@@ -14,6 +14,7 @@ type AuthContextProps = {
     AuthUser: (email: string, password: string) => void;
     username: string;
     rule: string;
+    isLogged: boolean;
 };
 
 // Create the AuthContext with default values
@@ -23,6 +24,7 @@ export const AuthContext = createContext<AuthContextProps>({
     AuthUser: () => {},
     username: "",
     rule:" ",
+    isLogged: false
 });
 
 // Define the type for user information
@@ -37,9 +39,16 @@ type User = {
 export const AuthProvider = ({ children }: AuthContextType) => {
     // Initialize state variables
     const [token, setToken] = useState<string>('');
+    const [isLogged, setIsLogged] = useState<boolean>(false);
     const [email, setEmail] = useState<string>('');
     const [username, setUsername] = useState<string>('');
     const [rule, setRule] = useState<string>('');
+
+    useEffect(() => {
+        setIsLogged(token !== '');
+      }, [token]);
+    
+    
 
     // Function to authenticate the user
     const AuthUser = async (email: string, password: string) => {
@@ -90,7 +99,7 @@ export const AuthProvider = ({ children }: AuthContextType) => {
 
     // Return the context provider with the context value
     return (
-        <AuthContext.Provider value={{ email: email, token: token, AuthUser , username, rule: rule}}>
+        <AuthContext.Provider value={{ email: email, token: token, AuthUser , username, rule: rule, isLogged}}>
             {children}
         </AuthContext.Provider>
     );
