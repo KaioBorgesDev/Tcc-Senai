@@ -85,7 +85,7 @@ export const AuthProvider = ({ children }: AuthContextType) => {
                     if (error.response.status === 401) {
                         alert('Conta não encontrada! Verifique suas credenciais.');
                     } else {
-                        alert('Erro ao autenticar: ' + error.response.data[3]);
+                        alert('Erro ao autenticar, verifique suas credenciais.');
                     }
                 } else {
                     alert('Erro desconhecido: ' + error.message);
