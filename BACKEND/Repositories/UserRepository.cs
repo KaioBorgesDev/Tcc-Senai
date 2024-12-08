@@ -47,6 +47,7 @@ namespace senai_game.Repositories
                             getAllFromUser.Parameters.AddWithValue("@email", email);
 
                             MySqlDataReader reader_USER = getAllFromUser.ExecuteReader();
+                            connection.Close();
                             if (reader_USER.Read())
                             {
                                 var user = new User(
@@ -71,7 +72,7 @@ namespace senai_game.Repositories
             }
             finally
             {
-                connection.Close();
+                _connection.Close();
             }
         }
         public string GetRules(string email)

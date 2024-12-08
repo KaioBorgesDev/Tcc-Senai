@@ -54,7 +54,7 @@ export const AuthProvider = ({ children }: AuthContextType) => {
     const AuthUser = async (email: string, password: string) => {
         try {
             if (email !== '' && password !== '') {
-                const response = await axios.post('http://localhost:5000/login', {
+                const response = await axios.post('http://192.168.1.206:5000/login', {
                     email: email,
                     username: " ",
                     password: password,
