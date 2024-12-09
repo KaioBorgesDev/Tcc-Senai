@@ -50,7 +50,6 @@ C:\Users\kaio.oliveira8\Source\Repos\Senai-Game-Api\obj\Debug\net8.0\senai-game.
 C:\Users\kaio.oliveira8\Source\Repos\Senai-Game-Api\obj\Debug\net8.0\ref\senai-game.dll
 C:\Users\monolokaio\Documents\Entrega TCC\Tcc-Senai\Backend\bin\Debug\net8.0\appsettings.Development.json
 C:\Users\monolokaio\Documents\Entrega TCC\Tcc-Senai\Backend\bin\Debug\net8.0\appsettings.json
-C:\Users\monolokaio\Documents\Entrega TCC\Tcc-Senai\Backend\bin\Debug\net8.0\senai-game.staticwebassets.endpoints.json
 C:\Users\monolokaio\Documents\Entrega TCC\Tcc-Senai\Backend\bin\Debug\net8.0\senai-game.exe
 C:\Users\monolokaio\Documents\Entrega TCC\Tcc-Senai\Backend\bin\Debug\net8.0\senai-game.deps.json
 C:\Users\monolokaio\Documents\Entrega TCC\Tcc-Senai\Backend\bin\Debug\net8.0\senai-game.runtimeconfig.json
@@ -88,9 +87,7 @@ C:\Users\monolokaio\Documents\Entrega TCC\Tcc-Senai\Backend\obj\Debug\net8.0\sen
 C:\Users\monolokaio\Documents\Entrega TCC\Tcc-Senai\Backend\obj\Debug\net8.0\scopedcss\bundle\senai-game.styles.css
 C:\Users\monolokaio\Documents\Entrega TCC\Tcc-Senai\Backend\obj\Debug\net8.0\staticwebassets.build.json
 C:\Users\monolokaio\Documents\Entrega TCC\Tcc-Senai\Backend\obj\Debug\net8.0\staticwebassets.development.json
-C:\Users\monolokaio\Documents\Entrega TCC\Tcc-Senai\Backend\obj\Debug\net8.0\staticwebassets.build.endpoints.json
 C:\Users\monolokaio\Documents\Entrega TCC\Tcc-Senai\Backend\obj\Debug\net8.0\staticwebassets\msbuild.senai-game.Microsoft.AspNetCore.StaticWebAssets.props
-C:\Users\monolokaio\Documents\Entrega TCC\Tcc-Senai\Backend\obj\Debug\net8.0\staticwebassets\msbuild.senai-game.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
 C:\Users\monolokaio\Documents\Entrega TCC\Tcc-Senai\Backend\obj\Debug\net8.0\staticwebassets\msbuild.build.senai-game.props
 C:\Users\monolokaio\Documents\Entrega TCC\Tcc-Senai\Backend\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.senai-game.props
 C:\Users\monolokaio\Documents\Entrega TCC\Tcc-Senai\Backend\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.senai-game.props
@@ -257,3 +254,11 @@ C:\Users\aluno\Documents\KaioBorgesDev\Tcc-Senai\BACKEND\obj\Debug\net8.0\refint
 C:\Users\aluno\Documents\KaioBorgesDev\Tcc-Senai\BACKEND\obj\Debug\net8.0\senai-game.pdb
 C:\Users\aluno\Documents\KaioBorgesDev\Tcc-Senai\BACKEND\obj\Debug\net8.0\senai-game.genruntimeconfig.cache
 C:\Users\aluno\Documents\KaioBorgesDev\Tcc-Senai\BACKEND\obj\Debug\net8.0\ref\senai-game.dll
+C:\Users\monolokaio\Documents\Entrega TCC\Tcc-Senai\Backend\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\monolokaio\Documents\Entrega TCC\Tcc-Senai\Backend\bin\Debug\net8.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\monolokaio\Documents\Entrega TCC\Tcc-Senai\Backend\bin\Debug\net8.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\monolokaio\Documents\Entrega TCC\Tcc-Senai\Backend\bin\Debug\net8.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\monolokaio\Documents\Entrega TCC\Tcc-Senai\Backend\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\monolokaio\Documents\Entrega TCC\Tcc-Senai\Backend\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\monolokaio\Documents\Entrega TCC\Tcc-Senai\Backend\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\monolokaio\Documents\Entrega TCC\Tcc-Senai\Backend\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll

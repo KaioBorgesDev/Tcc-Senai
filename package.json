@@ -47,5 +47,13 @@
     "react-test-renderer": "18.2.0",
     "typescript": "~5.3.3"
   },
-  "private": true
+  "private": true,
+  "ios": { 
+  "bundleIdentifier": "com.ssenai.senai-game", 
+  "buildNumber": "1.0.0" 
+  }, 
+  "android": {
+  "package": "com.ssenai.senai-game",
+      "versionCode": 1
+  }
 }
