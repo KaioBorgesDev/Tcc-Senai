@@ -22,10 +22,10 @@ namespace senai_game.Repositories
             try
             {
                 _connection.Open();
-                MySqlCommand command = new MySqlCommand("Select * from score", _connection);
+                MySqlCommand command = new MySqlCommand("Select * from scores", _connection);
                 MySqlDataReader reader = command.ExecuteReader();
 
-                if (reader.HasRows)
+                while (reader.HasRows)
                 {
                     reader.Read();
                     scores.Add(new Score((string)reader["email_User"], (int)reader["acertos"], (int)reader["erros"]));
