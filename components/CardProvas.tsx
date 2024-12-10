@@ -17,7 +17,7 @@ const CardProvas: React.FC<CardProvasProps> = ({titulo, descricao, processo_nb})
 
     const enviarFavoritos = async () =>{
         if(icon == true){
-            const response_unfavorite = await axios.post('http://192.168.1.206:5000/ControllerFavoritos/remove', {
+            const response_unfavorite = await axios.post('http://localhost:5000/ControllerFavoritos/remove', {
                 email_user: email,
                 prova_fav: processo_nb,
                 titulo_prova: titulo,
@@ -29,7 +29,7 @@ const CardProvas: React.FC<CardProvasProps> = ({titulo, descricao, processo_nb})
             }
              alert('Não foi removido.');
         }else{
-            const response_favorite = await axios.post('http://192.168.1.206:5000/ControllerFavoritos/insert', {
+            const response_favorite = await axios.post('http://localhost:5000/ControllerFavoritos/insert', {
                 email_user: email,
                 prova_fav: processo_nb,
                 titulo_prova: titulo

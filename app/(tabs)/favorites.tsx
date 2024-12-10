@@ -23,7 +23,7 @@ const Favorites = () => {
   useEffect(() => {
     const buscarFavoritos = async () => {
       try {
-        const response = await axios.get(`http://192.168.1.206:5000/ControllerFavoritos/getAllByEmail/${email}`);
+        const response = await axios.get(`http://localhost:5000/ControllerFavoritos/getAllByEmail/${email}`);
         const response_tratada: Favorito[] = response.data;
         setFavoritos(response_tratada);
       } catch (err) {

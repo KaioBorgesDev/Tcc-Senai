@@ -37,7 +37,7 @@ const Processo = () => {
     // Função assíncrona para buscar o processo seletivo
     const buscarProcesso = async () => {
       try {
-        const response = await axios.get(`http://192.168.1.206:5000/${processo_nb}`);
+        const response = await axios.get(`http://localhost:5000/${processo_nb}`);
         const processo: ProcessoSeletivo = response.data;
         setProcessosSeletivos(processo);
       } catch (error) {

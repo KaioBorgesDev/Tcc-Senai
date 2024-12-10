@@ -14,7 +14,7 @@ type Alternativa = {
 
 const Criar_Perguntas = () => {
   const { id_processo } = useLocalSearchParams();
-  const [alternativas, setAlternativas] = useState<Alternativa[]>(Array(5).fill({ descricao: '', correta: 0, id_pergunta: 0 }));
+  const [alternativas, setAlternativas] = useState<Alternativa[]>(Array(5).fill({ descricbao: '', correta: 0, id_pergunta: 0 }));
   const [pergunta, setPergunta] = useState('');
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
 
@@ -57,7 +57,7 @@ const Criar_Perguntas = () => {
 
   return (
     <View>
-      <Text style={styles.Titulo}>Hora de Você Fazer as Perguntas: {alternativas[0].descricao} </Text>
+      <Text style={styles.Titulo}>Hora de Você Fazer as Perguntas:  </Text>
       <View>
         <View style={styles.FormSingUp}>
           <TextInput 

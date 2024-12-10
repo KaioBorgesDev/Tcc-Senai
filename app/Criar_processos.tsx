@@ -24,7 +24,7 @@ const processos = () => {
           return alert('Preencha todos os campos!');
       }
       try{
-          const response = await axios.post('http://192.168.1.206:5000/insert', {
+          const response = await axios.post('http://localhost:5000/insert', {
             semestre: semestre,
             description: descricao,
             name: nome,
@@ -34,7 +34,7 @@ const processos = () => {
           if(response.status == 200){
               alert('Processo criado com sucesso!');
 
-              const responseNumero = await axios.post('http://192.168.1.206:5000/getIdByProcesso', {
+              const responseNumero = await axios.post('http://localhost:5000/getIdByProcesso', {
                 semestre: semestre,
                 description: descricao,
                 name: nome,

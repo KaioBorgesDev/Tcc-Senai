@@ -47,7 +47,7 @@ const Selecao = () => {
     // Função assíncrona para buscar o processo seletivo
     const buscarProcesso = async () => {
       try {
-        const response = await axios.get(`http://192.168.1.206:5000/${processo_nb}`);
+        const response = await axios.get(`http://localhost:5000/${processo_nb}`);
         const processo: ProcessoSeletivo = response.data;
         setProcessosSeletivos(processo);
       } catch (error) {
@@ -61,7 +61,7 @@ const Selecao = () => {
   const enviarAcerto = async () => {
     try {
       
-      await axios.post(`http://192.168.1.206:5000/ControllerScore/InsertAcByEmail/${email}`);
+      await axios.post(`http://localhost:5000/ControllerScore/InsertAcByEmail/${email}`);
       
     } catch (err) {
       console.error(err);
@@ -70,7 +70,7 @@ const Selecao = () => {
 
   const enviarErro = async () => {
     try {
-      await axios.post(`http://192.168.1.206:5000/ControllerScore/InsertErByEmail/${email}`);
+      await axios.post(`http://localhost:5000/ControllerScore/InsertErByEmail/${email}`);
       
     } catch (err) {
       console.error(err);

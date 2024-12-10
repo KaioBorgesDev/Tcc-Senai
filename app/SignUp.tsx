@@ -27,7 +27,7 @@ const SignUp = () => {
             return alert('O email no mínimo 5 caracteres');
         }
         try{
-          const response =  await axios.post('http://192.168.1.206:5000/create',
+          const response =  await axios.post('http://localhost:5000/create',
         {
             email,
             username,
