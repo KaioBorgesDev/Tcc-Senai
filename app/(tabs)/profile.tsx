@@ -18,7 +18,7 @@ const Profile = () => {
     // Função assíncrona para buscar o score
     const getScore = async () => {
       try {
-        const response = await axios.get(`http://192.168.1.206:5000/ServicesScores/GetByEmail/${email}`);
+        const response = await axios.get(`http://localhost:5000/ControllerScore/GetByEmail/${email}`);
         const response_tratada: Score = response.data;
         setScore(response_tratada);
         console.log(score)
@@ -51,7 +51,7 @@ const Profile = () => {
         <View style={styles.insightItem}>
           <Text style={styles.insightLabel}>Acertos</Text>
           
-          <Text style={styles.insightValue}>{score?.acertos} aqui </Text>
+          <Text style={styles.insightValue}>{score?.acertos}</Text>
           <Text style={styles.insightLabel}>Continue melhorando!</Text>
         </View>
       </View>
