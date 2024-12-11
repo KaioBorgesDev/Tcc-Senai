@@ -29,22 +29,14 @@ interface Alternativas {
 
 // Componente para selecionar questões
 const Selecao = () => {
-  // Estado para gerenciar todos os processos
   const [processosSeletivos, setProcessosSeletivos] = useState<ProcessoSeletivo>();
-  // Estado para gerenciar a exibição do botão de próxima pergunta
   const [nextQuestion, setNextQuestion] = useState(false);
-  // Parâmetro que é a questão atual a ser exibida
   const { processo_nb, questao_nb } = useLocalSearchParams();
-  // Número da questão para navegar para a próxima
   const [number, setNumber] = useState<number>(Number(questao_nb));
-  // Estado para controlar se é a primeira tentativa
   const [firstTry, setFirstTry] = useState(true);
-
-  //contexto do usuario
   const { email } = useContext(AuthContext);
 
   useEffect(() => {
-    // Função assíncrona para buscar o processo seletivo
     const buscarProcesso = async () => {
       try {
         const response = await axios.get(`http://localhost:5000/${processo_nb}`);
@@ -60,9 +52,7 @@ const Selecao = () => {
   
   const enviarAcerto = async () => {
     try {
-      
       await axios.post(`http://localhost:5000/ControllerScore/InsertAcByEmail/${email}`);
-      
     } catch (err) {
       console.error(err);
     } 
@@ -71,36 +61,29 @@ const Selecao = () => {
   const enviarErro = async () => {
     try {
       await axios.post(`http://localhost:5000/ControllerScore/InsertErByEmail/${email}`);
-      
     } catch (err) {
       console.error(err);
     } 
   };
 
-
-  // Função para lidar com a mudança de questão e adicionar resultado
-  const handlePress = (palpite : boolean) =>  { 
+  const handlePress = (palpite: boolean) => { 
     setNextQuestion(true);
     setFirstTry(false);
     setNumber(prev => prev + 1);
-    console.log(email);
-    if(palpite){
+    if (palpite) {
       enviarAcerto();
-    }else{
+    } else {
       enviarErro();
     }
   };
 
-  // Verifica se a pergunta existe
   const currentQuestion = processosSeletivos?.perguntas[Number(questao_nb) - 1];
 
   if (!currentQuestion) {
-    // Se a pergunta não existir, exibe uma mensagem de fim de perguntas
     return (
       <View style={styles.emptyContainer}>
         <Text style={styles.emptyText}>Acabaram as perguntas!</Text>
-
-        <TouchableOpacity  style={styles.button} onPress={()=> router.push("/explore")}>
+        <TouchableOpacity  style={styles.button} onPress={() => router.push("/explore")}>
           <Text style={styles.buttonText}>Voltar para Explore!</Text>
         </TouchableOpacity>
       </View>
@@ -109,32 +92,30 @@ const Selecao = () => {
 
   return (
     <ScrollView style={styles.container}>
-      {/* Título da questão */}
       <Text style={styles.titulo}>{questao_nb}. Leia a seguinte oração</Text>
       <ScrollView style={styles.Pergunta}>
-          <Text>{currentQuestion.descricao}</Text>
+        <Text style={styles.perguntaText}>{currentQuestion.descricao}</Text>
       </ScrollView>
       <View style={styles.ListOpcao}>
-      {currentQuestion.alternativas_list.map(questao => (
-            <Button
-              key={questao.id}
-              resposta={questao.descricao}
-              correta={Boolean(questao.correta)}
-              firstTry={firstTry}
-              onPress={() => {
-                if (firstTry) {
-                  handlePress(Boolean(questao.correta));
-                }
-              }}
-            />            
-          ))}
-        {/* Botão para ir para a próxima pergunta */}
+        {currentQuestion.alternativas_list.map(questao => (
+          <Button
+            key={questao.id}
+            resposta={questao.descricao}
+            correta={Boolean(questao.correta)}
+            firstTry={firstTry}
+            onPress={() => {
+              if (firstTry) {
+                handlePress(Boolean(questao.correta));
+              }
+            }}
+          />
+        ))}
         {nextQuestion && (
           <TouchableOpacity
             onPress={() =>
               router.push({
                 pathname: '/Prova',
-                params: { processo_nb, questao_nb: number } // Passando o valor numérico correto
+                params: { processo_nb, questao_nb: number }
               })
             }
             style={styles.button}
@@ -149,43 +130,57 @@ const Selecao = () => {
 
 export default Selecao;
 
-// Estilos para o componente
 const styles = StyleSheet.create({
   button: {
     margin: 10,
-    padding: 15,
+    paddingVertical: 12,
+    paddingHorizontal: 20,
     alignSelf: 'center',
     borderRadius: 8,
     backgroundColor: 'green',
     justifyContent: 'center',
-    top: 30,
   },
   buttonText: {
     color: 'white',
     textAlign: 'center',
     fontSize: 14,
   },
+  buttonResposta: {
+    margin: 8,
+    padding: 12,
+    alignItems: 'center',
+    backgroundColor: '#4CAF50',
+    borderRadius: 8,
+    width: '100%',
+    maxWidth: 350,  // Define a largura máxima
+  },
   ListOpcao: {
-    top: 10,
+    marginTop: 10,
   },
   Pergunta: {
-    paddingHorizontal: 75,
-    paddingVertical: 10,
+    marginHorizontal: 20,
+    paddingVertical: 15,
     backgroundColor: 'white',
-    maxWidth: 1000,
-    borderRadius: 5,
+    borderRadius: 8,
+    marginBottom: 20,  // Adiciona um pequeno espaço para separar das opções
+  },
+  perguntaText: {
+    fontSize: 16,
+    lineHeight: 24,
+    textAlign: 'center',
+    color: '#333',
+    paddingHorizontal: 10,  // Padding para garantir que o texto não fique encostado nas bordas
   },
   container: {
     flex: 1,
+    padding: 10,
   },
   titulo: {
-    fontSize: 30,
+    fontSize: 22,
     fontWeight: 'bold',
-  },
-  cardProva: {
-    top: 30,
-    justifyContent: 'center',
-    alignItems: 'center',
+    textAlign: 'center',
+    marginVertical: 15,
+    color: '#333',
   },
   emptyContainer: {
     flex: 1,
